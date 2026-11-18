@@ -1,0 +1,893 @@
+{
+  "source": "Original Hewson Atari ST Pasti disk, canonical FAT12 files and independently recovered unpatched GAME.PRG.",
+  "mainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638",
+  "fontSha256": "8bb21d897c7204a22b3d21a63072de3da5243230763475f725e534a6b1f704a6",
+  "fontSource": "https://github.com/th-otto/tos1x/blob/master/vdi/fonts/8x8/system.fnt",
+  "fontSelectionSource": "https://github.com/th-otto/tos1x/blob/master/vdi/font8x8.c",
+  "files": [
+    {
+      "name": "AUTO/GAME.PRG",
+      "size": 58394,
+      "sha256": "9adfe8193f1773c30c91249276f64e024f0df681490645cf3e6489eea9f10af4"
+    },
+    {
+      "name": "BRAIN.ANM",
+      "size": 3072,
+      "sha256": "dfd5afa4caa6f08c1bf4597d144db8d996d7bfe748c9061acbcff10e3228af03"
+    },
+    {
+      "name": "BACKDROP.DAT",
+      "size": 28672,
+      "sha256": "d7a051360b63cf43aaa3b5a41c79180477fabd26370a7cc2cea1c95cba6ea008"
+    },
+    {
+      "name": "BEAM.DAT",
+      "size": 224,
+      "sha256": "2e30feef203aba760ce1608b247421560df9d82aecab9bf12baab06e573af492"
+    },
+    {
+      "name": "BIGDATA.DAT",
+      "size": 10240,
+      "sha256": "a27f9900b0fb5dec9a35cb6781f68ee3adf2ee360ec0b3ce7eb1c5909abb36bc"
+    },
+    {
+      "name": "BIGTWINK.DAT",
+      "size": 896,
+      "sha256": "ebad85a0987ade1010c7dd84062ee88f6febcd4afdef8cae0c551b387b0a91eb"
+    },
+    {
+      "name": "BITS.DAT",
+      "size": 1280,
+      "sha256": "f0864ec47a1440f6ed68ec061b887e848b3f89d8f81ae8511d0ddf67ead392c6"
+    },
+    {
+      "name": "DSHIP.DAT",
+      "size": 384,
+      "sha256": "95c099a5f9d567f59e42e78dbd7ab26fe2961d7919615ac703501670517a5103"
+    },
+    {
+      "name": "EEXPLODE.DAT",
+      "size": 8669,
+      "sha256": "812987f3e52b5807da6c3a4fb8b8a6a100920dab9f60c82388ba48df2d34249f"
+    },
+    {
+      "name": "END.DAT",
+      "size": 1024,
+      "sha256": "5ea1fc0c55335d51c2b7ae59e04b2ef9c19c29344552a3261ce49150141a5ca7"
+    },
+    {
+      "name": "EREPLAC1.DAT",
+      "size": 2048,
+      "sha256": "45d8cbb2efb7266fa0df1b0a680967d700c1f3a868b8c5c05eecd4e3e1da149e"
+    },
+    {
+      "name": "EREPLACE.DAT",
+      "size": 2048,
+      "sha256": "69f7f5bde22778cbed06e6c9888dbfb0d61ca295671326f74d443c654fda0f3a"
+    },
+    {
+      "name": "EXPLO.DAT",
+      "size": 1152,
+      "sha256": "62fd16c75d00ebeb97e68e8ef4925833e360c6f9f6cc0830e92003fe350013d9"
+    },
+    {
+      "name": "FIZZ.DAT",
+      "size": 6656,
+      "sha256": "eb33ce0eaf4bff90274b65c1663dbadf5fc4b700b71fc8bb6e022bcb4d8d370f"
+    },
+    {
+      "name": "GUNANIM.DAT",
+      "size": 5120,
+      "sha256": "5460dd305ac535dc5938c760c1a3853e38c0749186aa9d2dc8a5eeb4239a6bf5"
+    },
+    {
+      "name": "GUNS.DAT",
+      "size": 4096,
+      "sha256": "25bc989426b500d7095ecaf63fb8a03ffac8a6a9f9ff8a08d609cef7ebc5c1ae"
+    },
+    {
+      "name": "L1MAP.DAT",
+      "size": 23029,
+      "sha256": "bb9f1ece404155c2093622bdf3b88ac688047a95239ba24d240a862d07570026"
+    },
+    {
+      "name": "L2MAP.DAT",
+      "size": 23029,
+      "sha256": "ea5d25b3a96c74834c60d87c9a0b7c75d1e00495fa30ea8258df3675c3d58b0c"
+    },
+    {
+      "name": "L3MAP.DAT",
+      "size": 23029,
+      "sha256": "976892ed1406c92a60af44b7cde4e73eaf7188692b589a14d4b9e2a62ba9d3fd"
+    },
+    {
+      "name": "L4MAP.DAT",
+      "size": 23029,
+      "sha256": "a7ba3ea1e8c78a65b23575b6da49d8f5417bc055dfb4a9b46b26affa0561c8eb"
+    },
+    {
+      "name": "L5MAP.DAT",
+      "size": 23029,
+      "sha256": "e912f48203685b7cb61f10812c3e71a9c0266ebe390afd8cec4e3ebb649a2e9a"
+    },
+    {
+      "name": "LOGO.DAT",
+      "size": 3549,
+      "sha256": "ca278956dd6f2fd08f034af5cf0d1dcc5a95206ba18c6c47bb0a7293236fba1c"
+    },
+    {
+      "name": "MAPGR8.DAT",
+      "size": 8192,
+      "sha256": "703136edd27a7ba0d2028c852029e464a233aab936e5fd5ace2342afc3615181"
+    },
+    {
+      "name": "MAPGR81.DAT",
+      "size": 8192,
+      "sha256": "3e23de7a29846af88c79817a62697d1de2ce889367f02b7207f0c63d190f57a5"
+    },
+    {
+      "name": "MINE.DAT",
+      "size": 192,
+      "sha256": "bc3c7f2fcbfeab646a74054511422f231c6abd3a301b8c53512957fad39afd78"
+    },
+    {
+      "name": "MISSILE.DAT",
+      "size": 720,
+      "sha256": "130594e6059a823fcffff0c8907473960e2d05410a7d0730435ead8ae7890155"
+    },
+    {
+      "name": "PC.DAT",
+      "size": 576,
+      "sha256": "ffafde1c2dcf98b6c2f02e0525bae75adefd860528f8b71aaeb3f8d57866299c"
+    },
+    {
+      "name": "PICKUP.DAT",
+      "size": 256,
+      "sha256": "5bf5a9675f842929f3e1d066a4c697fa57c513799f640d18fe24e48e77b716de"
+    },
+    {
+      "name": "PLANET.DAT",
+      "size": 8192,
+      "sha256": "6fa96a1ffa6620dbef45001a8753356cee88239c2d4849ddabc88aa59691929d"
+    },
+    {
+      "name": "PLUNGER.DAT",
+      "size": 768,
+      "sha256": "34ae2d2697b6f6daf46d494f41660be3f395a3853acacf4fe16e4bfd47fcc705"
+    },
+    {
+      "name": "SIDEBAR.DAT",
+      "size": 2048,
+      "sha256": "f24e6bde2be8486ee58f77dedc89a508d859925a90d21bc97ed62be65b33266a"
+    },
+    {
+      "name": "SMLSHIPS.DAT",
+      "size": 768,
+      "sha256": "572d55bbb834df63d768f37d7686228affac4972c6db262e79d58c9a1bd60d3c"
+    },
+    {
+      "name": "SPRITE.DAT",
+      "size": 9600,
+      "sha256": "160645721777d561c534ca1b4130188f86c9b3acb1fef88ea3343a8cecb0fb33"
+    },
+    {
+      "name": "SPRITE1.DAT",
+      "size": 9600,
+      "sha256": "339b4febace7a71ce437ab4a7f156f23e8dac034366994dbc1c7559bb9ca4a0e"
+    },
+    {
+      "name": "XDEATH.DAT",
+      "size": 34589,
+      "sha256": "c28bacf48321e47a05c58bbfca887fba06b7f119d393f6acabba8a5ca8cacc73"
+    },
+    {
+      "name": "EXOPIC.PIC",
+      "size": 22469,
+      "sha256": "4bf329f0a3e7ec37923a24939fc4066e961d3a64adef6e91c4c494cac8aacc2b"
+    },
+    {
+      "name": "BULL.PUF",
+      "size": 1152,
+      "sha256": "d788a7d0fc201f860f1135e77dcb0ce68a1974cb7f967faeaf9636f10db334ae"
+    },
+    {
+      "name": "TWINKLE.SML",
+      "size": 252,
+      "sha256": "61832510c3ef50db0cd94f12da5974dc63e4099cdd3ce312f0dace3c31646993"
+    },
+    {
+      "name": "AMMO.SPR",
+      "size": 528,
+      "sha256": "6b155e7b1feb8c97953300948ce47b018a87a7461d07c368f33eba23a52020f0"
+    },
+    {
+      "name": "ENEMY.SPR",
+      "size": 9216,
+      "sha256": "05d841a85ef995a2efd91f990d7516825d7d8b2d9fbb68bc1bd98393d6290377"
+    },
+    {
+      "name": "ENEMY1.SPR",
+      "size": 9216,
+      "sha256": "c3f26ba501eaf230c8a4b20c774242fbb66baed64646ee74fed77a644a9207de"
+    },
+    {
+      "name": "ENEMY2.SPR",
+      "size": 9216,
+      "sha256": "939003d540e8e6402ddb4b167a0d5c15d858cf93857c9d64348db1a43035dada"
+    },
+    {
+      "name": "PCDEATH.SPR",
+      "size": 224,
+      "sha256": "e51bf272b17e0ab5f148c9483032bfa997d04fd91f65cb86c0803ee75f58bed8"
+    },
+    {
+      "name": "SCORE.TXT",
+      "size": 70,
+      "sha256": "6f092f525f54019d57cf39d44f3971383334de8505f01789bb64f43535c662f0"
+    }
+  ],
+  "formats": {
+    "shapes": "ST four word-interleaved bitplanes; shared byte decoder only, all resources extracted independently from ST files.",
+    "palette": "Original text$a22c five stage palettes, $a2cc menu, $a2ec loading; 3-bit RGB channels rounded to0..255.",
+    "title": "EXOPIC.PIC 28-byte header +22440-byte240×187 bitmap. Original $d82 copies240×189 at(48,0); extra two rows depend on memory beyond EOF, represented as background zero.",
+    "font": "Original TOS8x8 system FNT dat_table offset$25a, form_width256; full256-glyph ASCII table plus39-glyph shared native subset.",
+    "text": "Original GEMDOS9 VT52 streams: ESCb hardware ink, ESCY row/column biased32, 8×8 cells.",
+    "missile": "Native32×24 source reads DSHIP.DAT first356 bytes followed by28-byte LOGO.DAT header, matching original contiguous RAM.",
+    "spikes": "PLUNGER.DAT48rows plus retained PC.DAT bytes238..253; $132be DBRA renders height+1 rows.",
+    "source": "Screen.source is the active map record address in original RAM; each stage reloads its own L1MAP..L5MAP bank at$1ccca."
+  },
+  "regions": [
+    {
+      "name": "player",
+      "address": 159422,
+      "source": "SPRITE.DAT",
+      "sourceOffset": 0,
+      "length": 9600,
+      "sha256": "160645721777d561c534ca1b4130188f86c9b3acb1fef88ea3343a8cecb0fb33"
+    },
+    {
+      "name": "player-armored",
+      "address": 178622,
+      "source": "SPRITE1.DAT",
+      "sourceOffset": 0,
+      "length": 9600,
+      "sha256": "339b4febace7a71ce437ab4a7f156f23e8dac034366994dbc1c7559bb9ca4a0e"
+    },
+    {
+      "name": "bullets",
+      "address": 247104,
+      "source": "AMMO.SPR",
+      "sourceOffset": 0,
+      "length": 528,
+      "sha256": "6b155e7b1feb8c97953300948ce47b018a87a7461d07c368f33eba23a52020f0"
+    },
+    {
+      "name": "explosion",
+      "address": 247632,
+      "source": "PC.DAT",
+      "sourceOffset": 0,
+      "length": 576,
+      "sha256": "ffafde1c2dcf98b6c2f02e0525bae75adefd860528f8b71aaeb3f8d57866299c"
+    },
+    {
+      "name": "small-explosion",
+      "address": 284688,
+      "source": "BULL.PUF",
+      "sourceOffset": 0,
+      "length": 1152,
+      "sha256": "d788a7d0fc201f860f1135e77dcb0ce68a1974cb7f967faeaf9636f10db334ae"
+    },
+    {
+      "name": "pod-particles",
+      "address": 247632,
+      "source": "PC.DAT",
+      "sourceOffset": 0,
+      "length": 64,
+      "sha256": "5aa0f6969ba79d7a8e1d1b0635348bf6aa9e49d3bac267d1a571866d8f052562"
+    },
+    {
+      "name": "debris",
+      "source": "EXPLO.DAT",
+      "sourceOffset": 0,
+      "length": 72,
+      "sha256": "9dfdbd2bcc9897bc80e66ec69eb228dae2b0fe3f51f8281dfd06b9c2de53c920"
+    },
+    {
+      "name": "spikes",
+      "address": 247102,
+      "source": "PLUNGER.DAT + PC.DAT[238..254]",
+      "sourceOffset": 0,
+      "length": 784,
+      "sha256": "0d8389bc05fcf9470d293771ff73ce36d7aa17f58abbbd7a0a7e40569c8e83e3"
+    },
+    {
+      "name": "window-tiles",
+      "address": 298496,
+      "source": "BITS.DAT",
+      "sourceOffset": 0,
+      "length": 768,
+      "sha256": "8dd8212a733ad08a5a4411201e3e917d0aa44acead88194c4648898be239fe94"
+    },
+    {
+      "name": "exit-gate",
+      "address": 319810,
+      "source": "END.DAT",
+      "sourceOffset": 0,
+      "length": 1024,
+      "sha256": "5ea1fc0c55335d51c2b7ae59e04b2ef9c19c29344552a3261ce49150141a5ca7"
+    },
+    {
+      "name": "launcher",
+      "address": 285840,
+      "source": "BRAIN.ANM",
+      "sourceOffset": 0,
+      "length": 768,
+      "sha256": "3c11de6004c6e2627f3704b38b351f818af37256785da0dc9ce267d370a1d4ac"
+    },
+    {
+      "name": "laser-animation",
+      "address": 286864,
+      "source": "BRAIN.ANM",
+      "sourceOffset": 1024,
+      "length": 2048,
+      "sha256": "a87f240551105a01b56846931f0c4a5008a232bb4cd67c33fa2537546f7f4495"
+    },
+    {
+      "name": "rocket",
+      "address": 288912,
+      "source": "MISSILE.DAT",
+      "sourceOffset": 0,
+      "length": 720,
+      "sha256": "130594e6059a823fcffff0c8907473960e2d05410a7d0730435ead8ae7890155"
+    },
+    {
+      "name": "energy-beam",
+      "address": 289632,
+      "source": "BEAM.DAT",
+      "sourceOffset": 0,
+      "length": 224,
+      "sha256": "2e30feef203aba760ce1608b247421560df9d82aecab9bf12baab06e573af492"
+    },
+    {
+      "name": "powerups",
+      "address": 299456,
+      "source": "PICKUP.DAT",
+      "sourceOffset": 0,
+      "length": 256,
+      "sha256": "5bf5a9675f842929f3e1d066a4c697fa57c513799f640d18fe24e48e77b716de"
+    },
+    {
+      "name": "missile",
+      "address": 306438,
+      "source": "original-main/startup-files",
+      "sourceOffset": 306438,
+      "length": 384,
+      "sha256": "6b5f72975975bd7ae01561edaa91f3a87cd7f6a2b740409376fdf6e78b8e3858"
+    },
+    {
+      "name": "large-explosion",
+      "address": 289856,
+      "source": "EEXPLODE.DAT",
+      "sourceOffset": 0,
+      "length": 8640,
+      "sha256": "b20f52d7c832a7118e01a4a03fec40db03837df52aba91042b10bb310cc7eb05"
+    },
+    {
+      "name": "logo",
+      "address": 306822,
+      "source": "LOGO.DAT",
+      "sourceOffset": 0,
+      "length": 3520,
+      "sha256": "3c27db0cb4d4d43605d6fad0bc888339c5961be0114961e697e7d9e217bbebc7"
+    },
+    {
+      "name": "menu-stars",
+      "address": 310594,
+      "source": "BIGTWINK.DAT",
+      "sourceOffset": 0,
+      "length": 896,
+      "sha256": "ebad85a0987ade1010c7dd84062ee88f6febcd4afdef8cae0c551b387b0a91eb"
+    },
+    {
+      "name": "game-stars",
+      "address": 310342,
+      "source": "TWINKLE.SML",
+      "sourceOffset": 0,
+      "length": 252,
+      "sha256": "61832510c3ef50db0cd94f12da5974dc63e4099cdd3ce312f0dace3c31646993"
+    },
+    {
+      "name": "score-pipe",
+      "address": 234686,
+      "source": "SIDEBAR.DAT",
+      "sourceOffset": 0,
+      "length": 2048,
+      "sha256": "f24e6bde2be8486ee58f77dedc89a508d859925a90d21bc97ed62be65b33266a"
+    },
+    {
+      "name": "teleport",
+      "address": 299712,
+      "source": "FIZZ.DAT",
+      "sourceOffset": 0,
+      "length": 6656,
+      "sha256": "eb33ce0eaf4bff90274b65c1663dbadf5fc4b700b71fc8bb6e022bcb4d8d370f"
+    },
+    {
+      "name": "hud",
+      "address": 115402,
+      "source": "original-main/startup-files",
+      "sourceOffset": 115402,
+      "length": 2560,
+      "sha256": "3d359fa1620217db53928d9382f817876963976014c147334402293ac3942e09"
+    },
+    {
+      "name": "death",
+      "address": 355394,
+      "source": "XDEATH.DAT",
+      "sourceOffset": 0,
+      "length": 34560,
+      "sha256": "5ac7febfd2a5972c48a025a7f2470da626efa3edff218398025b0e8084607f75"
+    },
+    {
+      "name": "mines",
+      "address": 299264,
+      "source": "MINE.DAT",
+      "sourceOffset": 0,
+      "length": 192,
+      "sha256": "bc3c7f2fcbfeab646a74054511422f231c6abd3a301b8c53512957fad39afd78"
+    },
+    {
+      "name": "barriers",
+      "address": 149182,
+      "source": "BIGDATA.DAT",
+      "sourceOffset": 0,
+      "length": 8192,
+      "sha256": "f071b91832d36bc7c6fd56930c784b9989aca561ef508a4adc9d2a003874f80b"
+    },
+    {
+      "name": "pod-body",
+      "address": 157374,
+      "source": "BIGDATA.DAT",
+      "sourceOffset": 8192,
+      "length": 2048,
+      "sha256": "811e1d3feb7c643cc1bd793324b489c0d97e7f7aef52e530bb323cd5f13cc622"
+    },
+    {
+      "name": "turret-0",
+      "address": 237886,
+      "source": "GUNS.DAT",
+      "sourceOffset": 0,
+      "length": 2048,
+      "sha256": "07e06c15488ce481bbb7344b9fdb8a0042b57f8773a775c148d17054c08cbbce"
+    },
+    {
+      "name": "turret-1",
+      "address": 240958,
+      "source": "GUNS.DAT",
+      "sourceOffset": 3072,
+      "length": 1024,
+      "sha256": "2c1f070564e66ad83287a767676b92fa3dbbbc95b12a3793ab9ae96c110dfeb5"
+    },
+    {
+      "name": "turret-2",
+      "address": 239934,
+      "source": "GUNS.DAT",
+      "sourceOffset": 2048,
+      "length": 1024,
+      "sha256": "3cecef72e76a8e898e572d082b5193c24ab48b7bf6840c57b2ed3093e53f9d72"
+    },
+    {
+      "name": "turret-animation-0",
+      "address": 241982,
+      "source": "GUNANIM.DAT",
+      "sourceOffset": 0,
+      "length": 2560,
+      "sha256": "d4e4b2b314b3a86d278a8c948d39c1525bab9b39d54e1d30e48a69733bd04754"
+    },
+    {
+      "name": "turret-animation-1",
+      "address": 244542,
+      "source": "GUNANIM.DAT",
+      "sourceOffset": 2560,
+      "length": 2560,
+      "sha256": "76c9919aaeb14ab242940ebfb20cc3101abfa61b5e39c61171e265bca90a65c0"
+    },
+    {
+      "name": "flyer-0-0",
+      "address": 310594,
+      "source": "ENEMY.SPR",
+      "sourceOffset": 0,
+      "length": 2304,
+      "sha256": "8c02a9af466143a6871c51d10e3aa1dc6edfe78b6e45d27a5a8a0a481e57aebb"
+    },
+    {
+      "name": "flyer-0-1",
+      "address": 312898,
+      "source": "ENEMY.SPR",
+      "sourceOffset": 2304,
+      "length": 2304,
+      "sha256": "70d979e185102803e659d72a3c983a7a2547e5ea0a85d382078a9395a917a24d"
+    },
+    {
+      "name": "flyer-0-2",
+      "address": 315202,
+      "source": "ENEMY.SPR",
+      "sourceOffset": 4608,
+      "length": 2304,
+      "sha256": "fd4caaa1b9bc87c51649eff9ce046b6746899750a2210789038f7a08f5ed5841"
+    },
+    {
+      "name": "flyer-0-3",
+      "address": 317506,
+      "source": "ENEMY.SPR",
+      "sourceOffset": 6912,
+      "length": 2304,
+      "sha256": "c80f350223c52038a6d744353aa2235ac5fd137c15c8c60636c4057aaebb41bb"
+    },
+    {
+      "name": "flyer-1-0",
+      "address": 310594,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 0,
+      "length": 2304,
+      "sha256": "b9b939e3ed5da05e1a15e99b9bce8d61b56d52af1f5caafcbe131a130b3d4c88"
+    },
+    {
+      "name": "flyer-1-1",
+      "address": 312898,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 2304,
+      "length": 2304,
+      "sha256": "d321d24c31b8febf8237134506e22ac5bd2d009fd2f0b12b85b38cb0971bc3fe"
+    },
+    {
+      "name": "flyer-1-2",
+      "address": 315202,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 4608,
+      "length": 2304,
+      "sha256": "5a906de0ff67f3201b24b5ca801de42a4d432419989c5b77498c9604734d8670"
+    },
+    {
+      "name": "flyer-1-3",
+      "address": 317506,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 6912,
+      "length": 2304,
+      "sha256": "38733567cf71fc654c7267341aec974d7a22bebae3ea43fc3d1263b842a02794"
+    },
+    {
+      "name": "flyer-2-0",
+      "address": 310594,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 0,
+      "length": 2304,
+      "sha256": "b57281a612e9089be8e8225fa5e552ed199bdca6a17205c9ebf6d27565730b3d"
+    },
+    {
+      "name": "flyer-2-1",
+      "address": 312898,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 2304,
+      "length": 2304,
+      "sha256": "55b5b5598990da7ef08ac00aa26d8d9228617cfd176d42d4276046a21606a161"
+    },
+    {
+      "name": "flyer-2-2",
+      "address": 315202,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 4608,
+      "length": 2304,
+      "sha256": "131bd225084e49d1360236cba2f7bdd1502da77abf69c47361cf8242908cf100"
+    },
+    {
+      "name": "flyer-2-3",
+      "address": 317506,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 6912,
+      "length": 2304,
+      "sha256": "4f48ce74e22a1c55f1eefc865db428b9bd48a26fc15aebd8818544d812201c55"
+    },
+    {
+      "name": "flyer-3-0",
+      "address": 310594,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 0,
+      "length": 2304,
+      "sha256": "b57281a612e9089be8e8225fa5e552ed199bdca6a17205c9ebf6d27565730b3d"
+    },
+    {
+      "name": "flyer-3-1",
+      "address": 312898,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 2304,
+      "length": 2304,
+      "sha256": "55b5b5598990da7ef08ac00aa26d8d9228617cfd176d42d4276046a21606a161"
+    },
+    {
+      "name": "flyer-3-2",
+      "address": 315202,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 4608,
+      "length": 2304,
+      "sha256": "131bd225084e49d1360236cba2f7bdd1502da77abf69c47361cf8242908cf100"
+    },
+    {
+      "name": "flyer-3-3",
+      "address": 317506,
+      "source": "ENEMY2.SPR",
+      "sourceOffset": 6912,
+      "length": 2304,
+      "sha256": "4f48ce74e22a1c55f1eefc865db428b9bd48a26fc15aebd8818544d812201c55"
+    },
+    {
+      "name": "flyer-4-0",
+      "address": 310594,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 0,
+      "length": 2304,
+      "sha256": "b9b939e3ed5da05e1a15e99b9bce8d61b56d52af1f5caafcbe131a130b3d4c88"
+    },
+    {
+      "name": "flyer-4-1",
+      "address": 312898,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 2304,
+      "length": 2304,
+      "sha256": "d321d24c31b8febf8237134506e22ac5bd2d009fd2f0b12b85b38cb0971bc3fe"
+    },
+    {
+      "name": "flyer-4-2",
+      "address": 315202,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 4608,
+      "length": 2304,
+      "sha256": "5a906de0ff67f3201b24b5ca801de42a4d432419989c5b77498c9604734d8670"
+    },
+    {
+      "name": "flyer-4-3",
+      "address": 317506,
+      "source": "ENEMY1.SPR",
+      "sourceOffset": 6912,
+      "length": 2304,
+      "sha256": "38733567cf71fc654c7267341aec974d7a22bebae3ea43fc3d1263b842a02794"
+    },
+    {
+      "name": "static-384be-64-64",
+      "address": 230590,
+      "source": "original-main/startup-files",
+      "sourceOffset": 230590,
+      "length": 2048,
+      "sha256": "2a7e3a2d55aa9723615d6d77db237a8733a3271e8f6d06585e3d9a4da50c3082"
+    },
+    {
+      "name": "static-30cbe-64-64",
+      "address": 199870,
+      "source": "original-main/startup-files",
+      "sourceOffset": 199870,
+      "length": 2048,
+      "sha256": "6472998e9c949238936a2d97b18c286ce9c5312e21d9288b27ef691b8d88a6fd"
+    },
+    {
+      "name": "static-314be-64-64",
+      "address": 201918,
+      "source": "original-main/startup-files",
+      "sourceOffset": 201918,
+      "length": 2048,
+      "sha256": "1e75b107dbd97509eb31e0805648750f04c12d7c96c7c88b3e3d5949de2f078c"
+    },
+    {
+      "name": "static-31cbe-64-64",
+      "address": 203966,
+      "source": "original-main/startup-files",
+      "sourceOffset": 203966,
+      "length": 2048,
+      "sha256": "2e0af0c775d514782dfe46201d5bbcfaea4df6b3876ba617c3bfdfdc6df50ea0"
+    },
+    {
+      "name": "static-324be-64-64",
+      "address": 206014,
+      "source": "original-main/startup-files",
+      "sourceOffset": 206014,
+      "length": 2048,
+      "sha256": "a6da0bdb976ed31a066481a9a363bf339f06ae9b83a1341fac0ca9e42ee42f87"
+    },
+    {
+      "name": "static-32cbe-64-64",
+      "address": 208062,
+      "source": "original-main/startup-files",
+      "sourceOffset": 208062,
+      "length": 2048,
+      "sha256": "771f2ac62c814216dd300d37feffce7586ecece25b4839a79aa4bc650d631a9e"
+    },
+    {
+      "name": "static-334be-64-64",
+      "address": 210110,
+      "source": "original-main/startup-files",
+      "sourceOffset": 210110,
+      "length": 2048,
+      "sha256": "81eb76f0540f81c94adc035604468c3a09ccfd6e5ae8c6c0c9fa843aa11de8e3"
+    },
+    {
+      "name": "static-3a13e-64-64",
+      "address": 237886,
+      "source": "original-main/startup-files",
+      "sourceOffset": 237886,
+      "length": 2048,
+      "sha256": "07e06c15488ce481bbb7344b9fdb8a0042b57f8773a775c148d17054c08cbbce"
+    },
+    {
+      "name": "static-1c2ca-320-16",
+      "address": 115402,
+      "source": "original-main/startup-files",
+      "sourceOffset": 115402,
+      "length": 2560,
+      "sha256": "3d359fa1620217db53928d9382f817876963976014c147334402293ac3942e09"
+    },
+    {
+      "name": "static-374be-64-64",
+      "address": 226494,
+      "source": "original-main/startup-files",
+      "sourceOffset": 226494,
+      "length": 2048,
+      "sha256": "bc4e3bae8b9ea000f7aa93d6fb8aff40ea8bc5729f69cc678e9733947ecab541"
+    },
+    {
+      "name": "static-37cbe-64-64",
+      "address": 228542,
+      "source": "original-main/startup-files",
+      "sourceOffset": 228542,
+      "length": 2048,
+      "sha256": "28a2eb6e520360b3e33e8d1053a723eb1ddb17705c1eeef381d16194fcf129e4"
+    },
+    {
+      "name": "static-256be-64-64",
+      "address": 153278,
+      "source": "original-main/startup-files",
+      "sourceOffset": 153278,
+      "length": 2048,
+      "sha256": "b8dfd10b331e5bfcb17a30dafaba9caed8b1c3d8ccb7952f88d158c09e264d88"
+    },
+    {
+      "name": "static-38cbe-64-64",
+      "address": 232638,
+      "source": "original-main/startup-files",
+      "sourceOffset": 232638,
+      "length": 2048,
+      "sha256": "cde7a8c3d2ea18f5f07084bc5cdb6da74c4a0227980b4e44005162e6746b6ef4"
+    },
+    {
+      "name": "static-33cbe-64-64",
+      "address": 212158,
+      "source": "original-main/startup-files",
+      "sourceOffset": 212158,
+      "length": 2048,
+      "sha256": "57d623b8eb5d80e0a4d934ca5b4d2c65620d8f8c5bfadcd2947f4172dc4b1da1"
+    },
+    {
+      "name": "static-344be-64-64",
+      "address": 214206,
+      "source": "original-main/startup-files",
+      "sourceOffset": 214206,
+      "length": 2048,
+      "sha256": "d17f09dfbcb125e22e1a16eb8573bd967d1e70e70b74ecb8c7680d2b16eabae6"
+    },
+    {
+      "name": "static-34cbe-64-64",
+      "address": 216254,
+      "source": "original-main/startup-files",
+      "sourceOffset": 216254,
+      "length": 2048,
+      "sha256": "25ffeaf4d503290e0d953a96154940b7beabcd0223decf0e15c058d9e3d6df04"
+    },
+    {
+      "name": "static-246be-64-64",
+      "address": 149182,
+      "source": "original-main/startup-files",
+      "sourceOffset": 149182,
+      "length": 2048,
+      "sha256": "fa6578cc294a77b9a0a3ae943b517c36bb6bae2bd2ec79ddf72ff2f917a9cd3e"
+    },
+    {
+      "name": "static-3a93e-64-32",
+      "address": 239934,
+      "source": "original-main/startup-files",
+      "sourceOffset": 239934,
+      "length": 1024,
+      "sha256": "3cecef72e76a8e898e572d082b5193c24ab48b7bf6840c57b2ed3093e53f9d72"
+    },
+    {
+      "name": "static-45c90-32-48",
+      "address": 285840,
+      "source": "original-main/startup-files",
+      "sourceOffset": 285840,
+      "length": 768,
+      "sha256": "3c11de6004c6e2627f3704b38b351f818af37256785da0dc9ce267d370a1d4ac"
+    },
+    {
+      "name": "static-3ad3e-64-32",
+      "address": 240958,
+      "source": "original-main/startup-files",
+      "sourceOffset": 240958,
+      "length": 1024,
+      "sha256": "2c1f070564e66ad83287a767676b92fa3dbbbc95b12a3793ab9ae96c110dfeb5"
+    },
+    {
+      "name": "static-49100-16-8",
+      "address": 299264,
+      "source": "original-main/startup-files",
+      "sourceOffset": 299264,
+      "length": 64,
+      "sha256": "669314116091c72fe5cd73c8ee5a2b4e4458f452de3305c5b1baaf729a4ac310"
+    },
+    {
+      "name": "static-25ebe-64-64",
+      "address": 155326,
+      "source": "original-main/startup-files",
+      "sourceOffset": 155326,
+      "length": 2048,
+      "sha256": "90a48164d3fd3e788f8579fdd15d0bb690c2524d57153715d03085e3b96ebc22"
+    },
+    {
+      "name": "static-304be-64-64",
+      "address": 197822,
+      "source": "original-main/startup-files",
+      "sourceOffset": 197822,
+      "length": 2048,
+      "sha256": "947397218eff22f90137224033c70f091ddf3705004872dc6dbc7a36805fcfcb"
+    },
+    {
+      "name": "static-24ebe-64-64",
+      "address": 151230,
+      "source": "original-main/startup-files",
+      "sourceOffset": 151230,
+      "length": 2048,
+      "sha256": "7c051a27a6c303fc2e7b530af45eddc122e41d91379899f0ec7b042723758cc3"
+    },
+    {
+      "name": "static-266be-64-64",
+      "address": 157374,
+      "source": "original-main/startup-files",
+      "sourceOffset": 157374,
+      "length": 2048,
+      "sha256": "811e1d3feb7c643cc1bd793324b489c0d97e7f7aef52e530bb323cd5f13cc622"
+    },
+    {
+      "name": "static-354be-64-64",
+      "address": 218302,
+      "source": "original-main/startup-files",
+      "sourceOffset": 218302,
+      "length": 2048,
+      "sha256": "c0f4f22562dc735a45d6b26cf10c603e78e9446bf1e135a3b94e9968328c45ab"
+    },
+    {
+      "name": "static-35cbe-64-64",
+      "address": 220350,
+      "source": "original-main/startup-files",
+      "sourceOffset": 220350,
+      "length": 2048,
+      "sha256": "7ed521fc15dd651f0aee1175a1bc808c886fc69e62871d81dd852305b2142282"
+    },
+    {
+      "name": "static-364be-64-64",
+      "address": 222398,
+      "source": "original-main/startup-files",
+      "sourceOffset": 222398,
+      "length": 2048,
+      "sha256": "ae0bb9f7e94208a5e55ddbcd55d534f281f01b0035dc0a1e15948b2c742a2dad"
+    },
+    {
+      "name": "static-36cbe-64-64",
+      "address": 224446,
+      "source": "original-main/startup-files",
+      "sourceOffset": 224446,
+      "length": 2048,
+      "sha256": "d63c3272fd41f5b8cd426b9fd2c5fcb9771bc74fdfaabdb13af6c43868556e57"
+    }
+  ],
+  "limitations": [
+    "Square pixels; analog monitor/PAL pixel aspect is not baked in.",
+    "Reference composites omit clock-seeded runtime star fields.",
+    "The loading composite uses zero for the two source-overread rows and outside-art framebuffer."
+  ]
+}

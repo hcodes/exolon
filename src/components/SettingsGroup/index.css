@@ -1,0 +1,102 @@
+.settings-group {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid #33434d;
+    border-radius: 6px;
+}
+.settings-group + .settings-group {
+    margin-left: 12px;
+}
+.settings-group_end {
+    margin-left: auto;
+}
+.settings-group__legend {
+    max-width: 100%;
+    padding: 0 6px;
+    color: #e6ebe9;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: 1.4;
+}
+.settings-group__body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    max-width: 100%;
+}
+@media (max-width: 650px) {
+    .settings-group {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    .settings-group + .settings-group {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+@media (orientation: landscape) {
+    .game-app_touch .settings-group {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+    }
+    .game-app_touch .settings-group + .settings-group {
+        margin-left: 12px;
+        margin-top: 0;
+    }
+    .game-app_touch .settings-group__body {
+        flex-wrap: nowrap;
+    }
+}
+.game-app_legacy .settings-group {
+    margin-right: 12px;
+}
+.game-app_legacy .settings-group:last-child {
+    margin-right: 0;
+}
+.game-app_legacy .settings-group__body {
+    gap: 0;
+}
+.game-app_legacy .settings-group__body > * {
+    margin: 3px;
+}
+.game-app_legacy-landscape .settings-group {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+}
+.game-app_legacy-landscape .settings-group + .settings-group {
+    margin-left: 12px;
+    margin-top: 0;
+}
+.game-app_legacy-landscape .settings-group__body {
+    flex-wrap: nowrap;
+}
+.game-app_tv .settings-group {
+    flex: 0 1 auto;
+    width: auto;
+    max-width: 100%;
+}
+.game-app_tv .settings-group__body {
+    flex-wrap: wrap;
+}
+
+.settings-panel .settings-group {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+}
+.settings-panel .settings-group + .settings-group {
+    margin-left: 0;
+    margin-top: 12px;
+}
+.settings-panel .settings-group__body {
+    flex-wrap: wrap;
+}

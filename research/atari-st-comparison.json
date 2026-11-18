@@ -1,0 +1,101 @@
+{
+  "sourceStxSha256": "10a96cc93ab4c73a171f0e3408e99d2ff692a280bdb4f05eaf4e75f33e185ccf",
+  "amigaRamSha256": "8eb436440c0f6af0381079341779e24dcbd21d485144f2dcacb059a7e9c724e7",
+  "maps": [
+    {
+      "file": "L1MAP.DAT",
+      "records": 25,
+      "recordBytes": 920,
+      "firstZone": 1,
+      "lastZone": 25,
+      "stDataSha256": "8f8045037c6f855c68863332a0e2c3eca46aa18adad25bc2d37b3160aeabd23c",
+      "amigaTilesSha256": "8f8045037c6f855c68863332a0e2c3eca46aa18adad25bc2d37b3160aeabd23c",
+      "identical": true
+    },
+    {
+      "file": "L2MAP.DAT",
+      "records": 25,
+      "recordBytes": 920,
+      "firstZone": 26,
+      "lastZone": 50,
+      "stDataSha256": "8c35b032865332eac990345c062f655c4af48c5ac0284f65fce9eb00767e039b",
+      "amigaTilesSha256": "8c35b032865332eac990345c062f655c4af48c5ac0284f65fce9eb00767e039b",
+      "identical": true
+    },
+    {
+      "file": "L3MAP.DAT",
+      "records": 25,
+      "recordBytes": 920,
+      "firstZone": 51,
+      "lastZone": 75,
+      "stDataSha256": "964e449d4cc98cbac284ce07317b9d8e893426774b0e602e3cff49df29cbd4ae",
+      "amigaTilesSha256": "964e449d4cc98cbac284ce07317b9d8e893426774b0e602e3cff49df29cbd4ae",
+      "identical": true
+    },
+    {
+      "file": "L4MAP.DAT",
+      "records": 25,
+      "recordBytes": 920,
+      "firstZone": 76,
+      "lastZone": 100,
+      "stDataSha256": "4736c28bfe392d7052cfb13a3fe83a8fac255720d4f67765f48b5245dc7259ed",
+      "amigaTilesSha256": "4736c28bfe392d7052cfb13a3fe83a8fac255720d4f67765f48b5245dc7259ed",
+      "identical": true
+    },
+    {
+      "file": "L5MAP.DAT",
+      "records": 25,
+      "recordBytes": 920,
+      "firstZone": 101,
+      "lastZone": 125,
+      "stDataSha256": "02fa0665d9ea727f0910cb31fb3c365d49b328807257df8fefea9837a7560dfb",
+      "amigaTilesSha256": "02fa0665d9ea727f0910cb31fb3c365d49b328807257df8fefea9837a7560dfb",
+      "identical": true
+    }
+  ],
+  "bitmaps": [
+    {
+      "file": "SPRITE.DAT",
+      "bytes": 9600,
+      "sha256": "160645721777d561c534ca1b4130188f86c9b3acb1fef88ea3343a8cecb0fb33",
+      "amigaRamAddress": 198768,
+      "identical": true
+    },
+    {
+      "file": "SPRITE1.DAT",
+      "bytes": 9600,
+      "sha256": "339b4febace7a71ce437ab4a7f156f23e8dac034366994dbc1c7559bb9ca4a0e",
+      "amigaRamAddress": 217968,
+      "identical": true
+    },
+    {
+      "file": "BULL.PUF",
+      "bytes": 1152,
+      "sha256": "d788a7d0fc201f860f1135e77dcb0ce68a1974cb7f967faeaf9636f10db334ae",
+      "amigaRamAddress": 91216,
+      "identical": true
+    },
+    {
+      "file": "GUNS.DAT",
+      "bytes": 4096,
+      "sha256": "25bc989426b500d7095ecaf63fb8a03ffac8a6a9f9ff8a08d609cef7ebc5c1ae",
+      "amigaRamAddress": 189552,
+      "identical": true
+    },
+    {
+      "file": "PLANET.DAT",
+      "bytes": 8192,
+      "sha256": "6fa96a1ffa6620dbef45001a8753356cee88239c2d4849ddabc88aa59691929d",
+      "amigaRamAddress": 265840,
+      "identical": true
+    },
+    {
+      "file": "LOGO.DAT",
+      "bytes": 3520,
+      "sha256": "3c27db0cb4d4d43605d6fad0bc888339c5961be0114961e697e7d9e217bbebc7",
+      "amigaRamAddress": 118700,
+      "identical": true
+    }
+  ],
+  "note": "Bitmap/map equivalence only; palette, code behavior and runtime stage traversal are not established by these byte comparisons."
+}

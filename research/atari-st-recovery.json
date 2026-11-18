@@ -1,0 +1,41 @@
+{
+  "sourceStxSha256": "10a96cc93ab4c73a171f0e3408e99d2ff692a280bdb4f05eaf4e75f33e185ccf",
+  "sourceProtectedPrgSha256": "9adfe8193f1773c30c91249276f64e024f0df681490645cf3e6489eea9f10af4",
+  "mainBytes": 52426,
+  "mainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638",
+  "relocationBase": 65536,
+  "sector6Checksum": "0xde534692",
+  "instructions": 758502,
+  "exceptionDispatches": [
+    [
+      66294,
+      66446
+    ],
+    [
+      66842,
+      66884
+    ],
+    [
+      67174,
+      67190
+    ],
+    [
+      68124,
+      68184
+    ],
+    [
+      68590,
+      68610
+    ]
+  ],
+  "hostHooks": [
+    "BIOS/XBIOS26 disable interrupt",
+    "original STX track0 sector1/6 bytes + synthetic successful timing",
+    "TOS basepage and stack pointers"
+  ],
+  "gameplayPatched": false,
+  "tosPrgBytes": 54806,
+  "tosPrgSha256": "c7c03df04258f86ef00c9b1a35a0dda3127c1b682e12c94621479d9164eee6ba",
+  "relocations": 2289,
+  "bssBytes": 289272
+}

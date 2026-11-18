@@ -1,0 +1,7 @@
+# Keep the existing Safari / iPod touch compatibility floor.
+Safari >= 9
+iOS >= 9
+# Chromium 68 is used by LG webOS 5 (2020); newer Tizen and Android TV engines are included.
+Chrome >= 68
+last 2 Firefox versions
+last 2 Edge versions

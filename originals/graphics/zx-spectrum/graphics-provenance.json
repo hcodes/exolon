@@ -1,0 +1,346 @@
+{
+  "title": "Exolon — original ZX Spectrum graphics",
+  "version": 1,
+  "artifact": {
+    "file": "graphics.json",
+    "generator": "tools/graphics/zx.mjs",
+    "command": "npm run graphics:zx -- /path/to/memory.bin /path/to/original-exolon.sna",
+    "sha256": "3ca4dd80ac0e18f8f1dc62c3493fba2b0e2d84b7cd46c1de8d727e1d587016fd",
+    "bytes": 178591,
+    "width": 256,
+    "height": 192,
+    "playfieldHeight": 176,
+    "shapeCount": 483,
+    "worldContoursSha256": "1fe01a8c8be90445f409233578af82bd45a247f45196ce2595d8a457dce68142"
+  },
+  "sources": {
+    "game": {
+      "title": "Exolon",
+      "creator": "Raffaele Cecco",
+      "publisher": "Hewson Consultants",
+      "year": 1987,
+      "catalog": "https://worldofspectrum.net/item/0001686/",
+      "tapUrl": "https://worldofspectrum.net/pub/sinclair/games/e/Exolon.tap.zip",
+      "tapSha256": "31537fa52ce1e197c129a80d4e4e1efefceff58726471a0d5a571add45ab5f77",
+      "gameBlockIndex": 7,
+      "memoryAddress": "0x6d60",
+      "memorySha256": "2ee3509dc114d70a2bd2d7e22ada889d93088091964380e4b2583341e41617b5"
+    },
+    "disassembly": {
+      "author": "Sergey Erokhin (ESL)",
+      "year": 2014,
+      "repository": "https://github.com/rusarh/exolon-esl",
+      "originalPublication": "https://bitbucket.org/esl/exolon-zx/",
+      "license": "CC-BY-SA-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "references": [
+        "asm/data_fonts.asm",
+        "asm/data_zone_blocks.asm",
+        "asm/graphics_xmsg.asm",
+        "asm/graphics_putchars.asm",
+        "asm/data_sprites_data.asm",
+        "asm/game_info_full.asm",
+        "asm/game_info.asm",
+        "asm/actions_torch.asm",
+        "asm/actions_flash_bar.asm",
+        "asm/actions_high_voltage.asm",
+        "asm/actions_pump.asm",
+        "asm/actions_beam.asm",
+        "asm/menu_random_stars.asm",
+        "asm/actions_mines.asm",
+        "asm/actions_particles_explosion.asm"
+      ]
+    },
+    "loading": {
+      "repositoryPath": "tools/bin/exolon.sna",
+      "snapshotFormat": "48K SNA, 27-byte header followed by RAM 0x4000..0xffff",
+      "snapshotSha256": "c28cec07baa83143fd4265b7adb37873c834b81c56abeb69ab25c211481be65f",
+      "snapshotBytes": 49179,
+      "snapshotFileOffset": 27,
+      "memoryAddress": "0x4000",
+      "length": 6912,
+      "bitmapBytes": 6144,
+      "attributeBytes": 768,
+      "sha256": "327fa6c5d945415fe627e5c86478e69162cc6317f4a7acfc0512727c8f375654",
+      "notes": "The original loading asset is preserved byte for byte. The menu renderer masks baked background stars at user request while retaining planet rectangles, exact source-logo bits and bottom credits. The code in this snapshot has a different address layout from the recovered TAP. Only its screen bytes are used. The assembled exmenu7991.sna snapshots contain blank screens."
+    }
+  },
+  "tables": {
+    "player": {
+      "start": "0xef80",
+      "endExclusive": "0xf8e0",
+      "frames": 25,
+      "width": 24,
+      "height": 32,
+      "bytes": 2400,
+      "sha256": "14ccd49c4c5a6d00f1f166c971c5859f4d56f078fd8d0b832836cf097e238154"
+    },
+    "small": {
+      "start": "0xf8e0",
+      "endExclusive": "0xfe80",
+      "frames": 45,
+      "width": 16,
+      "height": 16,
+      "bytes": 1440,
+      "sha256": "5eaf36b784bc5f99356e21adbbceae60e7cef03b80dd505def42c42b7525138d"
+    },
+    "shifted": {
+      "start": "0xed40",
+      "endExclusive": "0xef80",
+      "frames": 9,
+      "width": 16,
+      "height": 8,
+      "bytes": 576,
+      "sha256": "0ef273ea1edb496db44d73f495006d9f9a14bb0102c68dfba0b7ac0fd5ebe0cb"
+    },
+    "font": {
+      "start": "0xd8e0",
+      "endExclusive": "0xdab8",
+      "frames": 59,
+      "width": 8,
+      "height": 8,
+      "bytes": 472,
+      "sha256": "2b03e94e2b98d8512e1e836c3694f16331a5c45321b11ba3280abb91ef9083fd"
+    }
+  },
+  "fontAddressing": {
+    "firstCharacter": 32,
+    "lastCharacter": 90,
+    "biasedMainFontBase": "0xd7e0",
+    "logoFont": {
+      "start": "0xe6b0",
+      "endExclusive": "0xe840",
+      "glyphs": 50,
+      "sha256": "9eae9c75313dd2d80635c81bd659c7d57c4190a34e86372e88d28aad365da88b"
+    },
+    "braveryFont": {
+      "start": "0xeab0",
+      "endExclusive": "0xeaf0",
+      "glyphs": 8,
+      "sha256": "1eb49ec8e7bf9731e0b094ad429b4026a9bb991e7dc1edecb04a7c2aa645f995"
+    },
+    "bonusBorderFont": {
+      "start": "0xece0",
+      "endExclusive": "0xed40",
+      "glyphs": 12,
+      "sha256": "1dbf4bf6f7628fabc3bcc0d9c01c03e3b653fce0cc5c641c61f2ec8da0d0510f"
+    }
+  },
+  "messageAddresses": {
+    "menu": "0x6e17",
+    "logo": "0x70ff",
+    "scores": "0x718d",
+    "hud": "0x76a2",
+    "gameOver": "0xa057",
+    "hallOfFame": "0xa156",
+    "bonus": "0xa961",
+    "combat": "0xaa3f",
+    "bravery": "0xaaf2"
+  },
+  "messages": {
+    "encoding": "Original xMSG bytecode decoded into 8x8 bitmap cells and full attribute bytes. Recursive font changes persist; E7 SPACE temporarily selects FNT_MAIN.",
+    "sources": {
+      "menu": "asm/data_msg_menu.asm",
+      "logo": "asm/data_msg_exolon.asm",
+      "scores": "asm/data_msg_high_score.asm",
+      "hud": "asm/game_info_full.asm",
+      "gameOver": "asm/game_game_over.asm",
+      "hallOfFame": "asm/data_msg_hall_of_fame.asm",
+      "bonus": "asm/data_msg_bonusScreen.asm",
+      "combat": "asm/data_msg_combat_ability.asm",
+      "bravery": "asm/data_msg_braveryBonus.asm"
+    },
+    "highScoreRecords": {
+      "start": "0x71f1",
+      "rows": 50,
+      "rowBytes": 16,
+      "source": "asm/menu_highscore.asm"
+    },
+    "pointsMessageAddress": "0xad82",
+    "notes": "Loading uses the original SCR with baked background stars masked at display time. Scores use the original bitmap composition plus dynamically rendered source-font names and scores, with animated menu flares outside the scrolling text strip. Bonus uses its source message composition and an original-font cursor. Other extracted messages are data assets; exact original navigation and every transition are not claimed."
+  },
+  "animatedTiles": {
+    "torch": {
+      "start": "0xdb60",
+      "bytes": 48,
+      "frames": 3,
+      "frameBytes": 16,
+      "font": "0xdab8",
+      "glyphPairs": [
+        [
+          "0x15",
+          "0x16"
+        ],
+        [
+          "0x17",
+          "0x18"
+        ],
+        [
+          "0x19",
+          "0x1a"
+        ]
+      ],
+      "attributeFormula": "(visualRandom & 7) | 0x42",
+      "sha256": "89eda908231c9a8ae5d85ed0fdf36583d3659038d9a241b2d662a826c49e19c3"
+    },
+    "beam": {
+      "start": "0xdbe0",
+      "bytes": 8,
+      "glyph": "0x25",
+      "attributeFormula": "(gameTick & 7) | 0x40",
+      "sha256": "79382447c440577878287f7174a3c62f9d3c8d16109173bee1bcd5ac08234767"
+    },
+    "flashAttributeFormula": "(gameTick & 7) | 0x40",
+    "pump": {
+      "spriteTable": "player",
+      "frame": 24,
+      "attribute": "0x44"
+    },
+    "highVoltage": {
+      "spriteTable": "small",
+      "firstFrameFormula": "0x1c + (visualRandom & 3)",
+      "secondFrame": "firstFrame + 1",
+      "attributeFormula": "((visualRandom >> 8) & 7) | 0x40"
+    },
+    "radar": "Static FNT_WhiteDish glyphs from the original map block; no added radar animation.",
+    "mine": {
+      "start": "0xdba0",
+      "bytes": 32,
+      "frames": 2,
+      "frameBytes": 16,
+      "width": 16,
+      "height": 8,
+      "font": "0xdab8",
+      "glyphPairs": [
+        [
+          "0x1d",
+          "0x1e"
+        ],
+        [
+          "0x1f",
+          "0x20"
+        ]
+      ],
+      "condition": "Fired/inactive mines alternate the two horizontal glyph pairs each game tick.",
+      "attributeFormula": "(visualRandom & 7) | 0x42",
+      "sha256": "7682dae0ab2934df213832effe5aa40bda30d40b5d43f6d4eff5a3738b021330"
+    },
+    "turret": {
+      "source": "asm/actions_gun_machine.asm",
+      "fontBase": "0xddd8",
+      "start": "0xde58",
+      "bytes": 128,
+      "frames": 8,
+      "glyphPairs": "0x10/0x11 through 0x1e/0x1f",
+      "phaseToGlyph": [
+        "0x10",
+        "0x12",
+        "0x14",
+        "0x16",
+        "0x18",
+        "0x1a",
+        "0x1c",
+        "0x1e",
+        "0x10"
+      ],
+      "leftAttribute": "0x46",
+      "rightAttribute": "0x06",
+      "sha256": "b92d1ecfc310e8229c420dce1026c4e02cc7cb60f49eb99b6c177f0c029150cc",
+      "timing": "The existing simulation phase changes from 1 to 9 on firing, then decrements to 1. Phase 9 retains the extended barrel; phase 8 retracts it, and phases 7..1 restore it. Pausing simulation freezes the barrel."
+    }
+  },
+  "rendering": {
+    "appliesTo": "Retro. Optional Remastered is a separate 1024x768 vector presentation using the same logical coordinates and model; it does not replace or modify these original graphics assets.",
+    "resolution": "256x192, with a 256x176 playfield and a 16-pixel HUD",
+    "cells": "8x8 bitmap plus original INK/PAPER/BRIGHT/FLASH attribute byte",
+    "palette": "Spectrum color indices map to RGB channel levels 205 and 255; this is a digital presentation, not measured analog video.",
+    "sprites": "Original frame bytes, integer coordinates, XOR composition, horizontal player mirroring and source foreground-overlap flags.",
+    "scaling": "Pixel-preserving Canvas scaling; image smoothing disabled; no visual interpolation between simulation ticks.",
+    "browserUi": "Start, scores, music, volume, pause and touch controls are browser controls outside/below the bitmap canvas."
+  },
+  "rights": {
+    "originalGameGraphics": "Original commercial-game bitmap, font and sprite authorship remains with the original rights holders. Distribution of an archival copy does not itself establish a new license.",
+    "disassemblyAndDerivedImplementation": "The disassembly is credited to Sergey Erokhin (ESL), CC BY-SA 3.0. Source-derived recovery and decoding retain attribution and share-alike notices. This does not relicense the original commercial artwork.",
+    "repositoryLicense": "The repository license does not replace the original game or archival-media rights."
+  },
+  "limitations": [
+    "This is a native JavaScript reconstruction, not a Z80/ROM emulator or cycle-exact hardware reproduction.",
+    "The simulation runs at 30 cycles per second; the original loop duration is variable.",
+    "Visual colors and particle directions use a deterministic hash of game tick and object/event data. They do not emulate the Spectrum refresh register R or guarantee the original random sequence.",
+    "Source frames and attribute formulas are preserved; exact timing, sprite overlap and phase-by-phase equality with a recording remain unverified.",
+    "The loading SCR remains an unchanged static asset. At user request, baked loading-image stars are masked at display time and original menu star sprites animate in empty title and score-background cells. Browser timing/placement and original menu navigation are adaptations.",
+    "Score text uses source font pixels, but browser timing and the PLAYER record behavior are adaptations; the Hall of Fame name slot now accepts an eight-character nickname through the browser input, and the fifty highest records are persisted as a named leaderboard in localStorage after confirmation.",
+    "Pixel graphics do not establish full original-gameplay fidelity. Some interactions and particles require further comparison; complete physical traversal of all 125 screens remains unverified.",
+    "Music arrangements and gamepad/browser controls are separate adaptations documented in README.md and audio/provenance.json."
+  ],
+  "gameplayStarfield": {
+    "source": "asm/menu_random_stars.asm: init_random_stars",
+    "start": "0xe858",
+    "bytes": 8,
+    "font": "0xe840",
+    "glyph": 3,
+    "bitmap": [
+      0,
+      0,
+      0,
+      0,
+      16,
+      0,
+      0,
+      0
+    ],
+    "sha256": "48443c868f27fd5d4e1749506108b7419f6c508bd93fa3cb4f99b5745241e476",
+    "rows": 22,
+    "attemptsPerRow": 3,
+    "placement": "Only cells with a zero attribute in the saved initial scenery attributes (ATTR_TABLE_COPY) accept a star. Attempts may repeat positions or hit occupied cells, so 66 visible stars are not guaranteed.",
+    "attributeFormula": "(visualRandom & 7) | 0x42",
+    "randomness": "The browser uses deterministic per-screen visual randomness, not the hardware R sequence. This static gameplay starfield is separate from both the original loading SCR and animated text-menu stars."
+  },
+  "particles": {
+    "objectDestruction": {
+      "source": "asm/graphics_putchars.asm: PutCharXorRemoveObject_2boom",
+      "piecesPerRemovedCell": 2,
+      "capacity": 100,
+      "spriteTable": "shifted",
+      "sprite": 2,
+      "color": "Source cell attribute masked with 0x47.",
+      "motion": "Original constant delta set, with a retry for dy if both deltas are zero; no gravity or rotation."
+    },
+    "mineExplosion": {
+      "source": "asm/actions_mines.asm: generate_mine_boom and msg_generate_mine_boom",
+      "attemptedPieces": 20,
+      "composition": "Five rounds x two space cells x two particle allocations; the source comment saying 10 particles is inconsistent with the executed code. The shared 100-piece capacity still applies.",
+      "position": "Two neighboring cells at event.y - 8, with the source floor attribute from the row below the mine.",
+      "colorMask": "0x47"
+    },
+    "randomness": "Allocation and source raster shapes follow the reconstructed rules; directions use deterministic visual randomness and are not claimed to match original register R values."
+  },
+  "titleAnimation": {
+    "source": "asm/menu_stars.asm",
+    "spriteTable": "small",
+    "frames": [
+      12,
+      12,
+      14,
+      13,
+      14,
+      14,
+      15,
+      15,
+      15,
+      14,
+      14,
+      13,
+      13,
+      12,
+      12,
+      0
+    ],
+    "slots": 12,
+    "attribute": "0x47",
+    "frameDurationMs": 100,
+    "periodMs": 1700,
+    "placement": "Deterministic per-slot traversal of original empty 2x2 character regions; x aligned to 16 pixels and y to 8, y <= 168. Source artwork is protected. Slot overlap uses XOR.",
+    "adaptation": "The original text-menu flares appear on the title and records at user request. The loading SCR asset is unchanged; its baked stars are masked in the displayed background. The score text strip x=64..191, y=56..191 is reserved against star placement. Staggered browser clocks and deterministic placement do not reproduce hardware timing or the R register."
+  }
+}

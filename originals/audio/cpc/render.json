@@ -1,0 +1,119 @@
+{
+  "sourceMemorySha256": "496d9dac1ed78cd9f0635ca751d33bf73073d515626ef3a05dfc02166a3059ec",
+  "engineSha256": "7947ae127f47eafe4c64b744dcf084e73c158789fce18e3da03ff9d42bc8d012",
+  "cpuSourceSha256": "78609811c202d717c94d2f2aaf6f540d2d5c4d0485f723dedc42bf384625637b",
+  "sampleRate": 44100,
+  "ayClock": 1000000,
+  "traceRate": 1000,
+  "effectsRate": 50,
+  "recordings": [
+    {
+      "name": "title",
+      "file": "title.wav",
+      "trace": "title.ayr",
+      "seconds": 105.2390022675737,
+      "writes": 42995,
+      "traceSha256": "46c40f9dcbd5a2a05589695b53adb365d4c8f6638dd3402d0f3f4cf9133bec6d",
+      "sha256": "cf4b48bf9a0c5788e851115866873e53529b5863d849dcc9b0b60d57fffb7e2d"
+    },
+    {
+      "name": "game-over",
+      "file": "game-over.wav",
+      "trace": "game-over.ayr",
+      "seconds": 2.0950113378684807,
+      "writes": 328,
+      "traceSha256": "08238a28048d6eb9dcd9634f4453bac0dd50ec761daf46d4d5e21855440e2887",
+      "sha256": "eca80807dbe8c4bd2659ccb500c206095512e0ff1f929b593e2654277269cc67"
+    },
+    {
+      "name": "shot",
+      "file": "shot.wav",
+      "trace": "shot.ayr",
+      "seconds": 0.38,
+      "writes": 61,
+      "traceSha256": "f5db9a7705b206555abc42f07b7186e69b2cd88616edd6394b937a6981176675",
+      "sha256": "307366736119218a41910c79c4d24994fa9418e0a1afc24827c47c53da7e7e67"
+    },
+    {
+      "name": "grenade",
+      "file": "grenade.wav",
+      "trace": "grenade.ayr",
+      "seconds": 1.52,
+      "writes": 550,
+      "traceSha256": "8f9561b41a83e251a5ccf4d01d7469c25768975b1ad15ee7c9ecc04db0d283c1",
+      "sha256": "ab49e80e5ae9307cdf46712bd3cd7d2073a5768bd1c91787c7af432b078bf3d3"
+    },
+    {
+      "name": "rocket",
+      "file": "rocket.wav",
+      "trace": "rocket.ayr",
+      "seconds": 0.8,
+      "writes": 166,
+      "traceSha256": "20adb30f312478098772c099f9f9fe3ed0d45977ad300a366aec8906b388163f",
+      "sha256": "20b500edcf68066d1a9e43ba49b6889cb8fc3463f197f7a53727e7f27a706321"
+    },
+    {
+      "name": "explosion",
+      "file": "explosion.wav",
+      "trace": "explosion.ayr",
+      "seconds": 1.02,
+      "writes": 221,
+      "traceSha256": "d360410b7df6ac3da48455caa04333db461cad69784148372b46cbbaebdd599c",
+      "sha256": "f9fc8f03f9740d759ffa0f91e334819352ad6fd177f7082b58a95be203992e40"
+    },
+    {
+      "name": "enemy-destroyed",
+      "file": "enemy-destroyed.wav",
+      "trace": "enemy-destroyed.ayr",
+      "seconds": 0.34,
+      "writes": 51,
+      "traceSha256": "99c62c15eb22753eae11b07a2e78c2b43059fd26477c4713e3413406b1ca629b",
+      "sha256": "820421bce0dbaa74764e7ad3613653f9099aefd79f7814d56753ea00ed7d841a"
+    },
+    {
+      "name": "teleport",
+      "file": "teleport.wav",
+      "trace": "teleport.ayr",
+      "seconds": 1.62,
+      "writes": 371,
+      "traceSha256": "207cddff5b16a5fb67ece0831c9612683ecb4eb39d2509b3a3918f1bb83e8f8c",
+      "sha256": "5f08d7416b2ad5cbeffe822081a77e6021b35be6dc15056de95e72306ef6fa62"
+    },
+    {
+      "name": "refill-ammo",
+      "file": "refill-ammo.wav",
+      "trace": "refill-ammo.ayr",
+      "seconds": 1.6,
+      "writes": 366,
+      "traceSha256": "6fa705ac20bdb76b75b11d151135979ba185924f9ead49825c9b72c3752726dc",
+      "sha256": "15559ea9c5dfe174b1de69b091f71b10e680b0a81dc983935feca7b337cdc7e8"
+    },
+    {
+      "name": "refill-grenades",
+      "file": "refill-grenades.wav",
+      "trace": "refill-grenades.ayr",
+      "seconds": 1.6,
+      "writes": 366,
+      "traceSha256": "ad58150f22f08919f43ed70d23d08563a06480a3662019f58fc7a4b1838f7cf0",
+      "sha256": "0fa369e42462a51267e10e0b981e06859f91dae48fe13d346ff1c131ddace778"
+    },
+    {
+      "name": "crusher",
+      "file": "crusher.wav",
+      "trace": "crusher.ayr",
+      "seconds": 0.36,
+      "writes": 86,
+      "traceSha256": "ccb66a94514965a1fdb16d851500a0146820abb1c298018059393afa553f1521",
+      "sha256": "15d8794ead4c1491f97b82a423e6ef75792c15718fca83ec470bf0e40a6becb4"
+    },
+    {
+      "name": "bonus",
+      "file": "bonus.wav",
+      "trace": "bonus.ayr",
+      "seconds": 4.18,
+      "writes": 1011,
+      "traceSha256": "d80b223ea84d68e2683a6b28af184ac7bc062719776ae81200fc156c7786936e",
+      "sha256": "e7e19170d5a25428770b32295277ad8428dc729884063f831550b408f60b2101"
+    }
+  ]
+}

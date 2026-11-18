@@ -1,0 +1,14 @@
+.input {
+    font: inherit;
+}
+.input:not([type='range']) {
+    font-size: 16px;
+}
+.input:disabled {
+    cursor: not-allowed;
+}
+
+.game-app_tv .input:focus {
+    outline: 3px solid #a4f5db;
+    outline-offset: 3px;
+}

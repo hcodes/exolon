@@ -1,0 +1,41 @@
+.home-button {
+    position: fixed;
+    top: 12px;
+    top: max(12px, env(safe-area-inset-top));
+    left: 12px;
+    left: max(12px, env(safe-area-inset-left));
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: #0b121c;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+.home-button__icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+.home-button[aria-expanded='true'] {
+    z-index: 1101;
+}
+.game-app_selecting .home-button {
+    display: none;
+}
+@media (pointer: coarse) {
+    .home-button {
+        width: 44px;
+        height: 44px;
+    }
+}
+.game-app_touch .home-button,
+.game-app_tv .home-button {
+    width: 44px;
+    height: 44px;
+}

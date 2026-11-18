@@ -1,0 +1,69 @@
+name: Deploy game to GitHub Pages
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: pages-${{ github.ref }}
+    cancel-in-progress: false
+
+jobs:
+    checks:
+        name: Tests and linting
+        uses: ./.github/workflows/tests.yml
+
+    build:
+        name: Build static game
+        needs: checks
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7
+              with:
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v7
+              with:
+                  node-version: '24'
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build static game
+              run: npm run build
+
+            - name: Upload GitHub Pages artifact
+              if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+              uses: actions/upload-pages-artifact@v4
+              with:
+                  path: dist
+
+    deploy:
+        name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        needs: build
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Configure GitHub Pages
+              uses: actions/configure-pages@v5
+
+            - name: Deploy
+              id: deployment
+              uses: actions/deploy-pages@v4

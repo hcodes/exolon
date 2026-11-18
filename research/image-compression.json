@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-19",
+  "tool": "ImageOptim 1.9.3, macOS; LossyEnabled=false",
+  "scope": "Temporary copies of 7 dist PNGs and standalone extracts of 2 inline TSX SVG icons; no production resources changed.",
+  "validation": "Chromium Canvas RGBA SHA-256 before/after; every PNG pixel, SVG rasterization at 24x24 and 240x240.",
+  "results": [
+    {
+      "file": "assets/images/amstrad-cpc/loading.png",
+      "bytes": 5906,
+      "sha256": "77b5c9ffd8b6da38b91c97f835035215d16f637cd451b1b9f2d5091c57195049",
+      "kind": "png",
+      "optimizedBytes": 2409,
+      "savedBytes": 3497,
+      "rasters": [
+        {
+          "width": 320,
+          "height": 200,
+          "rgbaSha256": "d9b261d56e91bd7be3a29f3dc94d0edfa4fd945ac52e89c60b6d6e90fabd5774",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "8879758fbff955f9e58049992b690602e1ad15d14ef1a48ccb8a0a04833779c4"
+    },
+    {
+      "file": "assets/images/amstrad-cpc/source/exolon-cpc-loading.png",
+      "bytes": 10654,
+      "sha256": "cb3341adfe0bc033927408e0e47731a5fe505d30bad64176badefe1f0fa6c709",
+      "kind": "png",
+      "optimizedBytes": 2925,
+      "savedBytes": 7729,
+      "rasters": [
+        {
+          "width": 768,
+          "height": 544,
+          "rgbaSha256": "9141d543af3244e86ebe3c748b5109e4df58ea433137d200088471bbf5d586ae",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "6847fe0b9ff7b772a8e301c199d7428de9c9c0cff1684e3ae27772aa4d97089b"
+    },
+    {
+      "file": "assets/images/c64/loading.png",
+      "bytes": 8547,
+      "sha256": "0ce503b505353667cc8b447f02edb97ddebd80782b731c3be75357104db8930a",
+      "kind": "png",
+      "optimizedBytes": 4562,
+      "savedBytes": 3985,
+      "rasters": [
+        {
+          "width": 320,
+          "height": 200,
+          "rgbaSha256": "7690f72cb6c36d8ca449b743a6127a93fc6115f131067698c420c20de1ca416b",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "a73beeab2bb30156d90afb4a4dcdac2485558ffad21db567315c17ebed75f914"
+    },
+    {
+      "file": "assets/images/gameboy/loading.png",
+      "bytes": 5608,
+      "sha256": "6fb48ee2b9d237e3a2d2100bf541fd806c9b5cc9011d59597cb06e6946e82a35",
+      "kind": "png",
+      "optimizedBytes": 2574,
+      "savedBytes": 3034,
+      "rasters": [
+        {
+          "width": 256,
+          "height": 192,
+          "rgbaSha256": "8e1a92f98a46cdb083372efdf5d9ccce32e6063bb4befc64491a841db792a47a",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "92f13fe0859e7637dc1a2b4c19c3e881b92b61d4843a67b46df30ab0d8f552d9"
+    },
+    {
+      "file": "assets/images/gameboy-color/loading.png",
+      "bytes": 6096,
+      "sha256": "3f2c9df2e7958e475cc03d4d582c7154d6e927b8dab019812d4da9fa791e62c4",
+      "kind": "png",
+      "optimizedBytes": 3124,
+      "savedBytes": 2972,
+      "rasters": [
+        {
+          "width": 256,
+          "height": 192,
+          "rgbaSha256": "380ee2318843deb0205d10c082e54456ff0c798b12e8980e424e33301444de8c",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "b7726f539314ecec63b535c9b13e45807effb2f2fb90559665c00a445f41848e"
+    },
+    {
+      "file": "assets/images/shared/reference/exolon-loading-comparison.png",
+      "bytes": 88110,
+      "sha256": "ed304f41b0876501ef4adc5596a83e6e06bc79af3e59be43ee3e21ff1943298e",
+      "kind": "png",
+      "optimizedBytes": 43118,
+      "savedBytes": 44992,
+      "rasters": [
+        {
+          "width": 2058,
+          "height": 902,
+          "rgbaSha256": "86e3ad3511453de3f6ab7e7483ae08275d97c7a3d18dff12b6ece3fd51d4bf21",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "947a35e8216ae8705836bae0ef10c12e0bd4c7b4717779acb1dcfde06d144bb3"
+    },
+    {
+      "file": "assets/images/zx-spectrum/loading.png",
+      "bytes": 5977,
+      "sha256": "273a42ae56e9087c573b0b9859ef9fa2dc43fe5047ebc17e756de5ead1e98283",
+      "kind": "png",
+      "optimizedBytes": 3169,
+      "savedBytes": 2808,
+      "rasters": [
+        {
+          "width": 256,
+          "height": 192,
+          "rgbaSha256": "dcd3f49b0d2cb746b5a0755aede7f34ff2374d6fbb06c203888f821870c0ff6e",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "00080275e6fc3a9ebf64cdcad7927324a4e1385fde9e516553d383e3566340dc"
+    },
+    {
+      "file": "inline-svg/fullscreen.svg",
+      "bytes": 368,
+      "sha256": "4552ed472dcd9c6aa0ab0ebf8e411fdc4cde688ec86bfe7e9e72bcc00134b601",
+      "kind": "inline-svg-extract",
+      "optimizedBytes": 368,
+      "savedBytes": 0,
+      "rasters": [
+        {
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "c170e95f17bd5ed64656007bb9e36f2e738e7688c45d41b281fb36b01acfa69d",
+          "identical": true
+        },
+        {
+          "width": 240,
+          "height": 240,
+          "rgbaSha256": "bb43a550d6a4fef2771247e6f4bca7d7f40474c45b375df300b76f8bd67715c0",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "4552ed472dcd9c6aa0ab0ebf8e411fdc4cde688ec86bfe7e9e72bcc00134b601"
+    },
+    {
+      "file": "inline-svg/split.svg",
+      "bytes": 212,
+      "sha256": "f23874fdca094e4693948dd644365b34f8b8e9996566334175e476951bd2f16a",
+      "kind": "inline-svg-extract",
+      "optimizedBytes": 212,
+      "savedBytes": 0,
+      "rasters": [
+        {
+          "width": 24,
+          "height": 24,
+          "rgbaSha256": "a9400ec043d79257e57cbeb164284d7863f3c3e75c04867ef5e9a729ada78d5f",
+          "identical": true
+        },
+        {
+          "width": 240,
+          "height": 240,
+          "rgbaSha256": "01753130b50176b49866d445898c764c9b63d4efd3091c6156700cf359c2ca99",
+          "identical": true
+        }
+      ],
+      "optimizedSha256": "f23874fdca094e4693948dd644365b34f8b8e9996566334175e476951bd2f16a"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "New Game Boy-inspired stylization",
+  "originalComposer": "Nick Jones",
+  "originalGame": "Exolon, Raffaele Cecco / Hewson, 1987",
+  "sourceScore": "tools/audio/title-score.json",
+  "sourceScoreSha256": "4b3515ee5c3bb9c733c409e4c57aa9214414918b47499bae8a9501d678c6b569",
+  "scoreInterpretation": "tools/audio/arrange.mjs / original-orchestral source voices only; all 340 lead melody pitches and onsets, 316 harmony notes, 90 bass notes and 48 noise onsets retain original 72.02 second timing; bass transposed down one octave.",
+  "sourceAnalysis": "Recovered original ZX score and Sergey Erokhin disassembly, CC BY-SA 3.0; existing recordings retained unchanged.",
+  "soundDesign": "Two independent pulse voices (25%/50% title duty), 32-step four-bit wavetable bass, deterministic 15-bit LFSR noise; discrete pitch dividers and 64 Hz stepped volumes. Four monophonic channel roles, mono mix, no reverb or orchestral instrument bank.",
+  "effects": "Twelve newly authored event-specific effects and a short new game-over cadence; not extracted Game Boy sounds.",
+  "renderer": "src/audio/gameboy/synthesize.js, rendered offline by tools/audio/gameboy.mjs; no synthesizer or CPU emulator is needed for playback.",
+  "mastering": "44.1 kHz mono PCM; four sub-samples per sample, 25 Hz AC coupling, 7.5 kHz low-pass, short edge ramps, minimum 160 ms quiet tail and peak at most 0.8.",
+  "limitations": "There is no original Game Boy Exolon port represented here. This is a new musical and effects arrangement inspired by the handheld sound palette, not authentic port audio or cycle-accurate Game Boy APU emulation.",
+  "rebuild": "node tools/audio/gameboy.mjs --output /tmp/exolon-gameboy-new; existing output files are never replaced."
+}

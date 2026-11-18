@@ -1,0 +1,12 @@
+.checkbox {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #95cfbc;
+}
+
+.game-app_tv .checkbox:focus {
+    outline: 3px solid #a4f5db;
+    outline-offset: 3px;
+}

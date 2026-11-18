@@ -1,0 +1,56 @@
+{
+  "game": "Exolon (Amstrad CPC)",
+  "author": "Raffaele Cecco / Nick Jones",
+  "published": "Hewson Consultants, 1987",
+  "copyright": "Original game programs, sound tables and recordings remain the property of their original rightsholders; the repository code license does not relicense them.",
+  "source": {
+    "url": "https://acpc.me/emul/dsk/exolon,exolon.dsk",
+    "catalog": "https://acpc.me/emul/cpc.php?file=dsk/exolon,exolon.dsk",
+    "downloaded": "2026-11-15",
+    "diskSha256": "f8cb122713118feb48fcd7193f77ca66ad86e4fb739c37088ec8f71d34e54fd9",
+    "memorySha256": "496d9dac1ed78cd9f0635ca751d33bf73073d515626ef3a05dfc02166a3059ec",
+    "memory": "Uncompressed AMSDOS files EXOLON.1 at $0100 (length $6add), EXOLON.2 at $6bdd (length $3424), EXOLON.3 copied from $c000 to $a001 (length $11cc), following the original loader. Other memory is zero. This publicly hosted disk is a cracked release; no claim of a pristine commercial master is made.",
+    "archiveSearch": "CPC-POWER catalog item 54 and CPCRULEZ identify the game; their protected downloads were not used. The Bulba SoLOCPC collection was inspected but did not contain Exolon and supplied no assets."
+  },
+  "extraction": {
+    "engine": {"file": "audio-engine.bin", "memoryStart": "$59fa", "memoryEndExclusive": "$6bdd", "sha256": "7947ae127f47eafe4c64b744dcf084e73c158789fce18e3da03ff9d42bc8d012"},
+    "music": {"init": "$5a15", "update": "$5a90", "toneTable": "$6335", "streams": ["$5d2a", "$5ebc", "$6059"]},
+    "effects": {"update": "$63af", "init": "$6604", "streams": "$6649–$6a18", "states": "$6a1c (16 slots of 16 bytes)", "toneTable": "$6b1c"},
+    "ayWriter": "$6315 writes register A/value C through CPC PPI $f4xx/$f6xx; captured without replacing the sound instructions or note tables.",
+    "clock": {"ayHz": 1000000, "cpuHz": 4000000, "primaryReference": "https://www.cpcwiki.eu/imgs/8/87/464SchematicRedraw_white.pdf"},
+    "title": "Runs the original program from $0100 through its menu/star drawing loop until the music end instruction at $5d20, then calls the original silence routine $5a7c. Keyboard reads are all released; the original PRNG starts with the source-memory seed. Its software-driven update timing is retained by an approximate instruction timer, not replaced by the Spectrum 90 Hz music schedule.",
+    "gameOver": "Runs original $2d21–$2d39: silence, $65c6 jingle, 40 driver steps separated by the original $3e54 delay, silence. The text immediately preceding this routine is GAME OVER at $2d65.",
+    "effectTiming": "Isolated original effect calls are advanced at 50 driver steps/second, matching the nativeJS presentation convention. The original game calls $63af three times in a variable-duration gameplay loop, so these isolated recordings do not claim original gameplay timing.",
+    "traceFormat": "CPCAY001: 8 ASCII magic bytes, little-endian uint32 duration in microseconds, uint32 event count; each 8-byte event is uint32 time, uint8 register, uint8 value, two zero reserved bytes. Traces preserve original register writes. WAV rendering samples register state at 1000 Hz.",
+    "offlineRenderer": {
+      "project": "https://github.com/DrGoldfire/Z80.js",
+      "source": "https://raw.githubusercontent.com/DrGoldfire/Z80.js/master/Z80.js",
+      "license": "MIT; external offline tool only, no CPU source redistributed or loaded by the game",
+      "sha256": "78609811c202d717c94d2f2aaf6f540d2d5c4d0485f723dedc42bf384625637b",
+      "timing": "Returned Z80 instruction T-states rounded up to a multiple of four at 4 MHz. This is an approximation, not full CPC machine-cycle contention, PPI/CRTC or hardware capture. Title tempo is consequently approximate; the original CPC pitches, note order, modulation and software volume programs are retained.",
+      "ay": "Repository renderAy at the CPC 1 MHz chip clock, measured AY DAC levels from MIT-licensed Ayumi, 17-bit noise LFSR and 20 Hz AC coupling. Original Exolon CPC captures use software volume envelopes; extraction rejects hardware-envelope volume flags. Mono PCM16 WAV at 44100 Hz."
+    },
+    "reproduce": "node tools/audio/cpc.mjs --memory /path/to/original-cpc-memory.bin --z80 /path/to/Z80.js --output /tmp/exolon-cpc-audio-output",
+    "reproducePcmWithoutCpu": "Copy audio-engine.bin and *.ayr into an output directory, then node tools/audio/cpc.mjs --traces-only --output /tmp/exolon-cpc-audio-output"
+  },
+  "eventEvidence": {
+    "shot": {"entry": "$65a8", "call": "$1153", "evidence": "Followed by ammo decrement at $115a/$115b. First noise note $0f reads CPC period $0647 from $6b3a."},
+    "grenade": {"entry": "$65ef", "call": "$1f7e", "evidence": "Two simultaneous original effect slots 9 and 15 ($6797 + $6809)."},
+    "rocket": {"entry": "$656c", "call": "$2ac3", "evidence": "Original hostile two-rocket spawn routine."},
+    "explosion": {"entry": "$6579", "calls": ["$1d43", "$1ed3", "$213f", "$395b"]},
+    "enemy-destroyed": {"entry": "$6586", "calls": ["$2883", "$28da", "$2b5e", "$2b82", "$2ca8"]},
+    "teleport": {"entry": "$6593", "calls": ["$25f3", "$2622"]},
+    "refill-ammo": {"entry": "$6525", "call": "$2677", "evidence": "Ammo set to 99 at $2672–$2674 immediately before the sound."},
+    "refill-grenades": {"entry": "$6532", "call": "$26cd", "evidence": "Grenades set to 10 at $26c8–$26ca immediately before the sound."},
+    "suit": {"entry": "$6525", "call": "$2c68", "evidence": "Original changing chamber toggles suit state $2bdb, then calls the same sound as ammo refill."},
+    "crusher": {"entry": "$65da", "call": "$38fc"},
+    "bonus": {"entry": "$655f", "call": "$2bb4", "evidence": "Score-add routine immediately before adding the bonus to pending points at $2bd9."}
+  },
+  "adaptationAliases": {
+    "turret": "Original explosion/hostile-fire sound $6579; the nativeJS event does not identify which original gun routine produced it.",
+    "mine": "Original explosion $6579.",
+    "death": "Presentation alias to original explosion $6579. The isolated original CPC player-death initializer at $29b4 has no separate sound call; this is not claimed as a recovered death program.",
+    "suit": "Identical to refill-ammo, matching original $6525 calls."
+  },
+  "limits": "CPC presentation over the shared nativeJS gameplay model. Offline register/PCM captures are software approximations, not recordings from physical hardware. Concurrent voice allocation, effect priority and interruption are captured separately per sound; no Z80 emulator runs in the browser. The previous ZX/C64 recordings and all arrangements are retained."
+}

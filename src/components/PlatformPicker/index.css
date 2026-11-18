@@ -1,0 +1,535 @@
+.platform-picker {
+    width: 100%;
+    max-width: 1360px;
+    margin: auto;
+    padding: 36px 16px 56px;
+}
+.platform-picker[hidden] {
+    display: none;
+}
+.platform-picker__header {
+    position: relative;
+    isolation: isolate;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.platform-picker__stars {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 24px);
+    image-rendering: pixelated;
+    pointer-events: none;
+}
+.platform-picker__flyby {
+    position: absolute;
+    top: -12px;
+    right: 0;
+    bottom: -12px;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.platform-picker__ship-flight {
+    position: absolute;
+    left: -80px;
+    width: calc(100% + 80px);
+    height: 12px;
+    visibility: hidden;
+}
+.platform-picker__ship-flight_active {
+    visibility: visible;
+    animation: platform-ship-flight 10s linear both;
+}
+.platform-picker__ship {
+    display: block;
+    width: 80px;
+    height: 12px;
+    image-rendering: pixelated;
+}
+.platform-picker__ship-exhaust {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 12px;
+    image-rendering: pixelated;
+}
+.platform-picker__ship-engine-light {
+    position: absolute;
+    top: 4px;
+    left: 47px;
+    width: 13px;
+    height: 4px;
+    background: linear-gradient(to right, #b5ecff, #fff2b0);
+    box-shadow: 0 0 5px 2px #ffe5a8;
+}
+.platform-picker__ship-flight_active .platform-picker__ship-engine-light {
+    animation: platform-ship-exhaust 2.4s ease-in-out infinite;
+}
+.platform-picker__ship-flight_active .platform-picker__ship-exhaust {
+    animation: platform-ship-trail 2.4s ease-in-out infinite;
+}
+.platform-picker__ship-beacon {
+    position: absolute;
+    top: 0;
+    left: 64px;
+    width: 3px;
+    height: 2px;
+    background: #ff4238;
+    box-shadow: 0 0 4px 1px #ff3028;
+    opacity: 0;
+}
+.platform-picker__ship-flight_active .platform-picker__ship-beacon {
+    animation: platform-ship-beacon 1s step-end infinite;
+}
+@keyframes platform-ship-beacon {
+    0% {
+        opacity: 1;
+    }
+    20%,
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes platform-ship-trail {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+@keyframes platform-ship-exhaust {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.15;
+    }
+}
+@keyframes platform-ship-flight {
+    from {
+        transform: translateX(0);
+    }
+    90% {
+        transform: translateX(75%);
+        animation-timing-function: cubic-bezier(0.5, 0.166667, 0.8, 0.6);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+.platform-picker__heading {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 10px;
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: 8px;
+    color: #e8d6a6;
+    mix-blend-mode: difference;
+}
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+    .platform-picker__heading {
+        background-image: linear-gradient(
+            110deg,
+            #e8d6a6 0%,
+            #e8d6a6 42%,
+            #fff5d6 47%,
+            #ffffff 50%,
+            #fff5d6 53%,
+            #e8d6a6 58%,
+            #e8d6a6 100%
+        );
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        background-repeat: no-repeat;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: platform-title-shine 6s ease-in-out infinite;
+    }
+}
+@keyframes platform-title-shine {
+    0%,
+    20% {
+        background-position: 100% 0;
+    }
+    65%,
+    100% {
+        background-position: 0% 0;
+    }
+}
+.platform-picker__heading_raster {
+    background-image: none;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: none;
+}
+.platform-picker_static .platform-picker__heading {
+    background-image: none;
+    color: #e8d6a6;
+    -webkit-text-fill-color: #e8d6a6;
+    animation: none;
+}
+.platform-picker__title-raster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    pointer-events: none;
+}
+.platform-picker__title-baseline {
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.platform-picker__description {
+    position: relative;
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #9eb5c5;
+}
+.platform-picker__banners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: -10px;
+}
+.platform-picker__banner {
+    position: relative;
+    display: block;
+    flex: 0 0 calc(25% - 20px);
+    min-width: 0;
+    margin: 10px;
+    border: 1px solid #536a7b;
+    border-radius: 8px;
+    background: #0c1520;
+    color: #eaf1f0;
+    text-decoration: none;
+    box-shadow: 0 8px 20px #0004;
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease,
+        border-color 220ms ease;
+    transform-origin: center;
+}
+.platform-picker__banner:not([aria-disabled='true']):focus {
+    z-index: 1;
+    transform: scale(1.05);
+    box-shadow: 0 24px 44px #0009;
+    outline: 3px solid #a4f5db;
+    outline-offset: 4px;
+}
+@media (hover: hover) {
+    .platform-picker__banner:not([aria-disabled='true']):hover {
+        z-index: 1;
+        transform: scale(1.05);
+        box-shadow: 0 24px 44px #0009;
+        border-color: #b5deef;
+    }
+}
+.platform-picker__banner[aria-disabled='true'] {
+    cursor: progress;
+}
+.platform-picker__banner.platform-picker__banner_disabled {
+    filter: grayscale(1);
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    outline: none;
+    transition: none;
+}
+.platform-picker__artwork {
+    position: relative;
+    display: block;
+    padding-top: 75%;
+    background: #000;
+    border-radius: 7px 7px 0 0;
+    overflow: hidden;
+}
+.platform-picker__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+.platform-picker__banner_remastered .platform-picker__image,
+.platform-picker__banner_vr .platform-picker__image {
+    image-rendering: auto;
+}
+.platform-picker__name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    border-top: inherit;
+}
+.platform-picker__mark {
+    display: block;
+    flex: 0 0 28px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 1px;
+    background: #edcc73;
+}
+.platform-picker__banner_retro .platform-picker__mark {
+    background: linear-gradient(
+        115deg,
+        #ec363a 0%,
+        #ec363a 25%,
+        #f6d947 25%,
+        #f6d947 50%,
+        #48bc67 50%,
+        #48bc67 75%,
+        #45c5e4 75%,
+        #45c5e4 100%
+    );
+}
+.platform-picker__banner_c64 .platform-picker__mark {
+    background: linear-gradient(
+        to bottom,
+        #d85b50 0%,
+        #d85b50 14%,
+        #e59b48 14%,
+        #e59b48 28%,
+        #dfd46f 28%,
+        #dfd46f 42%,
+        #79af72 42%,
+        #79af72 57%,
+        #6cb5c4 57%,
+        #6cb5c4 71%,
+        #7373b6 71%,
+        #7373b6 85%,
+        #a28ac0 85%,
+        #a28ac0 100%
+    );
+}
+.platform-picker__banner_cpc .platform-picker__mark {
+    background: linear-gradient(
+        to bottom,
+        #e8494e 0%,
+        #e8494e 33.333%,
+        #41b368 33.333%,
+        #41b368 66.667%,
+        #4d8ee0 66.667%,
+        #4d8ee0 100%
+    );
+}
+.platform-picker__banner_sharp-mz800 .platform-picker__mark {
+    background: linear-gradient(
+        to bottom,
+        #e83b41 0%,
+        #e83b41 40%,
+        #f4f4f4 40%,
+        #f4f4f4 60%,
+        #e83b41 60%,
+        #e83b41 100%
+    );
+}
+.platform-picker__banner_remastered .platform-picker__mark {
+    background: linear-gradient(
+        115deg,
+        #ba873c 0%,
+        #f3d894 40%,
+        #e8bb61 58%,
+        #0c1520 58%,
+        #0c1520 67%,
+        #70c8c2 67%,
+        #a4f5db 100%
+    );
+}
+.platform-picker__status {
+    min-height: 20px;
+    margin: 32px 0 0;
+    text-align: center;
+    font-size: 12px;
+    color: #a7bdc9;
+}
+.game-app_selecting {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+    max-width: 1448px;
+    overflow: visible;
+}
+.game-app_selecting.game-app_fullscreen {
+    max-width: none;
+}
+.game-app_selecting > .game-viewport,
+.game-app_selecting > .game-footer {
+    display: none;
+}
+@media (min-width: 1101px) {
+    .game-app.game-app_selecting {
+        height: 100vh;
+        min-height: 0;
+        padding: 12px 24px;
+    }
+    .platform-picker {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        max-height: 1000px;
+        min-height: 0;
+        padding: 12px 16px;
+    }
+    .platform-picker__header {
+        flex: 0 0 auto;
+        margin-bottom: 24px;
+    }
+    .platform-picker__banners {
+        flex: 1 1 0%;
+        min-height: 0;
+        align-content: stretch;
+    }
+    .platform-picker__banner {
+        display: flex;
+        flex-direction: column;
+        height: calc(50% - 20px);
+    }
+    .platform-picker__artwork {
+        flex: 1 1 auto;
+        min-height: 0;
+        padding-top: 0;
+    }
+    .platform-picker__name {
+        flex: 0 0 auto;
+    }
+    .platform-picker__status {
+        flex: 0 0 auto;
+        margin-top: 16px;
+    }
+}
+@media (min-width: 1101px) and (max-height: 600px) {
+    .platform-picker__header {
+        margin-bottom: 12px;
+    }
+    .platform-picker__heading {
+        margin-bottom: 6px;
+        font-size: 28px;
+    }
+    .platform-picker__description {
+        font-size: 11px;
+    }
+    .platform-picker__name {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+    .platform-picker__status {
+        min-height: 16px;
+        margin-top: 8px;
+        font-size: 11px;
+    }
+}
+@media (max-width: 760px) {
+    .platform-picker {
+        padding: 20px 8px 36px;
+    }
+    .platform-picker__header {
+        margin-bottom: 20px;
+    }
+    .platform-picker__heading {
+        font-size: 36px;
+    }
+    .platform-picker__banner {
+        flex-basis: calc(50% - 20px);
+    }
+    .platform-picker__name {
+        padding: 12px 4px;
+        font-size: 12px;
+    }
+    .platform-picker__mark {
+        flex-basis: 20px;
+        height: 14px;
+        margin-right: 6px;
+    }
+}
+@media (max-width: 1100px) and (max-height: 450px) and (orientation: landscape) {
+    .platform-picker {
+        padding: 12px 8px 28px;
+    }
+    .platform-picker__header {
+        margin-bottom: 12px;
+    }
+    .platform-picker__heading {
+        font-size: 28px;
+    }
+    .platform-picker__description {
+        font-size: 11px;
+    }
+    .platform-picker__banner {
+        flex-basis: calc(25% - 16px);
+        margin: 8px;
+    }
+    .platform-picker__banners {
+        margin: -8px;
+    }
+    .platform-picker__name {
+        font-size: 10px;
+        padding: 10px 2px;
+    }
+    .platform-picker__status {
+        margin-top: 20px;
+    }
+}
+@media (max-width: 480px) {
+    .platform-picker__heading {
+        font-size: 24px;
+        letter-spacing: 3px;
+    }
+}
+@media (max-width: 360px) {
+    .platform-picker__heading {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .platform-picker__flyby {
+        display: none;
+    }
+    .platform-picker__ship-flight {
+        animation: none;
+    }
+    .platform-picker__banner {
+        transition: none;
+    }
+    .platform-picker__heading {
+        animation: none;
+        background-position: 100% 0;
+    }
+    .platform-picker__banner:not([aria-disabled='true']):focus,
+    .platform-picker__banner:not([aria-disabled='true']):hover {
+        transform: none;
+    }
+}
+
+.platform-picker__banner_amiga .platform-picker__mark {
+    background: repeating-linear-gradient(135deg, #ef453b 0 7px, #fff5e5 7px 14px);
+}
+
+.platform-picker__banner_atari-st .platform-picker__mark {
+    background: repeating-linear-gradient(90deg, #e44432 0 4px, #0c1520 4px 7px);
+}
+
+.platform-picker__banner_vr .platform-picker__mark {
+    background: linear-gradient(115deg, #64d6d1, #f3d894);
+    border-radius: 6px;
+}

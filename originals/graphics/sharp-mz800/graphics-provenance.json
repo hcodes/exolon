@@ -1,0 +1,294 @@
+{
+  "title": "Exolon — original Datelsoft Sharp MZ-800 artwork",
+  "version": 1,
+  "artifact": {
+    "file": "graphics.json",
+    "generator": "tools/graphics/sharp.mjs",
+    "command": "node tools/graphics/sharp.mjs /path/to/sharp-ram.bin",
+    "sha256": "a3c3b3b6276f921d5892c53acee16eb5da906fb5c42c95d95a1800828463901d",
+    "bytes": 164658,
+    "width": 320,
+    "height": 200,
+    "playfieldHeight": 176,
+    "shapeCount": 483
+  },
+  "source": {
+    "title": "Exolon New!",
+    "archive": "https://github.com/MZPico/mz-catalog/tree/main/titles/exolnew",
+    "file": "exolnew.mzf",
+    "download": "https://raw.githubusercontent.com/MZPico/mz-catalog/main/titles/exolnew/exolnew.mzf",
+    "sha256": "57bf60e91a20d1f0357bd1fac0048fdca27381b7b29789511a7665a2191b35cf",
+    "bytes": 38688,
+    "adaptationCredit": "Datelsoft, identified by PRO SHARP UPRAVIL DATELSOFT in the recovered menu",
+    "original": {
+      "title": "Exolon",
+      "creator": "Raffaele Cecco",
+      "publisher": "Hewson Consultants",
+      "year": 1987
+    },
+    "catalogCaveat": "Catalog metadata was bootstrap-imported and marked TODO verify/curate; this is an archived Datelsoft adaptation, not a verified pristine official commercial Sharp release."
+  },
+  "recovery": {
+    "generator": "tools/recovery/sharp.mjs",
+    "command": "node tools/recovery/sharp.mjs /path/to/exolnew.mzf /path/to/Z80.js /path/to/sharp-ram.bin",
+    "mzfHeaderBytes": 128,
+    "bodyBytes": 38560,
+    "loadAddress": "0x3960",
+    "executeAddress": "0x1108",
+    "headerRelocation": "HL=0xd000, DE=0x0000, BC=0x9700; descending LDDR with 16-bit wrap and overlap",
+    "bootstrapStart": "0x6d4b",
+    "stopPc": "0x6d60",
+    "instructions": 1056,
+    "ramBytes": 65536,
+    "ramSha256": "108ee5352b0eaf8c809f55c6624265e8c55b35a73534206a0d390f3ed322f78f",
+    "ioReadValue": 255,
+    "ioWrites": "ignored during bootstrap",
+    "offlineCpu": {
+      "author": "Molly Howell",
+      "project": "https://github.com/DrGoldfire/Z80.js",
+      "source": "https://raw.githubusercontent.com/DrGoldfire/Z80.js/master/Z80.js",
+      "sha256": "78609811c202d717c94d2f2aaf6f540d2d5c4d0485f723dedc42bf384625637b",
+      "license": "MIT",
+      "runtimeUse": false
+    },
+    "note": "Only the original relocation/bootstrap is executed for offline extraction. The CPU interpreter, whole MZF and 64 KiB game RAM are not shipped to the browser."
+  },
+  "bitmapEncoding": {
+    "source": "LSB-first bitmap rows",
+    "artifact": "MSB-first rows after reversing each bitmap byte; drawing opcodes, coordinates and attribute bytes are not reversed",
+    "tables": {
+      "player": {
+        "address": "0xef80",
+        "bytes": 2400,
+        "sourceSha256": "e1ab7926aa64bb055629b50d3c06ad073293c25d2ec77c053ffc8197bdfd93b7",
+        "normalizedSha256": "14ccd49c4c5a6d00f1f166c971c5859f4d56f078fd8d0b832836cf097e238154"
+      },
+      "small": {
+        "address": "0xf8e0",
+        "bytes": 1440,
+        "sourceSha256": "cabb8ba8a7d3235fac34575ccb85f61473f5df71ac5a7c07ad5f5ef3c117b348",
+        "normalizedSha256": "5eaf36b784bc5f99356e21adbbceae60e7cef03b80dd505def42c42b7525138d"
+      },
+      "shifted": {
+        "address": "0xed40",
+        "bytes": 576,
+        "sourceSha256": "67a5768d513f171984386fcfbab91a9977a4429d5a97a0c72f8bda805fa39357",
+        "normalizedSha256": "0ef273ea1edb496db44d73f495006d9f9a14bb0102c68dfba0b7ac0fd5ebe0cb"
+      },
+      "font": {
+        "address": "0xd8e0",
+        "bytes": 472,
+        "sourceSha256": "3a5ffdee790fb4da9079192636231e69ffcd9318c152ca9c6c0e97ff5fbc954f",
+        "normalizedSha256": "2b03e94e2b98d8512e1e836c3694f16331a5c45321b11ba3280abb91ef9083fd"
+      },
+      "torch": {
+        "address": "0xdb60",
+        "bytes": 48,
+        "sourceSha256": "a3ddf4f8f3d3c64df41def07c77279365e74f977b5dba04de74f63da85ca8e55",
+        "normalizedSha256": "89eda908231c9a8ae5d85ed0fdf36583d3659038d9a241b2d662a826c49e19c3"
+      },
+      "beam": {
+        "address": "0xdbe0",
+        "bytes": 8,
+        "sourceSha256": "79382447c440577878287f7174a3c62f9d3c8d16109173bee1bcd5ac08234767",
+        "normalizedSha256": "79382447c440577878287f7174a3c62f9d3c8d16109173bee1bcd5ac08234767"
+      },
+      "mine": {
+        "address": "0xdba0",
+        "bytes": 32,
+        "sourceSha256": "97963c7b32863454c2fa6c0c4dcf04cc4d19b789f9495499f8a356a755e414c0",
+        "normalizedSha256": "7682dae0ab2934df213832effe5aa40bda30d40b5d43f6d4eff5a3738b021330"
+      },
+      "star": {
+        "address": "0xe858",
+        "bytes": 8,
+        "sourceSha256": "7b742c398b1a841a160d67298c4e11857acc1db71c3f90509722ca74733cb814",
+        "normalizedSha256": "48443c868f27fd5d4e1749506108b7419f6c508bd93fa3cb4f99b5745241e476"
+      },
+      "turret": {
+        "address": "0xde58",
+        "bytes": 128,
+        "sourceSha256": "702c6abf15415bd4578965e305a396d700e8a35c6df8d59c220bbb0e7625815c",
+        "normalizedSha256": "b92d1ecfc310e8229c420dce1026c4e02cc7cb60f49eb99b6c177f0c029150cc"
+      }
+    }
+  },
+  "sharedModelProof": {
+    "screens": 125,
+    "sourceMapsSha256": "1cbd9a5130c0b97948c07b2ad5cb7eafd06ff64b53d11dc8f7e7bc05a890a85d",
+    "normalizedSourceContoursSha256": "213aa35195d451019654226c522e1270f3132b80b5afe3a01a36cb07f42cbdb3",
+    "sharedContoursSha256": "1fe01a8c8be90445f409233578af82bd45a247f45196ce2595d8a457dce68142",
+    "screenTileMetadata": "All 125 complete tile arrays, placements, shape IDs, glyph IDs, collision, overlay and attributes equal the shared model after bitmap normalization.",
+    "spriteTables": "Every byte of all nine normalized sprite/font/animation tables equals the existing ZX artifact.",
+    "pump": "Complete normalized pump tiles equal shared model.",
+    "shapes": "482 of 483 source shapes are byte-identical; the exact Sharp shape 451 is preserved separately.",
+    "difference": {
+      "shape": 451,
+      "font": "0xdab8",
+      "glyph": 3,
+      "address": "0xdad0",
+      "sharpBitmap": [
+        254,
+        254,
+        254,
+        254,
+        254,
+        254,
+        254,
+        0
+      ],
+      "zxBitmap": [
+        127,
+        127,
+        127,
+        127,
+        127,
+        127,
+        127,
+        0
+      ],
+      "affectedCells": 10,
+      "meaning": "A seven-pixel solid cell is shifted left by one source pixel. The browser retains the shared collision model while drawing the Sharp source bitmap."
+    }
+  },
+  "messages": {
+    "addresses": {
+      "menu": "0x6e17",
+      "logo": "0x70ff",
+      "scores": "0x718d",
+      "hud": "0x76a2",
+      "gameOver": "0xa057",
+      "hallOfFame": "0xa156",
+      "bonus": "0xa961",
+      "combat": "0xaa3f",
+      "bravery": "0xaaf2"
+    },
+    "menuText": [
+      {
+        "y": 7,
+        "text": "BY  RAFFAELE CECCO"
+      },
+      {
+        "y": 11,
+        "text": "1 START GAME"
+      },
+      {
+        "y": 13,
+        "text": "2 DEFINE KEYS"
+      },
+      {
+        "y": 15,
+        "text": "3 KEYBOARD"
+      },
+      {
+        "y": 17,
+        "text": "4 CURSOR     "
+      },
+      {
+        "y": 19,
+        "text": "5 JOYSTICK"
+      },
+      {
+        "y": 23,
+        "text": "PRO SHARP UPRAVIL DATELSOFT "
+      }
+    ],
+    "highScoreRecords": {
+      "address": "0x71f1",
+      "rows": 50,
+      "rowBytes": 16,
+      "format": "10 ASCII name characters and 6 decimal score characters",
+      "first": {
+        "name": "DATEL",
+        "score": 100000
+      },
+      "last": {
+        "name": "SEVILLE",
+        "score": 150
+      },
+      "composition": "The scores screen bitmap composition matches ZX, but the separate Datelsoft score records differ."
+    }
+  },
+  "displayAdaptation": {
+    "resolution": "320x200",
+    "colors": "Original sixteen-color Datelsoft mode; palette register writes F0:40,00,19,2a,3b are retained.",
+    "sourceMode": "The archived Datelsoft initialization copies 0x0400 bytes from 0x6960 to 0x3000; its setup writes CE=2 and palette values 00,19,2a,3b. This archive initializes sixteen-color mode.",
+    "claim": "Native sixteen-color presentation selected at user request; no four-color quantization.",
+    "loading": "The platform banner uses the monochrome Sharp panel from the preserved FRGCB comparison image at user request; source author questions its loading-screen status, and association with the Datelsoft MZF is unconfirmed. No separate pre-title cover is shown. See generated dist/assets/images/intro-provenance.json for crop/hash. Extracted Datelsoft menus are preserved independently.",
+    "paletteReference": "https://github.com/MZPico/mz800emu/blob/master/src/emulator/display.c (digital PAL RGB table); no emulator code is included in the game.",
+    "referenceCaptures": [
+      {
+        "file": "src/assets/images/sharp-mz800/reference/datelsoft-menu.png",
+        "source": "https://github.com/MZPico/mz-catalog/tree/main/titles/exolnew/screenshots",
+        "sha256": "fc609f39eaeb465fde61300d4349a98cb83211b82e7fbe1356fd0d5ceb6f8f29"
+      },
+      {
+        "file": "src/assets/images/sharp-mz800/reference/datelsoft-gameplay.png",
+        "source": "https://github.com/MZPico/mz-catalog/tree/main/titles/exolnew/screenshots",
+        "sha256": "155f6b0003b7ef33622e430f7d8a208548fd190c4fd56585d2e8f23a89d073e8"
+      }
+    ],
+    "menuValidation": "All 4617 reconstructed menu foreground pixels match the archived menu RGB capture at 2x scale, normalized to a crop origin x42,y28. The archived selected CURSOR row uses white highlighting; random stars and outer overscan are not part of this bitmap comparison.",
+    "pixelComposition": {
+      "representation": "One native 4-bit logical ink per pixel; no ZX PAPER/FLASH display or moving-sprite cell colour restriction.",
+      "sourceRamSha256": "108ee5352b0eaf8c809f55c6624265e8c55b35a73534206a0d390f3ed322f78f",
+      "hardwareReference": "https://www.idealine.info/sharpmz/mz-800/download/sm800.pdf",
+      "glyphWriter": {
+        "address": "0x3100",
+        "operation": "GDG CC REPLACE, native INK/BRIGHT on black; ignores PAPER/FLASH"
+      },
+      "xorMasks": [
+        {
+          "address": "0x7814",
+          "kind": "24x32 player and pump",
+          "cc": "0x2f",
+          "pixelMask": 15
+        },
+        {
+          "address": "0x7a37",
+          "kind": "16x16 ordinary small sprites, high voltage and large effects; wrapper 0x334a resets mask",
+          "cc": "0x2f",
+          "pixelMask": 15
+        },
+        {
+          "address": "0x3354",
+          "kind": "coloured flying enemy; erase wrappers 0x3366/0x337e use matching mask",
+          "cc": "0x28 | (colour & 7)",
+          "pixelMask": "8 | (colour & 7)"
+        },
+        {
+          "address": "0x322b",
+          "kind": "preshifted grenade, spheres and fragments",
+          "cc": "0x27",
+          "pixelMask": 7
+        },
+        {
+          "address": "0x32be",
+          "kind": "player bullet",
+          "cc": "0x2f",
+          "pixelMask": 15
+        },
+        {
+          "address": "0x32cd",
+          "kind": "enemy bullet",
+          "cc": "0x2e",
+          "pixelMask": 14
+        }
+      ],
+      "attributeOnlyFlash": {
+        "address": "0x9118",
+        "operation": "Retained loop writes RAM at 0x5800 without GDG pixel writes; not displayed as ZX cell recolouring."
+      },
+      "validation": "Unit tests verify four colours inside a single 8x8 cell, untouched neighbours, reversible XOR and foreground masks. Browser checks compare actual source player pixels on coloured source tiles across cell boundaries, all 125 maps and Split pairs."
+    }
+  },
+  "rights": {
+    "originalArtwork": "Original commercial-game bitmap/font/sprite rights remain with their original rights holders, including Hewson/Raffaele Cecco and Datelsoft adaptation contributors. Archival availability does not establish permission or a new license.",
+    "decoding": "Sergey Erokhin (ESL), https://github.com/rusarh/exolon-esl, CC BY-SA 3.0; tools/recovery/world.mjs and source-derived decoding retain attribution. This does not relicense the game artwork.",
+    "repository": "The repository license does not replace original-game or archival-media rights."
+  },
+  "verification": {
+    "offline": "Full archived MZF recovery and complete graphics extraction reproduced the recorded RAM/artifact hashes on 2026-11-20.",
+    "ci": "tests/unit/sharp-graphics.test.ts verifies source checksums, complete normalized table equality, the sole shape exception, maps, actual menu glyphs, Datelsoft records, malformed MZF and bit-order decoding without external source files or CPU downloads."
+  }
+}

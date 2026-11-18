@@ -1,0 +1,20 @@
+.select {
+    font: inherit;
+    min-height: 32px;
+    max-width: 100%;
+    padding: 4px 7px;
+    border: 1px solid #536c77;
+    border-radius: 5px;
+    background: #101f2b;
+    color: #e6ebe9;
+    color-scheme: dark;
+}
+.select:focus-visible {
+    outline: 2px solid #a4f5db;
+    outline-offset: 3px;
+}
+
+.game-app_tv .select:focus {
+    outline: 3px solid #a4f5db;
+    outline-offset: 3px;
+}

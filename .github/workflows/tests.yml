@@ -1,0 +1,67 @@
+name: Tests and linting
+
+on:
+    workflow_call:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    checks:
+        name: ${{ matrix.name }}
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - name: Formatting
+                      command: npm run format:check
+                    - name: ESLint
+                      command: npm run eslint
+                    - name: Stylelint
+                      command: npm run stylelint
+                    - name: TypeScript
+                      command: npm run typecheck
+                    - name: Unused files
+                      command: npm run knip
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7
+              with:
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v7
+              with:
+                  node-version: '24'
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run check
+              run: ${{ matrix.command }}
+
+    tests:
+        name: Unit tests
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7
+              with:
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v7
+              with:
+                  node-version: '24'
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run unit tests
+              run: npm run unit-test

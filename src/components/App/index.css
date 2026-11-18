@@ -1,0 +1,67 @@
+.game-app {
+    max-width: 1192px;
+    margin: auto;
+    padding: 36px 44px 24px;
+}
+.game-app:not(.game-app_touch):not(.game-app_selecting) {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+}
+@media (max-width: 650px) {
+    .game-app {
+        padding: 22px 12px;
+    }
+}
+
+.game-app_fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    margin: 0;
+    padding: 8px;
+    background: #000;
+    overflow: auto;
+}
+.game-app_touch {
+    padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right))
+        max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+}
+
+@media (orientation: portrait) {
+    .game-app_touch:not(.game-app_selecting):not(.game-app_tv) {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        min-height: 100svh;
+    }
+}
+
+@media (orientation: landscape) {
+    .game-app_touch {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        height: 100svh;
+        min-height: 0;
+    }
+}
+
+.game-app_tv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    min-height: 0;
+    padding: 3vh 4vw;
+    overflow: hidden;
+}

@@ -1,0 +1,103 @@
+{
+  "sourceMainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638",
+  "pistonCollision": [
+    {
+      "armor": 0,
+      "height": 0,
+      "deaths": 0
+    },
+    {
+      "armor": 0,
+      "height": 8,
+      "deaths": 1
+    },
+    {
+      "armor": 0,
+      "height": 16,
+      "deaths": 1
+    },
+    {
+      "armor": 0,
+      "height": 24,
+      "deaths": 1
+    },
+    {
+      "armor": 0,
+      "height": 32,
+      "deaths": 1
+    },
+    {
+      "armor": 0,
+      "height": 40,
+      "deaths": 1
+    },
+    {
+      "armor": 0,
+      "height": 48,
+      "deaths": 1
+    },
+    {
+      "armor": 1,
+      "height": 0,
+      "deaths": 0
+    },
+    {
+      "armor": 1,
+      "height": 8,
+      "deaths": 0
+    },
+    {
+      "armor": 1,
+      "height": 16,
+      "deaths": 0
+    },
+    {
+      "armor": 1,
+      "height": 24,
+      "deaths": 0
+    },
+    {
+      "armor": 1,
+      "height": 32,
+      "deaths": 0
+    },
+    {
+      "armor": 1,
+      "height": 40,
+      "deaths": 0
+    },
+    {
+      "armor": 1,
+      "height": 48,
+      "deaths": 0
+    }
+  ],
+  "hunter": [
+    {
+      "tick": 299,
+      "counter": 299,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "tick": 300,
+      "counter": 300,
+      "x": 320,
+      "y": 176
+    },
+    {
+      "tick": 301,
+      "counter": 301,
+      "x": 315,
+      "y": 176
+    }
+  ],
+  "stageEndIndices": [
+    24,
+    49,
+    74,
+    99,
+    124,
+    500
+  ]
+}

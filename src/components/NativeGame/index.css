@@ -1,0 +1,33 @@
+.native-game__menu {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 8px;
+}
+.game-app_legacy .native-game__menu > * {
+    margin: 3px;
+}
+.game-app_native .game-viewport__display {
+    aspect-ratio: 8 / 5;
+}
+.game-app_native:not(.game-app_touch) .game-viewport__display {
+    aspect-ratio: auto;
+}
+/* Preserve the native ratio above fullscreen, touch and TV viewport defaults. */
+.game-app_native .game-viewport__display .native-game__canvas {
+    aspect-ratio: 8 / 5;
+    object-fit: contain;
+}
+.native-game__name-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    border: 0;
+    padding: 0;
+}
+.game-app_native .native-game__canvas[data-menu='name'] {
+    outline: 2px solid #a4f5db;
+}

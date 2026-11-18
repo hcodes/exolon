@@ -1,0 +1,23 @@
+{
+  "originalMainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638",
+  "initOffset": "0x21d0",
+  "irqTickOffset": "0x2288",
+  "results": [
+    {
+      "subtune": 1,
+      "originalSelector": 1,
+      "frames": 12000,
+      "differentBytes": 0,
+      "firstDifferentFrame": null,
+      "sha256": "46cf2aaf0fc34c6de15b00443ddf53cbcb1320a9b50e6086a82eac86cbcf8bbf"
+    },
+    {
+      "subtune": 2,
+      "originalSelector": 7,
+      "frames": 600,
+      "differentBytes": 0,
+      "firstDifferentFrame": null,
+      "sha256": "2726f077be22355243b01bef4511aa023dfd84cd5d660e8f2171f8ad84cb2fdf"
+    }
+  ]
+}

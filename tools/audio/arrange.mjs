@@ -1,0 +1,626 @@
+import { createHash } from 'node:crypto';
+import { constants } from 'node:fs';
+import { copyFile, mkdir, mkdtemp, readFile, stat, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { dirname, extname, join, resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { renderGusliNote } from './gusli.mjs';
+import { createStyleArrangement, STYLE_VARIANTS } from './styles.mjs';
+
+const TRACKS = [
+    { name: 'Oboe melody', family: 'woodwind', program: 68, pan: -0.12, gainDb: -7 },
+    { name: 'Flute melody', family: 'woodwind', program: 73, pan: 0.1, gainDb: -7 },
+    { name: 'Violin melody layer', family: 'strings', program: 40, pan: -0.28, gainDb: -17 },
+    { name: 'String ensemble harmony', family: 'strings', program: 48, pan: -0.38, gainDb: -12 },
+    { name: 'Warm sustained strings', family: 'strings', program: 49, pan: 0.34, gainDb: -20 },
+    { name: 'Cello counterline', family: 'strings', program: 42, pan: 0.08, gainDb: -10 },
+    { name: 'Double bass foundation', family: 'strings', program: 43, pan: 0.16, gainDb: -17 },
+    { name: 'French horn swells', family: 'brass', program: 60, pan: 0.28, gainDb: -14 },
+    { name: 'Celesta accents', family: 'celesta', program: 8, pan: -0.22, gainDb: -17 },
+    { name: 'Distant choir', family: 'choir', program: 52, pan: 0.02, gainDb: -24 },
+    { name: 'Timpani', family: 'timpani', program: 47, pan: 0.22, gainDb: -17 },
+    {
+        name: 'Acoustic snare and cymbal',
+        family: 'percussion',
+        program: 0,
+        percussion: true,
+        pan: -0.08,
+        gainDb: -23,
+    },
+];
+const ORIGINAL_SHA256 = 'cbf6a2e5c15e17a769d6c3577c6d7381a54d5f9f7d4280e1f678c36b016bd1c6';
+const FIRST_ORCHESTRAL_SHA256 = 'bbef2ea4513b1624b0aa4d67a45efd2f1b78d27a4c5a5acb72511e4f006e6fa4';
+const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
+
+function originalArrangement(score) {
+    if (!Array.isArray(score?.events) || !(score.sourceStopSeconds > 0))
+        throw new RangeError('Missing source score.');
+    const notes = [];
+    const sourceStopSeconds = score.sourceStopSeconds;
+    function add(event, track, role, note = event.midiNote, velocity = 74, sourceVoice = false) {
+        if (
+            !Number.isFinite(event.seconds) ||
+            !Number.isFinite(event.endSeconds) ||
+            event.seconds < 0 ||
+            event.endSeconds <= event.seconds ||
+            event.endSeconds > sourceStopSeconds ||
+            !Number.isInteger(note) ||
+            note < 0 ||
+            note > 127
+        )
+            throw new RangeError('Invalid source note timing or pitch.');
+        notes.push({
+            track,
+            role,
+            note,
+            velocity: Math.max(1, Math.min(127, Math.round(velocity))),
+            cents:
+                role === 'percussion' || role === 'cymbal'
+                    ? 0
+                    : (event.midi - event.midiNote) * 100,
+            seconds: event.seconds,
+            endSeconds: event.endSeconds,
+            sourceVoice,
+            source: { channel: event.channel, tick: event.tick, address: event.address },
+        });
+    }
+    const tonal = score.events.filter((event) => event.tone);
+    const bass = tonal.filter((event) => event.channel === 2);
+    let melodyIndex = 0,
+        noiseIndex = 0,
+        bassIndex = 0;
+    for (const event of score.events) {
+        const accent = event.tick % 160 < 20 ? 5 : 0;
+        if (event.tone && event.channel === 0) {
+            // Woodwind colour changes every eight interpreted bars; pitches and
+            // every source articulation remain on their archived frame times.
+            const lead = Math.floor(event.tick / 1280) % 2;
+            add(event, lead, 'melody', event.midiNote, 84 + accent - (melodyIndex % 3) * 2, true);
+            if (event.durationSeconds >= 0.2)
+                add(event, 2, 'doubling', event.midiNote, 57 + accent);
+            if (event.durationSeconds >= 0.44)
+                add(event, 7, 'horn', event.midiNote - 12, 62 + accent);
+            if (melodyIndex % 8 === 0)
+                add(event, 8, 'celesta', Math.min(108, event.midiNote + 12), 60);
+            melodyIndex++;
+        } else if (event.tone && event.channel === 1) {
+            add(event, 3, 'harmony', event.midiNote, 70 + accent - (event.tick % 3), true);
+        } else if (event.tone && event.channel === 2) {
+            add(event, 5, 'bass', event.midiNote, 76 + accent, true);
+            add(event, 6, 'doubling', event.midiNote - 12, 64);
+            const upper = event.midiNote + (event.midiNote <= 60 ? 12 : 0);
+            if (event.durationSeconds >= 0.44) add(event, 4, 'sustain', upper, 52);
+            if (event.durationSeconds >= 0.88) add(event, 9, 'choir', upper, 47);
+            if (bassIndex % 16 === 0) add(event, 11, 'cymbal', 49, 36);
+            bassIndex++;
+        } else if (event.noise && !event.tone) {
+            add(event, 11, 'percussion', 38, 34 + (noiseIndex % 4 === 0 ? 10 : 0), true);
+            if (noiseIndex % 8 === 0) {
+                const root =
+                    [...bass].reverse().find((note) => note.seconds <= event.seconds) || bass[0];
+                const pitch = root ? root.midiNote - 12 : 41;
+                add({ ...event, midi: pitch, midiNote: pitch }, 10, 'timpani', pitch, 59);
+            }
+            noiseIndex++;
+        }
+    }
+    notes.sort((a, b) => a.seconds - b.seconds || a.track - b.track || a.note - b.note);
+    return {
+        sampleRate: 44100,
+        sourceStopSeconds,
+        durationSeconds: sourceStopSeconds + 2.4,
+        reverbPercent: 22,
+        tracks: TRACKS.map((track) => ({ ...track })),
+        notes,
+    };
+}
+
+export function createArrangement(score, { variant = 'gusli-lead' } = {}) {
+    if (STYLE_VARIANTS.includes(variant))
+        return createStyleArrangement(
+            createArrangement(score, { variant: 'violin-lead' }),
+            variant,
+        );
+    if (
+        ![
+            'original-orchestral',
+            'strings-winds',
+            'violin-lead',
+            'gusli-lead',
+            'guitar-lead',
+            'organ-lead',
+        ].includes(variant)
+    )
+        throw new RangeError('Unknown arrangement variant.');
+    if (['guitar-lead', 'organ-lead'].includes(variant)) {
+        const arrangement = createArrangement(score, { variant: 'violin-lead' });
+        const guitar = variant === 'guitar-lead';
+        arrangement.variant = variant;
+        arrangement.tracks[2] = {
+            ...arrangement.tracks[2],
+            name: guitar ? 'Acoustic nylon guitar lead' : 'Church pipe organ lead',
+            family: guitar ? 'plucked-strings' : 'keyboard',
+            program: guitar ? 24 : 19,
+            expression: false,
+        };
+        arrangement.reverbPercent = guitar ? 18 : 32;
+        return arrangement;
+    }
+    if (variant === 'gusli-lead') {
+        const arrangement = createArrangement(score, { variant: 'violin-lead' });
+        arrangement.variant = variant;
+        arrangement.tracks[2] = {
+            ...arrangement.tracks[2],
+            name: 'Synthesized plucked gusli lead',
+            family: 'plucked-strings',
+            instrument: 'gusli',
+            expression: false,
+        };
+        return arrangement;
+    }
+    const original = originalArrangement(score);
+    if (variant === 'original-orchestral') return original;
+    const timeScale = 1.5;
+    const gains = [-7.5, -6.5, -3, -14, -16, -8.5, -16, -9.5, -24, -25, -22, -32];
+    const tracks = original.tracks.map((track, index) => ({
+        ...track,
+        gainDb: gains[index],
+        ...([2, 4, 7, 9].includes(index) ? { expression: true } : {}),
+    }));
+    tracks[0].name = 'Oboe counterline';
+    tracks[1].name = 'Flute counterline';
+    tracks[2].name = 'Expressive violin lead';
+    tracks[3].name = 'Warm string harmony';
+    let percussionIndex = 0,
+        celestaIndex = 0;
+    const notes = [];
+    function stretch(note) {
+        return {
+            ...note,
+            seconds: note.seconds * timeScale,
+            endSeconds: note.endSeconds * timeScale,
+            source: { ...note.source, seconds: note.seconds, endSeconds: note.endSeconds },
+        };
+    }
+    for (const originalNote of original.notes) {
+        if (originalNote.track === 2) continue;
+        if (originalNote.role === 'percussion' && percussionIndex++ % 8 !== 0) continue;
+        if (originalNote.role === 'celesta' && celestaIndex++ % 2 !== 0) continue;
+        const note = { ...originalNote };
+        if (note.role === 'melody') {
+            note.track = 2;
+            note.velocity = Math.max(76, note.velocity - 2);
+        }
+        if (note.role === 'percussion' || note.role === 'cymbal') note.velocity = 28;
+        if (note.role === 'timpani') note.velocity = 48;
+        notes.push(stretch(note));
+        if (note.role === 'harmony' && note.sourceVoice) {
+            const track = Math.floor(note.source.tick / 1280) % 2;
+            let pitch = note.note;
+            const lowest = track === 0 ? 58 : 60;
+            while (pitch < lowest) pitch += 12;
+            notes.push(
+                stretch({
+                    ...note,
+                    track,
+                    role: 'wind-counterline',
+                    sourceVoice: false,
+                    note: pitch,
+                    velocity: 74,
+                }),
+            );
+        }
+    }
+    notes.sort((a, b) => a.seconds - b.seconds || a.track - b.track || a.note - b.note);
+    const arrangement = {
+        ...original,
+        variant,
+        timeScale,
+        originalSourceStopSeconds: original.sourceStopSeconds,
+        sourceStopSeconds: original.sourceStopSeconds * timeScale,
+        durationSeconds: original.sourceStopSeconds * timeScale + 3.2,
+        reverbPercent: 26,
+        tracks,
+        notes,
+    };
+    if (variant === 'violin-lead') {
+        // Keep the entire theme on a close, centred solo violin. Winds answer
+        // quietly instead of competing with the principal line.
+        const violinGains = [-15, -15, 0, -20, -22, -14, -21, -19, -30, -31, -28, -36];
+        arrangement.tracks = tracks.map((track, index) => ({
+            ...track,
+            gainDb: violinGains[index],
+        }));
+        arrangement.tracks[2].pan = -0.04;
+        arrangement.tracks[2].name = 'Principal solo violin';
+        arrangement.notes = notes
+            .filter((note) => !['horn', 'celesta'].includes(note.role))
+            .map((note) => ({
+                ...note,
+                velocity: note.role === 'melody' ? Math.min(108, note.velocity + 8) : note.velocity,
+            }));
+        arrangement.reverbPercent = 18;
+    }
+    return arrangement;
+}
+
+function parseWave(wave) {
+    if (
+        wave.length < 44 ||
+        wave.toString('ascii', 0, 4) !== 'RIFF' ||
+        wave.toString('ascii', 8, 12) !== 'WAVE'
+    )
+        throw new RangeError('Expected a RIFF WAVE file.');
+    let format, data;
+    for (let offset = 12; offset + 8 <= wave.length;) {
+        const size = wave.readUInt32LE(offset + 4),
+            start = offset + 8;
+        if (start + size > wave.length) throw new RangeError('Truncated WAVE chunk.');
+        const id = wave.toString('ascii', offset, offset + 4);
+        if (id === 'fmt ' && size >= 16) {
+            let code = wave.readUInt16LE(start);
+            if (code === 0xfffe && size >= 40) code = wave.readUInt16LE(start + 24);
+            format = {
+                code,
+                channels: wave.readUInt16LE(start + 2),
+                sampleRate: wave.readUInt32LE(start + 4),
+                block: wave.readUInt16LE(start + 12),
+                bits: wave.readUInt16LE(start + 14),
+            };
+        }
+        if (id === 'data') data = { start, size };
+        offset = start + size + (size & 1);
+    }
+    if (
+        !format ||
+        !data ||
+        !format.channels ||
+        !format.sampleRate ||
+        !((format.code === 3 && format.bits === 32) || (format.code === 1 && format.bits === 16)) ||
+        format.block !== (format.channels * format.bits) / 8 ||
+        data.size % format.block
+    )
+        throw new RangeError('Unsupported PCM format.');
+    const sampleBytes = format.bits / 8;
+    return {
+        ...format,
+        frames: data.size / format.block,
+        sample(index) {
+            const offset = data.start + index * sampleBytes;
+            const value =
+                format.code === 3 ? wave.readFloatLE(offset) : wave.readInt16LE(offset) / 32768;
+            if (!Number.isFinite(value)) throw new RangeError('Invalid PCM sample.');
+            return value;
+        },
+    };
+}
+
+export function analyzeWave(wave) {
+    const pcm = parseWave(wave);
+    let peak = 0,
+        energy = 0;
+    const count = pcm.frames * pcm.channels;
+    for (let index = 0; index < count; index++) {
+        const sample = pcm.sample(index);
+        peak = Math.max(peak, Math.abs(sample));
+        energy += sample * sample;
+    }
+    return {
+        sampleRate: pcm.sampleRate,
+        channels: pcm.channels,
+        frames: pcm.frames,
+        durationSeconds: pcm.frames / pcm.sampleRate,
+        peak,
+        rms: Math.sqrt(energy / Math.max(1, count)),
+    };
+}
+
+export function masterWave(input) {
+    const pcm = parseWave(input),
+        before = analyzeWave(input);
+    const gain = before.peak > 0 ? 0.84 / before.peak : 1;
+    const wave = Buffer.alloc(44 + pcm.frames * pcm.channels * 2);
+    wave.write('RIFF', 0);
+    wave.writeUInt32LE(wave.length - 8, 4);
+    wave.write('WAVEfmt ', 8);
+    wave.writeUInt32LE(16, 16);
+    wave.writeUInt16LE(1, 20);
+    wave.writeUInt16LE(pcm.channels, 22);
+    wave.writeUInt32LE(pcm.sampleRate, 24);
+    wave.writeUInt32LE(pcm.sampleRate * pcm.channels * 2, 28);
+    wave.writeUInt16LE(pcm.channels * 2, 32);
+    wave.writeUInt16LE(16, 34);
+    wave.write('data', 36);
+    wave.writeUInt32LE(wave.length - 44, 40);
+    for (let frame = 0; frame < pcm.frames; frame++) {
+        const fadeIn = Math.min(1, frame / Math.max(1, pcm.sampleRate * 0.012));
+        const fadeOut = Math.min(1, (pcm.frames - 1 - frame) / Math.max(1, pcm.sampleRate * 0.25));
+        const fade = Math.min(
+            fadeIn * fadeIn * (3 - 2 * fadeIn),
+            fadeOut * fadeOut * (3 - 2 * fadeOut),
+        );
+        for (let channel = 0; channel < pcm.channels; channel++) {
+            const index = frame * pcm.channels + channel;
+            const sample = Math.round(pcm.sample(index) * gain * fade * 32767);
+            wave.writeInt16LE(Math.max(-32768, Math.min(32767, sample)), 44 + index * 2);
+        }
+    }
+    return { wave, gain, before, after: analyzeWave(wave) };
+}
+
+export function mixGusli(input, plan) {
+    const pcm = parseWave(input);
+    const wave = Buffer.alloc(44 + pcm.frames * pcm.channels * 4);
+    wave.write('RIFF', 0);
+    wave.writeUInt32LE(wave.length - 8, 4);
+    wave.write('WAVEfmt ', 8);
+    wave.writeUInt32LE(16, 16);
+    wave.writeUInt16LE(3, 20);
+    wave.writeUInt16LE(pcm.channels, 22);
+    wave.writeUInt32LE(pcm.sampleRate, 24);
+    wave.writeUInt32LE(pcm.sampleRate * pcm.channels * 4, 28);
+    wave.writeUInt16LE(pcm.channels * 4, 32);
+    wave.writeUInt16LE(32, 34);
+    wave.write('data', 36);
+    wave.writeUInt32LE(wave.length - 44, 40);
+    const mixed = new Float64Array(pcm.frames * pcm.channels);
+    for (let index = 0; index < mixed.length; index++) mixed[index] = pcm.sample(index);
+    for (const note of plan.notes.filter(
+        (note) => plan.tracks[note.track].instrument === 'gusli',
+    )) {
+        const track = plan.tracks[note.track];
+        const samples = renderGusliNote(note, pcm.sampleRate);
+        const start = Math.round(note.seconds * pcm.sampleRate);
+        const gain = 10 ** (track.gainDb / 20);
+        for (let channel = 0; channel < pcm.channels; channel++) {
+            const pan =
+                pcm.channels === 1
+                    ? 1
+                    : Math.sqrt((1 + (channel === 0 ? -track.pan : track.pan)) / 2);
+            for (const [delay, reflection] of [
+                [0, 1],
+                [channel === 0 ? 0.017 : 0.023, 0.09],
+                [0.041, 0.04],
+            ]) {
+                const offset = start + Math.round(delay * pcm.sampleRate);
+                for (
+                    let frame = 0;
+                    frame < samples.length && frame + offset < pcm.frames;
+                    frame++
+                ) {
+                    mixed[(frame + offset) * pcm.channels + channel] +=
+                        samples[frame] * gain * pan * reflection;
+                }
+            }
+        }
+    }
+    for (let index = 0; index < mixed.length; index++)
+        wave.writeFloatLE(mixed[index], 44 + index * 4);
+    return wave;
+}
+
+function run(command, args) {
+    const result = spawnSync(command, args, { stdio: 'inherit' });
+    if (result.error) throw result.error;
+    if (result.status !== 0) throw new Error(`${command} failed (${result.status}).`);
+}
+
+export function parseArrangementArguments(args) {
+    let variant = 'gusli-lead',
+        sourceFile,
+        output;
+    const positional = [];
+    for (let index = 0; index < args.length; index++) {
+        const argument = args[index];
+        if (['--variant', '--score', '--output'].includes(argument)) {
+            const value = args[++index];
+            if (!value || value.startsWith('--')) throw new Error(`Missing ${argument} value.`);
+            if (argument === '--variant') variant = value;
+            if (argument === '--score') sourceFile = value;
+            if (argument === '--output') output = value;
+        } else if (argument.startsWith('--')) throw new Error(`Unknown option: ${argument}`);
+        else positional.push(argument);
+    }
+    if (
+        ![
+            'original-orchestral',
+            'strings-winds',
+            'violin-lead',
+            'gusli-lead',
+            'guitar-lead',
+            'organ-lead',
+            ...STYLE_VARIANTS,
+        ].includes(variant) ||
+        positional.length > 2
+    ) {
+        throw new Error(
+            'Use --variant original-orchestral|strings-winds|violin-lead|gusli-lead|guitar-lead|organ-lead|synthwave|ambient|space-rock [--score source.json] [--output new-recording.m4a].',
+        );
+    }
+    const filename =
+        variant.endsWith('-lead') || STYLE_VARIANTS.includes(variant)
+            ? `title-${variant}.m4a`
+            : variant === 'strings-winds'
+              ? 'title-orchestral-strings.m4a'
+              : 'title-orchestral.m4a';
+    return {
+        variant,
+        sourceFile: resolve(
+            sourceFile ||
+                positional[0] ||
+                fileURLToPath(new URL('./title-score.json', import.meta.url)),
+        ),
+        output: resolve(
+            output ||
+                positional[1] ||
+                fileURLToPath(
+                    new URL(
+                        `../../${['title-ambient.m4a', 'title-128k.mp3'].includes(filename) ? 'src' : 'originals'}/audio/${filename}`,
+                        import.meta.url,
+                    ),
+                ),
+        ),
+    };
+}
+
+export async function verifyArrangementOutput(output) {
+    try {
+        await stat(output);
+    } catch (error) {
+        if (error.code === 'ENOENT') return;
+        throw error;
+    }
+    throw new Error(
+        `Refusing to overwrite an existing recording: ${output}. Choose a new --output path.`,
+    );
+}
+
+async function verifyPreservedRecordings() {
+    for (const [filename, expected] of [
+        ['title-128k.mp3', ORIGINAL_SHA256],
+        ['title-orchestral.m4a', FIRST_ORCHESTRAL_SHA256],
+        [
+            'title-guitar-lead.m4a',
+            'c39f08e6928ed0039e6417b669048f725d02987710f2c8180ba9d3cdf821f6be',
+        ],
+        [
+            'title-organ-lead.m4a',
+            '182a61cdbc069540f3ca11f876e1443996abc91cb890eb6fb8bf27e80bf15dad',
+        ],
+        [
+            'title-gusli-lead.m4a',
+            'a01816e31db0c8bceed49af50f561b909bb3e85a2049fed45c9d9b2748b6d6a8',
+        ],
+        [
+            'title-violin-lead.m4a',
+            '33498a5020e6c3041062f65be1011151a3e40acb929c45151cbbca55e87c9398',
+        ],
+        [
+            'title-orchestral-strings.m4a',
+            '618f714ec28ebfd046874ab7e28cf68a7e894503d5ec393ec4f1925da2971c08',
+        ],
+    ]) {
+        const path = new URL(
+            `../../${['title-ambient.m4a', 'title-128k.mp3'].includes(filename) ? 'src' : 'originals'}/audio/${filename}`,
+            import.meta.url,
+        );
+        if (sha256(await readFile(path)) !== expected)
+            throw new Error(`The preserved ${filename} recording has changed.`);
+    }
+}
+
+async function main(args) {
+    if (process.platform !== 'darwin')
+        throw new Error(
+            'Offline orchestral rendering requires macOS, Swift and the Apple GM/DLS bank.',
+        );
+    const { variant, sourceFile, output } = parseArrangementArguments(args);
+    if (extname(output) !== '.m4a')
+        throw new Error('The new recording must use a separate .m4a output.');
+    await verifyArrangementOutput(output);
+    await verifyPreservedRecordings();
+    const sourceBytes = await readFile(sourceFile);
+    const score = JSON.parse(sourceBytes.toString('utf8'));
+    const plan = createArrangement(score, { variant });
+    const temporary = await mkdtemp(join(tmpdir(), 'exolon-orchestra-'));
+    const planFile = join(temporary, 'arrangement.json');
+    const raw = join(temporary, 'orchestra-float.wav');
+    const mastered = join(temporary, 'orchestra-master.wav');
+    const decoded = join(temporary, 'orchestra-decoded.wav');
+    const encoded = join(temporary, 'orchestra-encoded.m4a');
+    const executable = join(temporary, 'render-orchestra');
+    const planBytes = Buffer.from(JSON.stringify(plan));
+    await writeFile(planFile, planBytes);
+    const nativePlanFile = join(temporary, 'sampler-arrangement.json');
+    // Custom gusli is rendered in JS; never silently substitute a GM sample.
+    await writeFile(
+        nativePlanFile,
+        JSON.stringify({
+            ...plan,
+            notes: plan.notes.filter((note) => !plan.tracks[note.track].instrument),
+        }),
+    );
+    const renderer = fileURLToPath(new URL('./orchestra.swift', import.meta.url));
+    run('/usr/bin/swiftc', [
+        '-module-cache-path',
+        join(tmpdir(), 'exolon-swift-cache'),
+        renderer,
+        '-o',
+        executable,
+    ]);
+    run(executable, [nativePlanFile, raw]);
+    const nativeWave = await readFile(raw);
+    const master = masterWave(variant === 'gusli-lead' ? mixGusli(nativeWave, plan) : nativeWave);
+    await writeFile(mastered, master.wave);
+    await mkdir(dirname(output), { recursive: true });
+    run('/usr/bin/afconvert', [
+        '-f',
+        'm4af',
+        '-d',
+        'aac',
+        '-b',
+        '192000',
+        '-q',
+        '127',
+        mastered,
+        encoded,
+    ]);
+    run('/usr/bin/afconvert', ['-f', 'WAVE', '-d', 'LEF32', encoded, decoded]);
+    const decodedStats = analyzeWave(await readFile(decoded));
+    if (decodedStats.peak >= 0.99) throw new Error('Encoded recording needs more headroom.');
+    await verifyPreservedRecordings();
+    // Exclusive copy also protects against two simultaneous builds choosing
+    // the same name after the initial existence check.
+    await copyFile(encoded, output, constants.COPYFILE_EXCL);
+    const bank =
+        '/System/Library/Components/CoreAudio.component/Contents/Resources/gs_instruments.dls';
+    console.log(
+        JSON.stringify(
+            {
+                output,
+                variant,
+                timeScale: plan.timeScale || 1,
+                bytes: (await stat(output)).size,
+                sha256: sha256(await readFile(output)),
+                originalSha256: ORIGINAL_SHA256,
+                sourceScoreSha256: sha256(sourceBytes),
+                planSha256: sha256(planBytes),
+                rendererSha256: sha256(await readFile(renderer)),
+                bankSha256: sha256(await readFile(bank)),
+                ...(STYLE_VARIANTS.includes(variant)
+                    ? {
+                          styleRendererSha256: sha256(
+                              await readFile(new URL('./styles.mjs', import.meta.url)),
+                          ),
+                      }
+                    : {}),
+                ...(variant === 'gusli-lead'
+                    ? {
+                          gusliRendererSha256: sha256(
+                              await readFile(new URL('./gusli.mjs', import.meta.url)),
+                          ),
+                      }
+                    : {}),
+                masterPcmSha256: sha256(master.wave),
+                sourceVoices: plan.notes.filter((note) => note.sourceVoice).length,
+                arrangedNotes: plan.notes.length,
+                sourceStopSeconds: plan.sourceStopSeconds,
+                raw: master.before,
+                master: master.after,
+                decoded: decodedStats,
+                masteredWave: mastered,
+                planFile,
+            },
+            null,
+            2,
+        ),
+    );
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+    main(process.argv.slice(2)).catch((error) => {
+        console.error(error.message);
+        process.exitCode = 1;
+    });
+}

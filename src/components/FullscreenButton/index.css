@@ -1,0 +1,51 @@
+.fullscreen-button {
+    position: fixed;
+    top: 12px;
+    top: max(12px, env(safe-area-inset-top));
+    right: 12px;
+    right: max(12px, env(safe-area-inset-right));
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: #0b121c;
+}
+.fullscreen-button__icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+.fullscreen-button[hidden] {
+    display: none;
+}
+.fullscreen-button__exit,
+.fullscreen-button[aria-pressed='true'] .fullscreen-button__enter {
+    display: none;
+}
+.fullscreen-button[aria-pressed='true'] .fullscreen-button__exit {
+    display: block;
+}
+@media (pointer: coarse) {
+    .fullscreen-button {
+        width: 44px;
+        height: 44px;
+    }
+}
+.game-app_touch .fullscreen-button,
+.game-app_tv .fullscreen-button {
+    width: 44px;
+    height: 44px;
+}
+
+@media (orientation: portrait) {
+    .game-app_touch:not(.game-app_selecting):not(.game-app_tv) .fullscreen-button {
+        top: auto;
+        right: 68px;
+        right: calc(max(12px, env(safe-area-inset-right)) + 56px);
+        bottom: 12px;
+        bottom: max(12px, env(safe-area-inset-bottom));
+    }
+}

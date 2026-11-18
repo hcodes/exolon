@@ -1,0 +1,11 @@
+.tv-help {
+    display: none;
+}
+.game-app_tv .tv-help {
+    display: block;
+    flex-basis: 100%;
+    margin: 0;
+    color: #a2b8c5;
+    font-size: 14px;
+    line-height: 1.4;
+}

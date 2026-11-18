@@ -1,0 +1,76 @@
+.sound-controls,
+.sound-controls__sound-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+}
+.sound-controls__sound-actions {
+    flex-shrink: 0;
+}
+.sound-controls__volume {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #91a4b3;
+    font-size: 9px;
+}
+.sound-controls__slider {
+    width: 60px;
+    accent-color: #95cfbc;
+}
+.sound-controls__sound {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+}
+.sound-controls__icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+.sound-controls__muted,
+.sound-controls__sound[aria-pressed='true'] .sound-controls__waves {
+    display: none;
+}
+.sound-controls__sound[aria-pressed='true'] .sound-controls__muted {
+    display: block;
+}
+@media (pointer: coarse) {
+    .sound-controls__sound {
+        width: 44px;
+        height: 44px;
+    }
+}
+.game-app_touch .sound-controls__sound,
+.game-app_tv .sound-controls__sound {
+    width: 44px;
+    height: 44px;
+}
+.game-app_touch .sound-controls__slider,
+.game-app_tv .sound-controls__slider {
+    height: 44px;
+}
+.game-app_tv .sound-controls__volume {
+    font-size: 16px;
+}
+.game-app_tv .sound-controls__slider {
+    width: 90px;
+}
+.game-app_legacy .sound-controls,
+.game-app_legacy .sound-controls__sound-actions {
+    gap: 0;
+}
+.game-app_legacy .sound-controls > * + *,
+.game-app_legacy .sound-controls__sound-actions > * + * {
+    margin-left: 7px;
+}
+
+.settings-panel .sound-controls__volume {
+    font-size: inherit;
+}

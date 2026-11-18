@@ -1,0 +1,221 @@
+.title-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: static;
+    inset: auto;
+    padding: 20px;
+    background: #0b121c;
+    backdrop-filter: none;
+}
+.title-menu[hidden] {
+    display: none;
+}
+.title-menu__intro,
+.title-menu__eyebrow {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    padding: 0;
+    margin: -1px;
+    border: 0;
+}
+.title-menu_scores .title-menu__music-status,
+.title-menu_scores .title-menu__controls {
+    display: none;
+}
+.title-menu__action[hidden] {
+    display: none;
+}
+.title-menu__heading {
+    font-size: clamp(48px, 9vw, 116px);
+    font-weight: 950;
+    font-style: italic;
+    letter-spacing: 8px;
+    line-height: 1;
+    margin: 24px 0 13px;
+    color: #fff568;
+    text-shadow:
+        0 3px #958012,
+        0 7px 30px #ffc21a44;
+    transform: skew(-5deg);
+}
+.title-menu__tagline {
+    font:
+        10px ui-monospace,
+        monospace;
+    letter-spacing: 3px;
+    color: #b2c8c9;
+    margin: 0 0 32px;
+}
+.title-menu__campaign {
+    font:
+        9px ui-monospace,
+        monospace;
+    letter-spacing: 1px;
+    color: #d7c2a3;
+    margin: 0 0 26px;
+}
+.title-menu__separator {
+    padding: 0 8px;
+    color: #6d8e95;
+}
+.title-menu__actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.title-menu__music-status {
+    font-size: 10px;
+    color: #99b4ba;
+    min-height: 14px;
+    margin: 14px 0 24px;
+}
+.title-menu__controls {
+    font-size: 10px;
+    line-height: 1.9;
+    color: #91a5af;
+    margin: 0;
+}
+@media (max-width: 650px) {
+    .title-menu__heading {
+        font-size: 47px;
+        letter-spacing: 5px;
+        margin: 16px 0 10px;
+    }
+    .title-menu__tagline {
+        font-size: 6px;
+        letter-spacing: 1px;
+        margin-bottom: 17px;
+    }
+    .title-menu__campaign {
+        font-size: 6px;
+        letter-spacing: 0.2px;
+        margin-bottom: 16px;
+    }
+    .title-menu__separator {
+        padding: 0 3px;
+    }
+    .title-menu__actions {
+        gap: 7px;
+    }
+    .title-menu__music-status {
+        font-size: 8px;
+        margin: 9px 0 0;
+    }
+    .title-menu__controls {
+        display: none;
+    }
+}
+
+@supports (background-clip: text) {
+    .title-menu__heading {
+        background: linear-gradient(#fff 0%, #fff 26%, #fff62b 32%, #ffdf00 74%, #b6a500 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 0 7px 30px #ffc21a33;
+    }
+}
+@media (max-width: 650px) {
+    .title-menu .title-menu__music-status {
+        margin-top: 6px;
+    }
+    .title-menu__heading {
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+    .title-menu__tagline {
+        margin-bottom: 12px;
+    }
+    .title-menu__campaign {
+        margin-bottom: 12px;
+    }
+}
+@media (max-width: 360px) {
+    .title-menu__heading {
+        font-size: 38px;
+        margin: 8px 0;
+    }
+    .title-menu .title-menu__tagline {
+        display: none;
+    }
+}
+.title-menu__intro[hidden] {
+    display: none;
+}
+@media (max-width: 650px) {
+    .title-menu {
+        padding: 12px;
+    }
+}
+.game-app_fullscreen .title-menu {
+    flex-shrink: 0;
+}
+.game-footer .title-menu,
+.game-footer .title-menu__actions {
+    display: contents;
+}
+.game-footer .title-menu[hidden] {
+    display: none;
+}
+.game-footer .title-menu__music-status {
+    margin: 0;
+    min-height: 0;
+    font-size: 9px;
+    overflow-wrap: anywhere;
+}
+.game-footer .title-menu__controls {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.title-menu__music-status:empty {
+    display: none;
+}
+
+.home-panel .title-menu__music-status {
+    font-size: inherit;
+}
+.game-app_legacy .title-menu,
+.game-app_legacy .title-menu__actions {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+}
+.game-app_legacy .title-menu__actions > * {
+    margin: 3px;
+}
+.game-app_legacy .title-menu__controls {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.home-panel .title-menu,
+.home-panel .title-menu__actions {
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}

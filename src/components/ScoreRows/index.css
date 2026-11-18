@@ -1,0 +1,32 @@
+.score-row {
+    height: var(--score-row-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font:
+        13px ui-monospace,
+        monospace;
+    letter-spacing: 1px;
+    color: #bff8d3;
+}
+.score-row__score {
+    color: #edcc83;
+}
+.score-row_player {
+    color: #5cecff;
+    background: #1b4c533f;
+}
+.score-row_player .score-row__score {
+    color: #5cecff;
+}
+@media (max-width: 650px) {
+    .score-row {
+        font-size: 9px;
+        letter-spacing: 0.6px;
+    }
+}
+@media (max-width: 360px) {
+    .score-row {
+        font-size: 8px;
+    }
+}

@@ -1,0 +1,59 @@
+.hud {
+    gap: 34px;
+    align-items: center;
+    background: #111d28;
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    padding: 0;
+    margin: -1px;
+    border: 0;
+}
+.hud__item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font:
+        8px ui-monospace,
+        monospace;
+    letter-spacing: 1.6px;
+    color: #9baeb6;
+}
+.hud__value {
+    font:
+        20px ui-monospace,
+        monospace;
+    letter-spacing: 1px;
+    color: #e8ebdf;
+}
+.hud__sector {
+    margin-left: auto;
+    text-align: right;
+}
+@media (max-width: 650px) {
+    .hud {
+        gap: 19px;
+    }
+    .hud__item {
+        font-size: 6px;
+        letter-spacing: 0.7px;
+    }
+    .hud__value {
+        font-size: 16px;
+    }
+}
+@media (max-width: 650px) {
+    .hud__sector .hud__value {
+        font-size: 12px;
+    }
+    .hud {
+        gap: 14px;
+    }
+}
+.hud[hidden] {
+    display: none;
+}

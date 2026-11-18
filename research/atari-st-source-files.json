@@ -1,0 +1,271 @@
+{
+  "status": "research, runtime not implemented",
+  "source": "https://www.atarimania.com/st/dumps/exolon_hewson.zip",
+  "stxSha256": "10a96cc93ab4c73a171f0e3408e99d2ff692a280bdb4f05eaf4e75f33e185ccf",
+  "files": [
+    {
+      "name": "AUTO/GAME.PRG",
+      "size": 58394,
+      "sha256": "9adfe8193f1773c30c91249276f64e024f0df681490645cf3e6489eea9f10af4",
+      "head": "601a0000e3fe0000"
+    },
+    {
+      "name": "BRAIN.ANM",
+      "size": 3072,
+      "sha256": "dfd5afa4caa6f08c1bf4597d144db8d996d7bfe748c9061acbcff10e3228af03",
+      "head": "fffba15fa000a000"
+    },
+    {
+      "name": "BACKDROP.DAT",
+      "size": 28672,
+      "sha256": "d7a051360b63cf43aaa3b5a41c79180477fabd26370a7cc2cea1c95cba6ea008",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "BEAM.DAT",
+      "size": 224,
+      "sha256": "2e30feef203aba760ce1608b247421560df9d82aecab9bf12baab06e573af492",
+      "head": "ffff00ffffff00ff"
+    },
+    {
+      "name": "BIGDATA.DAT",
+      "size": 10240,
+      "sha256": "a27f9900b0fb5dec9a35cb6781f68ee3adf2ee360ec0b3ce7eb1c5909abb36bc",
+      "head": "01e53fbb01213f37"
+    },
+    {
+      "name": "BIGTWINK.DAT",
+      "size": 896,
+      "sha256": "ebad85a0987ade1010c7dd84062ee88f6febcd4afdef8cae0c551b387b0a91eb",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "BITS.DAT",
+      "size": 1280,
+      "sha256": "f0864ec47a1440f6ed68ec061b887e848b3f89d8f81ae8511d0ddf67ead392c6",
+      "head": "ffffffff0000ffff"
+    },
+    {
+      "name": "DSHIP.DAT",
+      "size": 384,
+      "sha256": "95c099a5f9d567f59e42e78dbd7ab26fe2961d7919615ac703501670517a5103",
+      "head": "212c212c3b002100"
+    },
+    {
+      "name": "EEXPLODE.DAT",
+      "size": 8669,
+      "sha256": "812987f3e52b5807da6c3a4fb8b8a6a100920dab9f60c82388ba48df2d34249f",
+      "head": "601a000021c00000"
+    },
+    {
+      "name": "END.DAT",
+      "size": 1024,
+      "sha256": "5ea1fc0c55335d51c2b7ae59e04b2ef9c19c29344552a3261ce49150141a5ca7",
+      "head": "aa45aa7daa7dffa2"
+    },
+    {
+      "name": "EREPLAC1.DAT",
+      "size": 2048,
+      "sha256": "45d8cbb2efb7266fa0df1b0a680967d700c1f3a868b8c5c05eecd4e3e1da149e",
+      "head": "76ff76ff76ffedb9"
+    },
+    {
+      "name": "EREPLACE.DAT",
+      "size": 2048,
+      "sha256": "69f7f5bde22778cbed06e6c9888dbfb0d61ca295671326f74d443c654fda0f3a",
+      "head": "fbfffbfffbffe7ee"
+    },
+    {
+      "name": "EXPLO.DAT",
+      "size": 1152,
+      "sha256": "62fd16c75d00ebeb97e68e8ef4925833e360c6f9f6cc0830e92003fe350013d9",
+      "head": "00001e0000000000"
+    },
+    {
+      "name": "FIZZ.DAT",
+      "size": 6656,
+      "sha256": "eb33ce0eaf4bff90274b65c1663dbadf5fc4b700b71fc8bb6e022bcb4d8d370f",
+      "head": "7200ef000200ff00"
+    },
+    {
+      "name": "GUNANIM.DAT",
+      "size": 5120,
+      "sha256": "5460dd305ac535dc5938c760c1a3853e38c0749186aa9d2dc8a5eeb4239a6bf5",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "GUNS.DAT",
+      "size": 4096,
+      "sha256": "25bc989426b500d7095ecaf63fb8a03ffac8a6a9f9ff8a08d609cef7ebc5c1ae",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "L1MAP.DAT",
+      "size": 23029,
+      "sha256": "bb9f1ece404155c2093622bdf3b88ac688047a95239ba24d240a862d07570026",
+      "head": "601a000059d80000"
+    },
+    {
+      "name": "L2MAP.DAT",
+      "size": 23029,
+      "sha256": "ea5d25b3a96c74834c60d87c9a0b7c75d1e00495fa30ea8258df3675c3d58b0c",
+      "head": "601a000059d80000"
+    },
+    {
+      "name": "L3MAP.DAT",
+      "size": 23029,
+      "sha256": "976892ed1406c92a60af44b7cde4e73eaf7188692b589a14d4b9e2a62ba9d3fd",
+      "head": "601a000059d80000"
+    },
+    {
+      "name": "L4MAP.DAT",
+      "size": 23029,
+      "sha256": "a7ba3ea1e8c78a65b23575b6da49d8f5417bc055dfb4a9b46b26affa0561c8eb",
+      "head": "601a000059d80000"
+    },
+    {
+      "name": "L5MAP.DAT",
+      "size": 23029,
+      "sha256": "e912f48203685b7cb61f10812c3e71a9c0266ebe390afd8cec4e3ebb649a2e9a",
+      "head": "601a000059d80000"
+    },
+    {
+      "name": "LOGO.DAT",
+      "size": 3549,
+      "sha256": "ca278956dd6f2fd08f034af5cf0d1dcc5a95206ba18c6c47bb0a7293236fba1c",
+      "head": "601a00000dc00000"
+    },
+    {
+      "name": "MAPGR8.DAT",
+      "size": 8192,
+      "sha256": "703136edd27a7ba0d2028c852029e464a233aab936e5fd5ace2342afc3615181",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "MAPGR81.DAT",
+      "size": 8192,
+      "sha256": "3e23de7a29846af88c79817a62697d1de2ce889367f02b7207f0c63d190f57a5",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "MINE.DAT",
+      "size": 192,
+      "sha256": "bc3c7f2fcbfeab646a74054511422f231c6abd3a301b8c53512957fad39afd78",
+      "head": "fc5ffb9ffefffa1f"
+    },
+    {
+      "name": "MISSILE.DAT",
+      "size": 720,
+      "sha256": "130594e6059a823fcffff0c8907473960e2d05410a7d0730435ead8ae7890155",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "PC.DAT",
+      "size": 576,
+      "sha256": "ffafde1c2dcf98b6c2f02e0525bae75adefd860528f8b71aaeb3f8d57866299c",
+      "head": "003c0000003c0000"
+    },
+    {
+      "name": "PICKUP.DAT",
+      "size": 256,
+      "sha256": "5bf5a9675f842929f3e1d066a4c697fa57c513799f640d18fe24e48e77b716de",
+      "head": "61867ffe61866186"
+    },
+    {
+      "name": "PLANET.DAT",
+      "size": 8192,
+      "sha256": "6fa96a1ffa6620dbef45001a8753356cee88239c2d4849ddabc88aa59691929d",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "PLUNGER.DAT",
+      "size": 768,
+      "sha256": "34ae2d2697b6f6daf46d494f41660be3f395a3853acacf4fe16e4bfd47fcc705",
+      "head": "febfabfa00000000"
+    },
+    {
+      "name": "SIDEBAR.DAT",
+      "size": 2048,
+      "sha256": "f24e6bde2be8486ee58f77dedc89a508d859925a90d21bc97ed62be65b33266a",
+      "head": "3f7bcff70003fc7f"
+    },
+    {
+      "name": "SMLSHIPS.DAT",
+      "size": 768,
+      "sha256": "572d55bbb834df63d768f37d7686228affac4972c6db262e79d58c9a1bd60d3c",
+      "head": "0002000200020002"
+    },
+    {
+      "name": "SPRITE.DAT",
+      "size": 9600,
+      "sha256": "160645721777d561c534ca1b4130188f86c9b3acb1fef88ea3343a8cecb0fb33",
+      "head": "003f003f003f003f"
+    },
+    {
+      "name": "SPRITE1.DAT",
+      "size": 9600,
+      "sha256": "339b4febace7a71ce437ab4a7f156f23e8dac034366994dbc1c7559bb9ca4a0e",
+      "head": "003e003e003e003e"
+    },
+    {
+      "name": "XDEATH.DAT",
+      "size": 34589,
+      "sha256": "c28bacf48321e47a05c58bbfca887fba06b7f119d393f6acabba8a5ca8cacc73",
+      "head": "601a000087000000"
+    },
+    {
+      "name": "EXOPIC.PIC",
+      "size": 22469,
+      "sha256": "4bf329f0a3e7ec37923a24939fc4066e961d3a64adef6e91c4c494cac8aacc2b",
+      "head": "601a000057a80000"
+    },
+    {
+      "name": "BULL.PUF",
+      "size": 1152,
+      "sha256": "d788a7d0fc201f860f1135e77dcb0ce68a1974cb7f967faeaf9636f10db334ae",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "TWINKLE.SML",
+      "size": 252,
+      "sha256": "61832510c3ef50db0cd94f12da5974dc63e4099cdd3ce312f0dace3c31646993",
+      "head": "0000000000000000"
+    },
+    {
+      "name": "AMMO.SPR",
+      "size": 528,
+      "sha256": "6b155e7b1feb8c97953300948ce47b018a87a7461d07c368f33eba23a52020f0",
+      "head": "7ff0685068506850"
+    },
+    {
+      "name": "ENEMY.SPR",
+      "size": 9216,
+      "sha256": "05d841a85ef995a2efd91f990d7516825d7d8b2d9fbb68bc1bd98393d6290377",
+      "head": "003d003d003d003d"
+    },
+    {
+      "name": "ENEMY1.SPR",
+      "size": 9216,
+      "sha256": "c3f26ba501eaf230c8a4b20c774242fbb66baed64646ee74fed77a644a9207de",
+      "head": "003d003d003d003d"
+    },
+    {
+      "name": "ENEMY2.SPR",
+      "size": 9216,
+      "sha256": "939003d540e8e6402ddb4b167a0d5c15d858cf93857c9d64348db1a43035dada",
+      "head": "0d7f0d7f0d7f0d7f"
+    },
+    {
+      "name": "PCDEATH.SPR",
+      "size": 224,
+      "sha256": "e51bf272b17e0ab5f148c9483032bfa997d04fd91f65cb86c0803ee75f58bed8",
+      "head": "00003c007c007e00"
+    },
+    {
+      "name": "SCORE.TXT",
+      "size": 70,
+      "sha256": "6f092f525f54019d57cf39d44f3971383334de8505f01789bb64f43535c662f0",
+      "head": "7c868a92a2c27c30"
+    }
+  ]
+}

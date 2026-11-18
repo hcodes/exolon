@@ -1,0 +1,47 @@
+{
+  "sourceMainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638",
+  "modelSha256": "6903aac8bda500cacdb0e103bfc472aa694c50d4595e3f76faf7780e26c30a40",
+  "serialization": "SHA-256 of UTF-8 JSON.stringify(model), without whitespace or newline",
+  "screens": 125,
+  "flyerPathLengths": {
+    "0x17f80": 20,
+    "0x17fd2": 67,
+    "0x180e0": 101,
+    "0x18276": 74,
+    "0x183a0": 99
+  },
+  "stageEnds": [
+    24,
+    49,
+    74,
+    99,
+    124
+  ],
+  "jumpVertical": [
+    -4,
+    -4,
+    -4,
+    -3,
+    -3,
+    -2,
+    -1,
+    0,
+    1,
+    2,
+    3,
+    3,
+    4,
+    4,
+    4
+  ],
+  "bonusRoulette": [
+    0,
+    20,
+    0,
+    60,
+    0,
+    100,
+    0,
+    140
+  ]
+}

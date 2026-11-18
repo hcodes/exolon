@@ -1,0 +1,6 @@
+# Crawlers use the robots.txt at the host root, not a project subdirectory.
+# On GitHub Pages, merge these directives into https://hcodes.github.io/robots.txt.
+User-agent: *
+Allow: /
+
+Sitemap: https://hcodes.github.io/exolon/sitemap.xml

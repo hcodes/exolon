@@ -1,0 +1,184 @@
+{
+  "sourceDiskSha256": "54260a1b4f95b18b115ef69d5f90cbc7a584e74c28572e7296e80196989ee8d1",
+  "sourceOffset": 75776,
+  "loadAddress": 32768,
+  "startupHex": "2e7c0000100041f900017fca704d429851c8fffc203900dff004223900dff00a61006ed623f9000103d00000fbc243f90002b2002c3c000028003e3c280023fc0002926c0000fbba61006e0843f90004e0002c3c000004003e3c038023fc0001a7900000fbba61006dea43f90004c2002c3c00000e002e3c00000ddd23fc0001cf900000fbba61006dca43f90003d0002c3c00001a002e3c00001a0023fc0001dd6c0000fbba61006daa43f9000374002c3c000006003e3c048023fc000285ec0000fbba61006d8c43f90004e4002c3c000008003e3c080023fc00028a6c0000fbba61006d6e43f9000754002c3c00000c003e3c0a0423fc0002da6c0000fbba61006d5043f90002da002c3c000026003e3c258023fc000308700000fbba61006d3243f90006e0002c3c000004003e3c021023fc000160000000fbba61006d1443f9000300002c3c000070003e3c700023fc00039e700000fbba61006cf643f9000382002c3c000010003e3c100023fc0002e4700000fbba61006cd843f9000392002c3c000014003e3c140023fc0002f4700000fbba61006cba43f900050c002c3c000006003e3c048023fc000164500000fbba61006c9c43f9000512002c3c00000c003e3c0c0023fc000168d00000fbba61006c7e43f90003a6002c3c000004003e3c02d023fc000174d00000fbba61006c6043f90003ec002c3c000022003e3c21dd23fc000185b40000fbba61006c4243f90003aa002c3c000002003e3c00e023fc000177a00000fbba61006c2443f90003ac002c3c000004003e3c024023fc000162100000fbba61006c0643f90003b0002c3c000020003e3c200023fc00040e700000fbba61006be843f900040e002c3c000026003e3c258023fc000353700000fbba61006bca43f90004bc002c3c000006003e3c050023fc000178640000fbba61006bac43f90004d0002c3c000002003e3c00c023fc00017b640000fbba61006b8e43f9000752002c3c000002003e3c004623fc00017d240000fbba61006b7043f90004d2002c3c000002003e3c018023fc00017d6a0000fbba61006b5243f9000750002c3c000002003e3c00fc23fc00017ece0000fbba61006b3443f90004d4002c3c000004003e3c040023fc0001cb900000fbba61006b1643f9000762002c3c000004003e3c02a823fc0000fee80000fbba61006af843f9000760002c3c000002003e3c013023fc00017fca0000fbba61006ada43f90003ea002c3c000002003e3c010023fc00017c240000fbba61006abc23f90001500800dff08043f9000434002c3c000088002e3c0000871d23fc00042e700000fbba61006a92",
+  "loads": [
+    {
+      "source": 75776,
+      "target": 32768,
+      "length": 46080
+    },
+    {
+      "source": 121856,
+      "target": 86016,
+      "length": 6144
+    },
+    {
+      "source": 35328,
+      "target": 460288,
+      "length": 40448
+    },
+    {
+      "source": 125952,
+      "target": 383488,
+      "length": 2048
+    },
+    {
+      "source": 128000,
+      "target": 386288,
+      "length": 40448
+    },
+    {
+      "source": 176640,
+      "target": 168556,
+      "length": 10240
+    },
+    {
+      "source": 319488,
+      "target": 108432,
+      "length": 896
+    },
+    {
+      "source": 311808,
+      "target": 118672,
+      "length": 3549
+    },
+    {
+      "source": 249856,
+      "target": 122220,
+      "length": 6656
+    },
+    {
+      "source": 226304,
+      "target": 165356,
+      "length": 1152
+    },
+    {
+      "source": 320512,
+      "target": 166508,
+      "length": 2048
+    },
+    {
+      "source": 480256,
+      "target": 186988,
+      "length": 2564
+    },
+    {
+      "source": 186880,
+      "target": 198768,
+      "length": 9600
+    },
+    {
+      "source": 450560,
+      "target": 90112,
+      "length": 528
+    },
+    {
+      "source": 196608,
+      "target": 237168,
+      "length": 28672
+    },
+    {
+      "source": 229888,
+      "target": 189552,
+      "length": 4096
+    },
+    {
+      "source": 233984,
+      "target": 193648,
+      "length": 5120
+    },
+    {
+      "source": 330752,
+      "target": 91216,
+      "length": 1152
+    },
+    {
+      "source": 332288,
+      "target": 92368,
+      "length": 3072
+    },
+    {
+      "source": 239104,
+      "target": 95440,
+      "length": 720
+    },
+    {
+      "source": 257024,
+      "target": 99764,
+      "length": 8669
+    },
+    {
+      "source": 240128,
+      "target": 96160,
+      "length": 224
+    },
+    {
+      "source": 240640,
+      "target": 90640,
+      "length": 576
+    },
+    {
+      "source": 241664,
+      "target": 265840,
+      "length": 8192
+    },
+    {
+      "source": 265728,
+      "target": 217968,
+      "length": 9600
+    },
+    {
+      "source": 310272,
+      "target": 96356,
+      "length": 1280
+    },
+    {
+      "source": 315392,
+      "target": 97124,
+      "length": 192
+    },
+    {
+      "source": 479744,
+      "target": 97572,
+      "length": 70
+    },
+    {
+      "source": 315904,
+      "target": 97642,
+      "length": 384
+    },
+    {
+      "source": 479232,
+      "target": 97998,
+      "length": 252
+    },
+    {
+      "source": 316416,
+      "target": 117648,
+      "length": 1024
+    },
+    {
+      "source": 483840,
+      "target": 65256,
+      "length": 680
+    },
+    {
+      "source": 483328,
+      "target": 98250,
+      "length": 304
+    },
+    {
+      "source": 256512,
+      "target": 97316,
+      "length": 256
+    },
+    {
+      "source": 275456,
+      "target": 274032,
+      "length": 34589
+    }
+  ],
+  "ramSha256": "8eb436440c0f6af0381079341779e24dcbd21d485144f2dcacb059a7e9c724e7"
+}

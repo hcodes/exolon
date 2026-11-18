@@ -1,0 +1,1108 @@
+{
+  "platform": "zx-spectrum",
+  "sourceRamSha256": "2ee3509dc114d70a2bd2d7e22ada889d93088091964380e4b2583341e41617b5",
+  "sources": {
+    "game": {
+      "url": "https://github.com/rusarh/exolon-esl/blob/main/tools/bin/exolon.sna",
+      "bytes": 49179,
+      "sha256": "c28cec07baa83143fd4265b7adb37873c834b81c56abeb69ab25c211481be65f",
+      "recovery": "Create zeroed 65536-byte RAM. Copy 0x92a0 bytes from SNA file offset 27+0x6590-0x4000 to RAM address 0x6d60. This restores the canonical TAP game payload; do not use the assembled ESL debug snapshot as native code."
+    },
+    "cpu": {
+      "url": "https://github.com/floooh/chips/blob/master/chips/z80.h",
+      "path": "tools/recovery/timing/third-party/z80.h",
+      "sha256": "6ca70ffd91b1bdbaf00f7a41e7092b326145fd1c95dcdd7bb01183370de734f3",
+      "license": "zlib/libpng (license text preserved verbatim in header)",
+      "usage": "Offline research only; absent from browser game."
+    },
+    "timings": [
+      "https://github.com/fuse-emulator/fuse/blob/master/spectrum.c",
+      "https://github.com/fuse-emulator/fuse/blob/master/z80/z80.pl",
+      "https://github.com/fuse-emulator/libspectrum/blob/master/timings.c",
+      "https://worldofspectrum.org/faq/reference/48kreference.htm",
+      "https://worldofspectrum.org/faq/reference/128kreference.htm"
+    ]
+  },
+  "probe": {
+    "path": "tools/recovery/timing/zx.c",
+    "build": "clang -std=c11 -O2 tools/recovery/timing/zx.c -o /tmp/exolon-zx-timing",
+    "usage": "/tmp/exolon-zx-timing --memory /path/to/canonical-memory.bin --core tools/recovery/timing/third-party/z80.h --mode walk --variant 128 --contention ula --phase 0",
+    "modes": [
+      "stand",
+      "walk",
+      "crouch",
+      "shot",
+      "jump",
+      "walkjump"
+    ],
+    "contention": [
+      "none",
+      "memory",
+      "ula"
+    ],
+    "defaultFrames": 50,
+    "tickBudget": 15000000,
+    "output": "CSV raw rows, followed by REPLAY rows for ula. Both report T-states. Variants 48/128; phase is a nonnegative T-state offset below the hardware frame length."
+  },
+  "addresses": {
+    "entry": "$6d60",
+    "menuBypass": "$6da1 -> $758a after table initialization",
+    "mainLoop": "$75be",
+    "playerUpdate": "$81a4",
+    "playerX": "$82f5, two-pixel units",
+    "playerY": "$82f6",
+    "jumpPhase": "$82f7",
+    "jumpTable": "$826a..$827f, read backwards"
+  },
+  "timing": {
+    "models": {
+      "48": {
+        "clockHz": 3500000,
+        "frameTStates": 69888,
+        "lineTStates": 224,
+        "contentionStart": 14335
+      },
+      "128": {
+        "clockHz": 3546900,
+        "frameTStates": 70908,
+        "lineTStates": 228,
+        "contentionStart": 14361
+      }
+    },
+    "activeLines": 192,
+    "activeTStatesPerLine": 128,
+    "waitPattern": [
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0
+    ],
+    "contendedRam": "$4000..$7fff; high RAM uses an uncontended bank",
+    "hardwareInterrupts": "Game runs with interrupts disabled; no injected 50Hz simulation updates."
+  },
+  "measurement": {
+    "sample": "Complete loops 1..20 inclusive; loop0 excluded. 16 evenly spaced initial ULA phases per machine. Deterministic initial R-based RNG, first screen.",
+    "rawWalkMeanTStates": 150261.55,
+    "independentCheck": "Cycle-stepped C core with contention=none exactly matches instruction-level Z80.js raw mean150261.55T.",
+    "scenarioSummaries": [
+      {
+        "variant": 48,
+        "mode": "walk",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 47.16168303571428,
+        "minMeanMs": 47.102399999999996,
+        "maxMeanMs": 47.2416,
+        "meanWaitT": 14804.340625,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164862.65,
+            "meanWaitTStates": 14601.1,
+            "jump22ElapsedTStates": 3755449
+          },
+          {
+            "phaseTStates": 4368,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164858.4,
+            "meanWaitTStates": 14596.85,
+            "jump22ElapsedTStates": 3757891
+          },
+          {
+            "phaseTStates": 8736,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164985.7,
+            "meanWaitTStates": 14724.15,
+            "jump22ElapsedTStates": 3757390
+          },
+          {
+            "phaseTStates": 13104,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165119.95,
+            "meanWaitTStates": 14858.4,
+            "jump22ElapsedTStates": 3752021
+          },
+          {
+            "phaseTStates": 17472,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165221.85,
+            "meanWaitTStates": 14960.3,
+            "jump22ElapsedTStates": 3748408
+          },
+          {
+            "phaseTStates": 21840,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165279.35,
+            "meanWaitTStates": 15017.8,
+            "jump22ElapsedTStates": 3746535
+          },
+          {
+            "phaseTStates": 26208,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165345.6,
+            "meanWaitTStates": 15084.05,
+            "jump22ElapsedTStates": 3746845
+          },
+          {
+            "phaseTStates": 30576,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165244.25,
+            "meanWaitTStates": 14982.7,
+            "jump22ElapsedTStates": 3746254
+          },
+          {
+            "phaseTStates": 34944,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165199.1,
+            "meanWaitTStates": 14937.55,
+            "jump22ElapsedTStates": 3748486
+          },
+          {
+            "phaseTStates": 39312,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165148.45,
+            "meanWaitTStates": 14886.9,
+            "jump22ElapsedTStates": 3749413
+          },
+          {
+            "phaseTStates": 43680,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165097.3,
+            "meanWaitTStates": 14835.75,
+            "jump22ElapsedTStates": 3748820
+          },
+          {
+            "phaseTStates": 48048,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164987.5,
+            "meanWaitTStates": 14725.95,
+            "jump22ElapsedTStates": 3748305
+          },
+          {
+            "phaseTStates": 52416,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164969.9,
+            "meanWaitTStates": 14708.35,
+            "jump22ElapsedTStates": 3750829
+          },
+          {
+            "phaseTStates": 56784,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164940.9,
+            "meanWaitTStates": 14679.35,
+            "jump22ElapsedTStates": 3752561
+          },
+          {
+            "phaseTStates": 61152,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164871.95,
+            "meanWaitTStates": 14610.4,
+            "jump22ElapsedTStates": 3752648
+          },
+          {
+            "phaseTStates": 65520,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164921.4,
+            "meanWaitTStates": 14659.85,
+            "jump22ElapsedTStates": 3755429
+          }
+        ]
+      },
+      {
+        "variant": 48,
+        "mode": "stand",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 39.121183928571426,
+        "minMeanMs": 38.9977,
+        "maxMeanMs": 39.27170000000001,
+        "meanWaitT": 10895.49375,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136491.95,
+            "meanWaitTStates": 10463.3,
+            "jump22ElapsedTStates": 3123670
+          },
+          {
+            "phaseTStates": 4368,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136514.45,
+            "meanWaitTStates": 10485.8,
+            "jump22ElapsedTStates": 3125593
+          },
+          {
+            "phaseTStates": 8736,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136967,
+            "meanWaitTStates": 10938.35,
+            "jump22ElapsedTStates": 3132444
+          },
+          {
+            "phaseTStates": 13104,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 137293.15,
+            "meanWaitTStates": 11264.5,
+            "jump22ElapsedTStates": 3137905
+          },
+          {
+            "phaseTStates": 17472,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 137450.95,
+            "meanWaitTStates": 11422.3,
+            "jump22ElapsedTStates": 3144785
+          },
+          {
+            "phaseTStates": 21840,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 137289.6,
+            "meanWaitTStates": 11260.95,
+            "jump22ElapsedTStates": 3142357
+          },
+          {
+            "phaseTStates": 26208,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 137211.2,
+            "meanWaitTStates": 11182.55,
+            "jump22ElapsedTStates": 3142394
+          },
+          {
+            "phaseTStates": 30576,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 137099.75,
+            "meanWaitTStates": 11071.1,
+            "jump22ElapsedTStates": 3141162
+          },
+          {
+            "phaseTStates": 34944,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 137065.6,
+            "meanWaitTStates": 11036.95,
+            "jump22ElapsedTStates": 3141386
+          },
+          {
+            "phaseTStates": 39312,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136987.2,
+            "meanWaitTStates": 10958.55,
+            "jump22ElapsedTStates": 3139808
+          },
+          {
+            "phaseTStates": 43680,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136908.25,
+            "meanWaitTStates": 10879.6,
+            "jump22ElapsedTStates": 3138248
+          },
+          {
+            "phaseTStates": 48048,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136853.35,
+            "meanWaitTStates": 10824.7,
+            "jump22ElapsedTStates": 3136224
+          },
+          {
+            "phaseTStates": 52416,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136774.4,
+            "meanWaitTStates": 10745.75,
+            "jump22ElapsedTStates": 3133984
+          },
+          {
+            "phaseTStates": 56784,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136729.6,
+            "meanWaitTStates": 10700.95,
+            "jump22ElapsedTStates": 3131755
+          },
+          {
+            "phaseTStates": 61152,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136617.05,
+            "meanWaitTStates": 10588.4,
+            "jump22ElapsedTStates": 3128160
+          },
+          {
+            "phaseTStates": 65520,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136532.8,
+            "meanWaitTStates": 10504.15,
+            "jump22ElapsedTStates": 3126133
+          }
+        ]
+      },
+      {
+        "variant": 48,
+        "mode": "jump",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 43.45858392857143,
+        "minMeanMs": 43.31941428571429,
+        "maxMeanMs": 43.53294285714286,
+        "meanWaitT": 12682.54375,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152000.7,
+            "meanWaitTStates": 12578.2,
+            "jump22ElapsedTStates": 3509025
+          },
+          {
+            "phaseTStates": 4368,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151868.05,
+            "meanWaitTStates": 12445.55,
+            "jump22ElapsedTStates": 3506797
+          },
+          {
+            "phaseTStates": 8736,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151694.7,
+            "meanWaitTStates": 12272.2,
+            "jump22ElapsedTStates": 3504149
+          },
+          {
+            "phaseTStates": 13104,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151617.95,
+            "meanWaitTStates": 12195.45,
+            "jump22ElapsedTStates": 3502470
+          },
+          {
+            "phaseTStates": 17472,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151786.95,
+            "meanWaitTStates": 12364.45,
+            "jump22ElapsedTStates": 3506193
+          },
+          {
+            "phaseTStates": 21840,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152046.35,
+            "meanWaitTStates": 12623.85,
+            "jump22ElapsedTStates": 3507625
+          },
+          {
+            "phaseTStates": 26208,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152265.55,
+            "meanWaitTStates": 12843.05,
+            "jump22ElapsedTStates": 3509845
+          },
+          {
+            "phaseTStates": 30576,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152357.35,
+            "meanWaitTStates": 12934.85,
+            "jump22ElapsedTStates": 3514112
+          },
+          {
+            "phaseTStates": 34944,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152346.25,
+            "meanWaitTStates": 12923.75,
+            "jump22ElapsedTStates": 3515474
+          },
+          {
+            "phaseTStates": 39312,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152365.3,
+            "meanWaitTStates": 12942.8,
+            "jump22ElapsedTStates": 3517483
+          },
+          {
+            "phaseTStates": 43680,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152286.35,
+            "meanWaitTStates": 12863.85,
+            "jump22ElapsedTStates": 3515923
+          },
+          {
+            "phaseTStates": 48048,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152216.75,
+            "meanWaitTStates": 12794.25,
+            "jump22ElapsedTStates": 3514347
+          },
+          {
+            "phaseTStates": 52416,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152227.05,
+            "meanWaitTStates": 12804.55,
+            "jump22ElapsedTStates": 3514665
+          },
+          {
+            "phaseTStates": 56784,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152230.6,
+            "meanWaitTStates": 12808.1,
+            "jump22ElapsedTStates": 3513109
+          },
+          {
+            "phaseTStates": 61152,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152251.85,
+            "meanWaitTStates": 12829.35,
+            "jump22ElapsedTStates": 3514250
+          },
+          {
+            "phaseTStates": 65520,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152118.95,
+            "meanWaitTStates": 12696.45,
+            "jump22ElapsedTStates": 3511871
+          }
+        ],
+        "jump22MeanSeconds": 1.0031667499999999
+      },
+      {
+        "variant": 48,
+        "mode": "walkjump",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 47.06041875,
+        "minMeanMs": 47.0099,
+        "maxMeanMs": 47.120000000000005,
+        "meanWaitT": 14851.915625,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164615.65,
+            "meanWaitTStates": 14756.1,
+            "jump22ElapsedTStates": 3746027
+          },
+          {
+            "phaseTStates": 4368,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164583.95,
+            "meanWaitTStates": 14724.4,
+            "jump22ElapsedTStates": 3744699
+          },
+          {
+            "phaseTStates": 8736,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164534.65,
+            "meanWaitTStates": 14675.1,
+            "jump22ElapsedTStates": 3745554
+          },
+          {
+            "phaseTStates": 13104,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164683.55,
+            "meanWaitTStates": 14824,
+            "jump22ElapsedTStates": 3742177
+          },
+          {
+            "phaseTStates": 17472,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164751.45,
+            "meanWaitTStates": 14891.9,
+            "jump22ElapsedTStates": 3741941
+          },
+          {
+            "phaseTStates": 21840,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164718.8,
+            "meanWaitTStates": 14859.25,
+            "jump22ElapsedTStates": 3740274
+          },
+          {
+            "phaseTStates": 26208,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164875.2,
+            "meanWaitTStates": 15015.65,
+            "jump22ElapsedTStates": 3740808
+          },
+          {
+            "phaseTStates": 30576,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164920,
+            "meanWaitTStates": 15060.45,
+            "jump22ElapsedTStates": 3739982
+          },
+          {
+            "phaseTStates": 34944,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164897.6,
+            "meanWaitTStates": 15038.05,
+            "jump22ElapsedTStates": 3739526
+          },
+          {
+            "phaseTStates": 39312,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164808.55,
+            "meanWaitTStates": 14949,
+            "jump22ElapsedTStates": 3738661
+          },
+          {
+            "phaseTStates": 43680,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164774.4,
+            "meanWaitTStates": 14914.85,
+            "jump22ElapsedTStates": 3738079
+          },
+          {
+            "phaseTStates": 48048,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164685.35,
+            "meanWaitTStates": 14825.8,
+            "jump22ElapsedTStates": 3737542
+          },
+          {
+            "phaseTStates": 52416,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164640.55,
+            "meanWaitTStates": 14781,
+            "jump22ElapsedTStates": 3738072
+          },
+          {
+            "phaseTStates": 56784,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164664.95,
+            "meanWaitTStates": 14805.4,
+            "jump22ElapsedTStates": 3742022
+          },
+          {
+            "phaseTStates": 61152,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164646.45,
+            "meanWaitTStates": 14786.9,
+            "jump22ElapsedTStates": 3743016
+          },
+          {
+            "phaseTStates": 65520,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164582.35,
+            "meanWaitTStates": 14722.8,
+            "jump22ElapsedTStates": 3743407
+          }
+        ],
+        "jump22MeanSeconds": 1.068960482142857
+      },
+      {
+        "variant": 128,
+        "mode": "walk",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 46.49841939440075,
+        "minMeanMs": 46.37916208520116,
+        "maxMeanMs": 46.58869717217853,
+        "meanWaitT": 14663.69375,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164769.2,
+            "meanWaitTStates": 14507.65,
+            "jump22ElapsedTStates": 3623668
+          },
+          {
+            "phaseTStates": 4432,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164794.35,
+            "meanWaitTStates": 14532.8,
+            "jump22ElapsedTStates": 3627150
+          },
+          {
+            "phaseTStates": 8864,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164563,
+            "meanWaitTStates": 14301.45,
+            "jump22ElapsedTStates": 3626822
+          },
+          {
+            "phaseTStates": 13295,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164502.25,
+            "meanWaitTStates": 14240.7,
+            "jump22ElapsedTStates": 3625298
+          },
+          {
+            "phaseTStates": 17727,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164797.7,
+            "meanWaitTStates": 14536.15,
+            "jump22ElapsedTStates": 3630577
+          },
+          {
+            "phaseTStates": 22159,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164942.7,
+            "meanWaitTStates": 14681.15,
+            "jump22ElapsedTStates": 3632630
+          },
+          {
+            "phaseTStates": 26590,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164986.6,
+            "meanWaitTStates": 14725.05,
+            "jump22ElapsedTStates": 3632786
+          },
+          {
+            "phaseTStates": 31022,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164945.3,
+            "meanWaitTStates": 14683.75,
+            "jump22ElapsedTStates": 3629772
+          },
+          {
+            "phaseTStates": 35454,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164920.5,
+            "meanWaitTStates": 14658.95,
+            "jump22ElapsedTStates": 3628164
+          },
+          {
+            "phaseTStates": 39886,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165014.85,
+            "meanWaitTStates": 14753.3,
+            "jump22ElapsedTStates": 3627935
+          },
+          {
+            "phaseTStates": 44318,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165175.7,
+            "meanWaitTStates": 14914.15,
+            "jump22ElapsedTStates": 3629305
+          },
+          {
+            "phaseTStates": 48749,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165245.45,
+            "meanWaitTStates": 14983.9,
+            "jump22ElapsedTStates": 3630651
+          },
+          {
+            "phaseTStates": 53181,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165195.4,
+            "meanWaitTStates": 14933.85,
+            "jump22ElapsedTStates": 3629199
+          },
+          {
+            "phaseTStates": 57613,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 165137.6,
+            "meanWaitTStates": 14876.05,
+            "jump22ElapsedTStates": 3628844
+          },
+          {
+            "phaseTStates": 62044,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164960.55,
+            "meanWaitTStates": 14699,
+            "jump22ElapsedTStates": 3625405
+          },
+          {
+            "phaseTStates": 66476,
+            "meanRawTStates": 150261.55,
+            "meanElapsedTStates": 164852.75,
+            "meanWaitTStates": 14591.2,
+            "jump22ElapsedTStates": 3624646
+          }
+        ]
+      },
+      {
+        "variant": 128,
+        "mode": "stand",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 38.42290979446841,
+        "minMeanMs": 38.226831881361186,
+        "maxMeanMs": 38.53411429699174,
+        "meanWaitT": 10253.56875,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136116.35,
+            "meanWaitTStates": 10087.7,
+            "jump22ElapsedTStates": 3006121
+          },
+          {
+            "phaseTStates": 4432,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 135886.05,
+            "meanWaitTStates": 9857.4,
+            "jump22ElapsedTStates": 3002867
+          },
+          {
+            "phaseTStates": 8864,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 135627.65,
+            "meanWaitTStates": 9599,
+            "jump22ElapsedTStates": 2996102
+          },
+          {
+            "phaseTStates": 13295,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 135586.75,
+            "meanWaitTStates": 9558.1,
+            "jump22ElapsedTStates": 2991370
+          },
+          {
+            "phaseTStates": 17727,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 135780.35,
+            "meanWaitTStates": 9751.7,
+            "jump22ElapsedTStates": 2989934
+          },
+          {
+            "phaseTStates": 22159,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136048.4,
+            "meanWaitTStates": 10019.75,
+            "jump22ElapsedTStates": 2990524
+          },
+          {
+            "phaseTStates": 26590,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136350.65,
+            "meanWaitTStates": 10322,
+            "jump22ElapsedTStates": 2992295
+          },
+          {
+            "phaseTStates": 31022,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136621.9,
+            "meanWaitTStates": 10593.25,
+            "jump22ElapsedTStates": 2995901
+          },
+          {
+            "phaseTStates": 35454,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136633.8,
+            "meanWaitTStates": 10605.15,
+            "jump22ElapsedTStates": 2997120
+          },
+          {
+            "phaseTStates": 39886,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136676.65,
+            "meanWaitTStates": 10648,
+            "jump22ElapsedTStates": 3000193
+          },
+          {
+            "phaseTStates": 44318,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136675.75,
+            "meanWaitTStates": 10647.1,
+            "jump22ElapsedTStates": 3001692
+          },
+          {
+            "phaseTStates": 48749,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136652.4,
+            "meanWaitTStates": 10623.75,
+            "jump22ElapsedTStates": 3002551
+          },
+          {
+            "phaseTStates": 53181,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136643.05,
+            "meanWaitTStates": 10614.4,
+            "jump22ElapsedTStates": 3005099
+          },
+          {
+            "phaseTStates": 57613,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136561.35,
+            "meanWaitTStates": 10532.7,
+            "jump22ElapsedTStates": 3006633
+          },
+          {
+            "phaseTStates": 62044,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136403.2,
+            "meanWaitTStates": 10374.55,
+            "jump22ElapsedTStates": 3008509
+          },
+          {
+            "phaseTStates": 66476,
+            "meanRawTStates": 126028.65,
+            "meanElapsedTStates": 136251.2,
+            "meanWaitTStates": 10222.55,
+            "jump22ElapsedTStates": 3007157
+          }
+        ]
+      },
+      {
+        "variant": 128,
+        "mode": "jump",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 42.83755885421072,
+        "minMeanMs": 42.65062448899039,
+        "maxMeanMs": 42.96811300008458,
+        "meanWaitT": 12518.0375,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151466.75,
+            "meanWaitTStates": 12044.25,
+            "jump22ElapsedTStates": 3380900
+          },
+          {
+            "phaseTStates": 4432,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151277.5,
+            "meanWaitTStates": 11855,
+            "jump22ElapsedTStates": 3375623
+          },
+          {
+            "phaseTStates": 8864,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151454.45,
+            "meanWaitTStates": 12031.95,
+            "jump22ElapsedTStates": 3373441
+          },
+          {
+            "phaseTStates": 13295,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151875.95,
+            "meanWaitTStates": 12453.45,
+            "jump22ElapsedTStates": 3378468
+          },
+          {
+            "phaseTStates": 17727,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152075.6,
+            "meanWaitTStates": 12653.1,
+            "jump22ElapsedTStates": 3382411
+          },
+          {
+            "phaseTStates": 22159,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152362.75,
+            "meanWaitTStates": 12940.25,
+            "jump22ElapsedTStates": 3390630
+          },
+          {
+            "phaseTStates": 26590,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152403.6,
+            "meanWaitTStates": 12981.1,
+            "jump22ElapsedTStates": 3393825
+          },
+          {
+            "phaseTStates": 31022,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152302.6,
+            "meanWaitTStates": 12880.1,
+            "jump22ElapsedTStates": 3393212
+          },
+          {
+            "phaseTStates": 35454,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152222.7,
+            "meanWaitTStates": 12800.2,
+            "jump22ElapsedTStates": 3391958
+          },
+          {
+            "phaseTStates": 39886,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152173.95,
+            "meanWaitTStates": 12751.45,
+            "jump22ElapsedTStates": 3391558
+          },
+          {
+            "phaseTStates": 44318,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152105.8,
+            "meanWaitTStates": 12683.3,
+            "jump22ElapsedTStates": 3390719
+          },
+          {
+            "phaseTStates": 48749,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 152072.95,
+            "meanWaitTStates": 12650.45,
+            "jump22ElapsedTStates": 3390512
+          },
+          {
+            "phaseTStates": 53181,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151996.85,
+            "meanWaitTStates": 12574.35,
+            "jump22ElapsedTStates": 3389736
+          },
+          {
+            "phaseTStates": 57613,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151916.05,
+            "meanWaitTStates": 12493.55,
+            "jump22ElapsedTStates": 3389456
+          },
+          {
+            "phaseTStates": 62044,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151724.75,
+            "meanWaitTStates": 12302.25,
+            "jump22ElapsedTStates": 3387010
+          },
+          {
+            "phaseTStates": 66476,
+            "meanRawTStates": 139422.5,
+            "meanElapsedTStates": 151616.35,
+            "meanWaitTStates": 12193.85,
+            "jump22ElapsedTStates": 3384346
+          }
+        ],
+        "jump22MeanSeconds": 0.9547739751614086
+      },
+      {
+        "variant": 128,
+        "mode": "walkjump",
+        "sample": "frames1..20",
+        "phases": 16,
+        "meanMs": 46.37446432095633,
+        "minMeanMs": 46.29697764244833,
+        "maxMeanMs": 46.447503453720145,
+        "meanWaitT": 14626.0375,
+        "phaseMeasurements": [
+          {
+            "phaseTStates": 0,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164468.65,
+            "meanWaitTStates": 14609.1,
+            "jump22ElapsedTStates": 3617070
+          },
+          {
+            "phaseTStates": 4432,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164416.4,
+            "meanWaitTStates": 14556.85,
+            "jump22ElapsedTStates": 3618461
+          },
+          {
+            "phaseTStates": 8864,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164232.95,
+            "meanWaitTStates": 14373.4,
+            "jump22ElapsedTStates": 3617474
+          },
+          {
+            "phaseTStates": 13295,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164210.75,
+            "meanWaitTStates": 14351.2,
+            "jump22ElapsedTStates": 3618128
+          },
+          {
+            "phaseTStates": 17727,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164296.1,
+            "meanWaitTStates": 14436.55,
+            "jump22ElapsedTStates": 3618707
+          },
+          {
+            "phaseTStates": 22159,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164304.3,
+            "meanWaitTStates": 14444.75,
+            "jump22ElapsedTStates": 3616871
+          },
+          {
+            "phaseTStates": 26590,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164292.15,
+            "meanWaitTStates": 14432.6,
+            "jump22ElapsedTStates": 3614837
+          },
+          {
+            "phaseTStates": 31022,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164482.15,
+            "meanWaitTStates": 14622.6,
+            "jump22ElapsedTStates": 3617689
+          },
+          {
+            "phaseTStates": 35454,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164567.15,
+            "meanWaitTStates": 14707.6,
+            "jump22ElapsedTStates": 3618695
+          },
+          {
+            "phaseTStates": 39886,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164632.6,
+            "meanWaitTStates": 14773.05,
+            "jump22ElapsedTStates": 3617554
+          },
+          {
+            "phaseTStates": 44318,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164582.9,
+            "meanWaitTStates": 14723.35,
+            "jump22ElapsedTStates": 3615625
+          },
+          {
+            "phaseTStates": 48749,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164635.2,
+            "meanWaitTStates": 14775.65,
+            "jump22ElapsedTStates": 3615745
+          },
+          {
+            "phaseTStates": 53181,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164650.95,
+            "meanWaitTStates": 14791.4,
+            "jump22ElapsedTStates": 3615959
+          },
+          {
+            "phaseTStates": 57613,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164744.65,
+            "meanWaitTStates": 14885.1,
+            "jump22ElapsedTStates": 3617676
+          },
+          {
+            "phaseTStates": 62044,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164714,
+            "meanWaitTStates": 14854.45,
+            "jump22ElapsedTStates": 3618477
+          },
+          {
+            "phaseTStates": 66476,
+            "meanRawTStates": 149859.55,
+            "meanElapsedTStates": 164538.5,
+            "meanWaitTStates": 14678.95,
+            "jump22ElapsedTStates": 3616624
+          }
+        ],
+        "jump22MeanSeconds": 1.0198270320561618
+      }
+    ]
+  },
+  "adaptation": {
+    "recommendedFixedStepMs": 47,
+    "physicalWalkPixelsPerUpdate": 2,
+    "nativeJumpUpdates": 22,
+    "jumpY": [
+      112,
+      94,
+      112
+    ],
+    "claim": "Rounded walking baseline; original standing, firing, and jumping loop costs differ."
+  },
+  "limitations": [
+    "Explicit buses are cycle-stepped. The ula replay also uses retained address-bus values on idle/no-MREQ ticks; these have not been independently checked for every undocumented CPU bus behavior.",
+    "Reported phase ranges are sample ranges within this model, not rigorous physical hardware bounds.",
+    "Memory-only sensitivity model omits no-MREQ and I/O contention and samples emitted memory request timing; use ula for the reported refined baseline.",
+    "Menu is bypassed after initialization. Unknown initial display phase is sampled; the deterministic RNG seed does not exhaust all enemies/screens.",
+    "No physical machine measurement or fixed universal 50ms cadence is claimed."
+  ]
+}

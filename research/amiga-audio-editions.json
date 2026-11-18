@@ -1,0 +1,295 @@
+{
+  "checkedOn": "2026-11-21",
+  "method": "Static comparison of decompressed ADF bytes. Find MOVEQ #effectId,D1 / BSR.W, resolve the signed displacement from the displacement-word address, and inspect the target instruction. Offsets are disk offsets, not RAM addresses.",
+  "conclusion": "All six additional images route the checked gameplay effects to a bare RTS. No working effects implementation was found in these images.",
+  "limits": [
+    "Archive labels are catalogue names, not independently verified original release dates.",
+    "QTX trainer copies share the same sound-dispatch code; six images do not imply six independent game revisions.",
+    "No physical-hardware playback or complete runtime patch trace was performed for these additional images.",
+    "This comparison does not establish that every possible Amiga edition lacks effects."
+  ],
+  "images": [
+    {
+      "edition": "Hewson PAL / QTX",
+      "source": "https://www.emu-land.net/computers/amiga/games/adf?act=getfile&id=7066",
+      "diskBytes": 901120,
+      "diskSha256": "47e8f4d3ce1397133038ddeb32b6afe17a6a9dea50060c99edc2228caec069fd",
+      "musicDriverDiskOffset": "0x1f000",
+      "musicDriverBytes": 2048,
+      "musicDriverSha256": "2b5a33a4b3c9e0ce2a9e945d1de7201ff4d2f05765bf8f3cca4a139376a4b421",
+      "calls": [
+        {
+          "event": "shot",
+          "effectId": "0x16",
+          "moveqDiskOffset": "0x18c66",
+          "bsrDiskOffset": "0x18c68",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "teleport",
+          "effectId": "0x1c",
+          "moveqDiskOffset": "0x17db8",
+          "bsrDiskOffset": "0x17dba",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "ammunition",
+          "effectId": "0x1f",
+          "moveqDiskOffset": "0x142d2",
+          "bsrDiskOffset": "0x142d4",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "grenades",
+          "effectId": "0x20",
+          "moveqDiskOffset": "0x14392",
+          "bsrDiskOffset": "0x14394",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        }
+      ]
+    },
+    {
+      "edition": "Hewson PAL / QTX + Band",
+      "source": "https://www.emu-land.net/computers/amiga/games/adf?act=getfile&id=7064",
+      "diskBytes": 901120,
+      "diskSha256": "a00efc3c6bdb018e14afb414210bfb6087b2adc60de8f6105917dd76fa4b33d2",
+      "musicDriverDiskOffset": "0x1f000",
+      "musicDriverBytes": 2048,
+      "musicDriverSha256": "2b5a33a4b3c9e0ce2a9e945d1de7201ff4d2f05765bf8f3cca4a139376a4b421",
+      "calls": [
+        {
+          "event": "shot",
+          "effectId": "0x16",
+          "moveqDiskOffset": "0x18c66",
+          "bsrDiskOffset": "0x18c68",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "teleport",
+          "effectId": "0x1c",
+          "moveqDiskOffset": "0x17db8",
+          "bsrDiskOffset": "0x17dba",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "ammunition",
+          "effectId": "0x1f",
+          "moveqDiskOffset": "0x142d2",
+          "bsrDiskOffset": "0x142d4",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "grenades",
+          "effectId": "0x20",
+          "moveqDiskOffset": "0x14392",
+          "bsrDiskOffset": "0x14394",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        }
+      ]
+    },
+    {
+      "edition": "Hewson PAL / QTX + Cosmos",
+      "source": "https://www.emu-land.net/computers/amiga/games/adf?act=getfile&id=7065",
+      "diskBytes": 901120,
+      "diskSha256": "d516988349097d1da52699a1ce533786cf3bb8420c66180fabfc89e16ea6eb29",
+      "musicDriverDiskOffset": "0x1f000",
+      "musicDriverBytes": 2048,
+      "musicDriverSha256": "2b5a33a4b3c9e0ce2a9e945d1de7201ff4d2f05765bf8f3cca4a139376a4b421",
+      "calls": [
+        {
+          "event": "shot",
+          "effectId": "0x16",
+          "moveqDiskOffset": "0x18c66",
+          "bsrDiskOffset": "0x18c68",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "teleport",
+          "effectId": "0x1c",
+          "moveqDiskOffset": "0x17db8",
+          "bsrDiskOffset": "0x17dba",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "ammunition",
+          "effectId": "0x1f",
+          "moveqDiskOffset": "0x142d2",
+          "bsrDiskOffset": "0x142d4",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "grenades",
+          "effectId": "0x20",
+          "moveqDiskOffset": "0x14392",
+          "bsrDiskOffset": "0x14394",
+          "dispatcherDiskOffset": "0x14832",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        }
+      ]
+    },
+    {
+      "edition": "Hewson PAL / Maverick",
+      "source": "https://www.planetemu.net/en/rom/commodore-amiga-games-adf/exolon-1988-hewson-pal-cr-maverick",
+      "diskBytes": 901120,
+      "diskSha256": "c37596742a5718120e6d5dd9c6b85a55e56dcc1a82419c3445899606b72fcaf7",
+      "musicDriverDiskOffset": "0x1ec00",
+      "musicDriverBytes": 2048,
+      "musicDriverSha256": "42530b83183cb6d2f59f8b991cf330a1b21a5b826e19addd4ed5769dd95c96b2",
+      "calls": [
+        {
+          "event": "shot",
+          "effectId": "0x16",
+          "moveqDiskOffset": "0x18c74",
+          "bsrDiskOffset": "0x18c76",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "teleport",
+          "effectId": "0x1c",
+          "moveqDiskOffset": "0x17dc6",
+          "bsrDiskOffset": "0x17dc8",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "ammunition",
+          "effectId": "0x1f",
+          "moveqDiskOffset": "0x142e0",
+          "bsrDiskOffset": "0x142e2",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "grenades",
+          "effectId": "0x20",
+          "moveqDiskOffset": "0x143a0",
+          "bsrDiskOffset": "0x143a2",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        }
+      ]
+    },
+    {
+      "edition": "Hewson PAL reissue / Maverick",
+      "source": "https://www.planetemu.net/en/rom/commodore-amiga-games-adf/exolon-1988-hewson-pal-cr-maverick-reissue",
+      "diskBytes": 901120,
+      "diskSha256": "613c98ae61f5247b80a8e3a6b178c5c8eb08c314a8011798bc9394d21319e462",
+      "musicDriverDiskOffset": "0x1ec00",
+      "musicDriverBytes": 2048,
+      "musicDriverSha256": "42530b83183cb6d2f59f8b991cf330a1b21a5b826e19addd4ed5769dd95c96b2",
+      "calls": [
+        {
+          "event": "shot",
+          "effectId": "0x16",
+          "moveqDiskOffset": "0x18c74",
+          "bsrDiskOffset": "0x18c76",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "teleport",
+          "effectId": "0x1c",
+          "moveqDiskOffset": "0x17dc6",
+          "bsrDiskOffset": "0x17dc8",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "ammunition",
+          "effectId": "0x1f",
+          "moveqDiskOffset": "0x142e0",
+          "bsrDiskOffset": "0x142e2",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "grenades",
+          "effectId": "0x20",
+          "moveqDiskOffset": "0x143a0",
+          "bsrDiskOffset": "0x143a2",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        }
+      ]
+    },
+    {
+      "edition": "Medalist NTSC / Maverick",
+      "source": "https://www.planetemu.net/en/rom/commodore-amiga-games-adf/exolon-1988-medalist-ntsc-cr-maverick",
+      "diskBytes": 901120,
+      "diskSha256": "2498a1ca95c0a8bf52184ad47c3053b7c68fd023b3e57f37f00e20f5c901d54c",
+      "musicDriverDiskOffset": "0x1ec00",
+      "musicDriverBytes": 2048,
+      "musicDriverSha256": "42530b83183cb6d2f59f8b991cf330a1b21a5b826e19addd4ed5769dd95c96b2",
+      "calls": [
+        {
+          "event": "shot",
+          "effectId": "0x16",
+          "moveqDiskOffset": "0x18c76",
+          "bsrDiskOffset": "0x18c78",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "teleport",
+          "effectId": "0x1c",
+          "moveqDiskOffset": "0x17dc6",
+          "bsrDiskOffset": "0x17dc8",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "ammunition",
+          "effectId": "0x1f",
+          "moveqDiskOffset": "0x142e0",
+          "bsrDiskOffset": "0x142e2",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        },
+        {
+          "event": "grenades",
+          "effectId": "0x20",
+          "moveqDiskOffset": "0x143a0",
+          "bsrDiskOffset": "0x143a2",
+          "dispatcherDiskOffset": "0x14840",
+          "dispatcherOpcode": "4e75",
+          "instruction": "RTS"
+        }
+      ]
+    }
+  ]
+}

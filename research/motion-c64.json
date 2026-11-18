@@ -1,0 +1,210 @@
+{
+  "inputs": {
+    "exolon.zip": "26c6203905c4992d6aaa8661093020629c9da4a10e5411d82518c03414eea641",
+    "Exolon_(HS).prg": "ab18247ac7a23b256068d746f348354274c474c71844d4dc16877805de4712b7",
+    "jssid.mos6510.js": "cdd7ad432f5a7ef5efb45faadbc33da31dcead53b2c6c7cdca8119808803ad16",
+    "ram-game.bin": "d0523af437b42628042a850c8ca69a5619f03f36acf8c66bec414bfffd2b92a4"
+  },
+  "pal": {
+    "cyclesPerSecond": 985248,
+    "cyclesPerLine": 63,
+    "linesPerFrame": 312,
+    "hardwareFramesPerSecond": 50.124542124542124
+  },
+  "addresses": {
+    "mainLoop": "$13c4..$1489",
+    "playerHorizontalUpdate": "$1c96..$1c9b",
+    "nativePlayerX": "$20",
+    "nativePlayerY": "$21",
+    "physicalX": "2 * $20 + 55 (ASL at $1bc9)",
+    "physicalY": "$21 + 54 (ADC at $1be1)",
+    "animationCycle": "$1c9d..$1cae: 0..9, repeated every10 logical updates",
+    "jumpIndex": "$1e; starts22, decremented before lookup at $1b35..$1b39",
+    "jumpTable": "$1c27..$1c3c (read backwards)",
+    "padding": "$14b2..$14d0 pads software draw count $2c to22",
+    "publishSpriteBuffer": "$5365..$537f copies state and sets$5380; does not wait",
+    "rasterIRQ": "$5385..$53d4, compare initially199 then246",
+    "audioIRQCall": "$53c6\u2192$7cda; menu alternative$53cf\u2192$6ada"
+  },
+  "scenarios": [
+    {
+      "name": "right-none",
+      "updates": 28,
+      "start": {
+        "t": 488025,
+        "cycles": 487843,
+        "x": 16,
+        "y": 112,
+        "jump": 0,
+        "anim": 0,
+        "frame": 3,
+        "level": 0
+      },
+      "end": {
+        "t": 1670010,
+        "cycles": 1669408,
+        "x": 44,
+        "y": 112,
+        "jump": 0,
+        "anim": 8,
+        "frame": 16,
+        "level": 0
+      },
+      "wallCycles": 1181985,
+      "msPerUpdate": 42.84581140991912,
+      "updatesPerSecond": 23.33950430843031,
+      "physicalPixelsPerSecond": 46.67900861686062
+    },
+    {
+      "name": "right-dma",
+      "updates": 28,
+      "start": {
+        "t": 524157,
+        "cycles": 488432,
+        "x": 16,
+        "y": 112,
+        "jump": 0,
+        "anim": 0,
+        "frame": 3,
+        "level": 0
+      },
+      "end": {
+        "t": 1795645,
+        "cycles": 1673229,
+        "x": 44,
+        "y": 112,
+        "jump": 0,
+        "anim": 8,
+        "frame": 16,
+        "level": 0
+      },
+      "wallCycles": 1271488,
+      "msPerUpdate": 46.090208469629694,
+      "updatesPerSecond": 21.696582272109527,
+      "physicalPixelsPerSecond": 43.393164544219054
+    },
+    {
+      "name": "right-ba",
+      "updates": 28,
+      "start": {
+        "t": 528616,
+        "cycles": 489021,
+        "x": 16,
+        "y": 112,
+        "jump": 0,
+        "anim": 0,
+        "frame": 3,
+        "level": 0
+      },
+      "end": {
+        "t": 1818533,
+        "cycles": 1673818,
+        "x": 44,
+        "y": 112,
+        "jump": 0,
+        "anim": 8,
+        "frame": 16,
+        "level": 0
+      },
+      "wallCycles": 1289917,
+      "msPerUpdate": 46.75824186977724,
+      "updatesPerSecond": 21.386603944284786,
+      "physicalPixelsPerSecond": 42.77320788856957
+    }
+  ],
+  "jump": {
+    "deltas": [
+      -4,
+      -4,
+      -2,
+      -2,
+      -2,
+      -1,
+      -1,
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      4,
+      4
+    ],
+    "upwardPixels": 18,
+    "updates": 22,
+    "firstApexMs": 394.9513219006788,
+    "firstLandingMs": 991.9360404689986,
+    "yByLogicalUpdate": [
+      112,
+      108,
+      104,
+      102,
+      100,
+      98,
+      97,
+      96,
+      95,
+      94,
+      94,
+      94,
+      94,
+      94,
+      95,
+      96,
+      97,
+      98,
+      100,
+      102,
+      104,
+      108,
+      112
+    ],
+    "relationshipToSharedModel": "The signed dy table exactly matches src/constants/rules.ts JUMP; no C64-specific jump change is justified by this evidence."
+  },
+  "recommendedSharedAdaptation": {
+    "intervalMs": 47,
+    "speedRatioVs30Hz": 0.7092198581560284,
+    "description": "47ms rounds the46.758ms modeled BA allowance case to a practical fixed presentation baseline. The shared model uses this as a C64-informed adaptation; native C64 remains scene-dependent."
+  },
+  "evidenceLevel": "Source instructions plus deterministic custom timing-model estimate; not cycle-exact VICE or hardware capture.",
+  "sources": {
+    "gameArchive": "https://www.c64games.de/hugo.php?art=d&fil=230&Dateiname=/e/exolon.zip",
+    "externalCpu": "https://raw.githubusercontent.com/jhohertz/jsSID/develop/js/jssid.mos6510.js",
+    "externalCpuPinnedBlob": "https://api.github.com/repos/jhohertz/jsSID/git/blobs/eb7d7ab7a335338b64a5b1701e9c52fd21515875",
+    "hardware": "https://www.cebix.net/VIC-Article.txt"
+  },
+  "probe": {
+    "file": "tools/recovery/timing/c64.mjs",
+    "command": "node tools/recovery/timing/c64.mjs /path/to/ram-game.bin /path/to/jssid.mos6510.js right ba 120",
+    "inputScenarios": [
+      "right",
+      "jump",
+      "idle"
+    ],
+    "vicModels": [
+      "none",
+      "dma",
+      "ba"
+    ],
+    "sampleLimit": [
+      29,
+      120
+    ],
+    "instructionLimit": 12000000
+  },
+  "limits": [
+    "Original is the same High Society archive used by existing C64 assets; a pristine publisher cassette is not established.",
+    "jsSID RTI semantics and indexed-store timing are corrected by the probe; its remaining arithmetic semantics are retained, including incomplete decimal arithmetic.",
+    "VIC registers are sampled at line boundaries and written at instruction boundaries. Sprite state/latching, CIA/ROM hardware and video collisions are not fully emulated.",
+    "dma steals40badline cycles and2cycles per enabled21-line sprite;ba also includes all3 BA warning cycles although actual RDY stalls only reads. These are illustrative allowances, not formal bounds on total emulator error.",
+    "First28 right updates are unobstructed. Later samples include screen0 collisions and respawn. Other screens and inputs may change native workload.",
+    "Fixed47ms is a reconstruction presentation baseline, not a claim of exact native C64 timing."
+  ]
+}

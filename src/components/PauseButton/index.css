@@ -1,0 +1,14 @@
+.pause-button[aria-pressed='true'] {
+    background: #e7ebde;
+    color: #13222a;
+    border-color: #e7ebde;
+}
+.pause-button[aria-pressed='true']:hover {
+    background: #fff;
+    border-color: #fff;
+}
+.pause-button_amiga[aria-pressed='true'],
+.pause-button_amiga[aria-pressed='true']:hover {
+    border-color: #a4f5db;
+    box-shadow: 0 0 0 2px #a4f5db;
+}

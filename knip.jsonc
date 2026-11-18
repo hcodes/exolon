@@ -1,0 +1,20 @@
+{
+    "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+    "entry": [
+        "src/entries/*.{ts,tsx}",
+        "src/compat/legacy-loader.ts",
+        "src/**/*.d.ts",
+        "tests/unit/*.test.ts",
+        "tests/**/*.d.ts",
+        // Loaded by the build stage list rather than literal imports.
+        "tools/build/boot.mjs",
+        "tools/build/html.mjs",
+        // Documented offline command-line probes, outside package.json scripts.
+        "tools/recovery/timing/{c64,cpc,sharp}.mjs",
+        "rolldown.config.mjs",
+    ],
+    "project": ["{src,tests,tools}/**/*.{ts,tsx,js,mjs}", "*.mjs"],
+    // Test-only reference modules are generated on demand outside dist.
+    // Letting Rolldown discover entries would hide genuinely unused source files.
+    "rolldown": false,
+}

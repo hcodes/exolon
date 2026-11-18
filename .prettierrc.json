@@ -1,0 +1,19 @@
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "printWidth": 100,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "semi": true,
+    "trailingComma": "all",
+    "endOfLine": "lf",
+    "overrides": [
+        {
+            "files": "src/entries/boot.ts",
+            "options": {
+                "trailingComma": "none"
+            }
+        }
+    ]
+}

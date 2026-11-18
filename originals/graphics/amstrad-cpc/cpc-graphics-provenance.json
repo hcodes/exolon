@@ -1,0 +1,114 @@
+{
+  "title": "Exolon — original Amstrad CPC graphics",
+  "version": 1,
+  "artifact": {
+    "file": "cpc-graphics.json",
+    "generator": "tools/graphics/cpc.mjs",
+    "command": "node tools/graphics/cpc.mjs /path/to/cpc-ram.bin /path/to/cpc-disk-loading.bin",
+    "sha256": "6646e0aa3509ebcb4087215c3940aa51e8bd19b399d5f52142977d8f5c5edd1a",
+    "bytes": 549708
+  },
+  "source": {
+    "title": "Exolon",
+    "publisher": "Hewson Consultants",
+    "year": 1987,
+    "programCredit": "Raffaele Cecco",
+    "archiveUrl": "https://acpc.me/emul/dsk/exolon,exolon.dsk",
+    "archiveBytes": 194816,
+    "archiveSha256": "f8cb122713118feb48fcd7193f77ca66ad86e4fb739c37088ec8f71d34e54fd9",
+    "diskLoader": "Aragorn, 1995; archived loading picture retained separately from the original game tables.",
+    "memoryBytes": 65536,
+    "memorySha256": "496d9dac1ed78cd9f0635ca751d33bf73073d515626ef3a05dfc02166a3059ec",
+    "commercialVerification": {
+      "archiveUrl": "https://acpc.me/ACME/LOGICIELS/LOGICIELS_CPC_COMMERCIAUX_CLASSES_PAR_NOM/E/Exolon.7z",
+      "archiveSha256": "14d500a20b5225adfc508f295da35fcafc79fbfa975d705e5071842ca3fff33e",
+      "file": "Exolon/Exolon_UK_[Original]_[Erbe].cdt",
+      "sha256": "32f84af268431975f72847f1cd2d53bcfd1d4db1de0c04eed3f62532b8e2cf30",
+      "codeSha256": "7ca7c603a1a900270d0d2927767181af2c215fc09d40c8bfd5f3a12543873e71",
+      "graphicsSha256": "eacf854fe1fbefe3e84f0f08fbf67b3c980df6b1c5bb1b751be78d6cf2cfdd63",
+      "comparison": "CDT turbo records 6 and 8 (sync/checksum removed) match all 27357 code bytes and 17904 graphics bytes in EXOLON.1/.2/.3 exactly."
+    }
+  },
+  "unpacking": {
+    "helper": "tools/recovery/cpc.mjs",
+    "command": "node tools/recovery/cpc.mjs /path/to/exolon,exolon.dsk /path/to/cpc-ram.bin /path/to/cpc-disk-loading.bin /path/to/original-erbe.cdt",
+    "description": "Extended DSK track sectors are sorted by sector ID. CP/M directory extents reconstruct the AMSDOS files, validated with header checksums. Copy EXOLON.1 to 0100 (6add bytes), EXOLON.2 to 6bdd (3424 bytes), EXOLON.3 to a001 (11cc bytes), as the original disk loader does. No CPU, machine ROM or emulator is included or required."
+  },
+  "decoding": {
+    "parserAddress": "0x3cdd",
+    "glyphRendererAddress": "0x3b92",
+    "blockPointerTable": "0x1305",
+    "blocks": 62,
+    "cell": "Two Mode 0 bytes per row, eight rows. Byte bits 7/3/5/1 form the left ink and 6/2/4/0 the right ink. Native pixels double horizontally to the shared 256x192 coordinates. Attributes retained in the drawing bytecode do not recolor pixels.",
+    "fontBase": "0x69dd",
+    "fontActualStart": "0x6bdd",
+    "fontCharacters": "32..90",
+    "paletteAddress": "0x3ef0",
+    "palette": "Original gate-array hardware inks; 0/128/255 RGB conversion is a browser presentation choice.",
+    "sprites": "Player at 93cd: 25 frames of 192 bytes (6 bytes/row x 32). Small at a68d: 45 frames of 64 bytes (4 bytes/row x 16). Shifted weapons at 921d: 9 frames of 48 bytes, two 24-byte phases (3 bytes/row x 8). Original software actors XOR pixels.",
+    "coordinates": "Signed local block coordinates, original draw order; shared JavaScript world supplies placements.",
+    "emptyBlocks": {
+      "ids": [
+        18,
+        41,
+        48,
+        49,
+        51
+      ],
+      "explanation": "Original immediate-FF no-op templates. ID18 is unused. ID41 occurs in screen22; IDs48/49 in screens25/26; ID51 in screens25/66. Original definitions remain empty."
+    },
+    "compatibilityBlocks": {
+      "ids": [
+        41,
+        48,
+        49,
+        51
+      ],
+      "layout": "Only shared ZX occupied-cell layouts are retained to display collision geometry. These arrangements are adaptations, not original CPC block definitions.",
+      "pixels": "Every tile copies an intact original CPC glyph: ground at 778d glyphs0..3/12..14/16..19, barrel at 8edd glyphs12/14/15/17/18/20. No ZX bitmap bytes, recoloring or newly drawn pixels.",
+      "absentArtwork": "The CPC 8a4d font ends after19glyphs (redhillglyphs19..27 absent); 8edd ends after21glyphs (diagonalglyphs21..30 absent); original ZX high-voltage font is absent entirely."
+    },
+    "sourceMapPlacementsSha256": "1cbd9a5130c0b97948c07b2ad5cb7eafd06ff64b53d11dc8f7e7bc05a890a85d",
+    "sourceMapComparison": "All 125 original CPC placement arrays at 490e exactly match world.json placements; checked by the generator.",
+    "proceduralPixels": "Enemy bullet at 1d9a XORs two one-byte scanlines 8a/88 at even native X and 45/44 at odd native X. Beam at 38e5 is the original 55/aa pair repeated eight times; 38ad copies it down a column and 394e removes it with XOR. Bullet at 10f5 XORs bytes 4d/8e for even native X, 04/cf/08 for odd native X. Star template at 302e is zero-filled; 3017 patches byte 3036 with random AND 54 before copying its glyph.",
+    "sharedWorld": "The original CPC code has 125 screen pointers at 490e; the browser deliberately retains the shared ZX-derived maps and behavior."
+  },
+  "loading": {
+    "file": "EXOLON.SCR",
+    "bytes": 16384,
+    "sha256": "9b06aa698f71ee227ad6087ca9d85dafd6bb95e13c7229c4d87195ffaf743c0b",
+    "mode": 1,
+    "screenWidth": 320,
+    "screenHeight": 200,
+    "rowBytes": 80,
+    "crop": {
+      "x": 32,
+      "y": 0,
+      "width": 256,
+      "height": 192
+    },
+    "firmwareInks": [
+      0,
+      5,
+      18,
+      26
+    ],
+    "gamePaletteIndices": [
+      0,
+      15,
+      5,
+      11
+    ],
+    "origin": "Picture preserved by the 1995 Aragorn disk; absent from the verified ERBE cassette. UK cassette editions have a planet loading picture, but byte identity with this disk copy has not been established.",
+    "reference": "https://cpcrulez.fr/GamesTest/exolon.htm",
+    "adaptation": "The cropped nonzero pixel mask above y184 exactly matches the original ZX loading picture. The browser masks baked stars using the same cleaned ZX artwork mask, then animates original CPC star sprites. No gameplay palettes or Mode0 artwork are changed."
+  },
+  "exclusions": [
+    "The original define-keys menu at rows 13 and 17 is hidden by the browser adaptation, whose controls are shared across rendering modes."
+  ],
+  "limitations": [
+    "The shared JavaScript world and behavior are adaptations, not a complete CPC gameplay implementation.",
+    "Digital RGB and browser scaling do not reproduce an analog CPC display."
+  ],
+  "rights": "Original commercial game artwork remains with its original rights holders. Archival availability does not establish a new license."
+}

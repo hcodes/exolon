@@ -1,0 +1,399 @@
+{
+  "platform": "sharp-mz800",
+  "sources": {
+    "game": {
+      "url": "https://github.com/MZPico/mz-catalog/tree/main/titles/exolnew",
+      "file": "exolnew.mzf",
+      "sha256": "57bf60e91a20d1f0357bd1fac0048fdca27381b7b29789511a7665a2191b35cf"
+    },
+    "ram": {
+      "sha256": "108ee5352b0eaf8c809f55c6624265e8c55b35a73534206a0d390f3ed322f78f",
+      "recovery": "node tools/recovery/sharp.mjs /path/to/exolnew.mzf /path/to/Z80.js /path/to/sharp-ram.bin",
+      "verifiedBootstrapInstructions": 1056,
+      "stopPc": "$6d60"
+    },
+    "cpu": {
+      "url": "https://github.com/DrGoldfire/Z80.js",
+      "sha256": "78609811c202d717c94d2f2aaf6f540d2d5c4d0485f723dedc42bf384625637b",
+      "usage": "User-provided offline research core; not included in browser game."
+    },
+    "hardware": {
+      "url": "https://www.idealine.info/sharpmz/mz-800/download/sm800.pdf",
+      "pages": {
+        "10": "17.7344MHz clock input",
+        "12": "PAL CPU clock is crystal/5",
+        "19": "One-byte VRAM write buffer; normally no write WAIT in MZ800 mode. Reads can wait; 16-color writes involve Plane IV and two internal CPU cycles.",
+        "7-8": "IN E0/E1 VRAM banking"
+      }
+    }
+  },
+  "probe": {
+    "path": "tools/recovery/timing/sharp.mjs",
+    "usage": "node tools/recovery/timing/sharp.mjs --memory /path/to/sharp-ram.bin --z80 /path/to/Z80.js --mode walk",
+    "modes": [
+      "stand",
+      "walk",
+      "crouch",
+      "shot",
+      "jump",
+      "walkjump"
+    ],
+    "defaultFrames": 50,
+    "maxFrames": 100,
+    "instructionBudget": 20000000,
+    "output": "JSON with complete native loop T-states, player coordinates, I/O counts and VRAM accesses."
+  },
+  "addresses": {
+    "entry": "6d60",
+    "menuSkippedAfterTableInitialization": "6da1",
+    "startGame": "758a",
+    "mainLoop": "75be",
+    "playerUpdate": "81a4",
+    "jumpDeltas": "826a..827f (read reversed)",
+    "playerX": "82f5, two-pixel units",
+    "playerY": "82f6",
+    "jumpPhase": "82f7",
+    "fixedDelay": "b0b7",
+    "fixedDelayCall": "7668 (BC=500)"
+  },
+  "clockHz": 3546880,
+  "measurement": {
+    "sample": "Loops1..20 inclusive after loop0. Native keyboard I/O with no game-code patches; first-screen walk before further enemies appear.",
+    "scenarios": {
+      "stand": {
+        "sample": "frames 1 through 20 inclusive; first full game loop excluded",
+        "minTStates": 136146,
+        "meanTStates": 136146.7,
+        "maxTStates": 136147,
+        "meanMillisecondsAt3546880Hz": 38.384918576326235,
+        "meanUpdatesPerSecond": 26.05189843014924,
+        "xFirst": 16,
+        "xLast": 16,
+        "meanVramReads": 0,
+        "meanVramWrites": 864,
+        "haltCount": 0
+      },
+      "walk": {
+        "sample": "frames 1 through 20 inclusive; first full game loop excluded",
+        "minTStates": 155837,
+        "meanTStates": 158130.75,
+        "maxTStates": 160165,
+        "meanMillisecondsAt3546880Hz": 44.583056094370264,
+        "meanUpdatesPerSecond": 22.430046022041886,
+        "xFirst": 18,
+        "xLast": 37,
+        "meanVramReads": 0,
+        "meanVramWrites": 1120,
+        "haltCount": 0
+      },
+      "crouch": {
+        "sample": "frames 1 through 20 inclusive; first full game loop excluded",
+        "minTStates": 135563,
+        "meanTStates": 135563.7,
+        "maxTStates": 135564,
+        "meanMillisecondsAt3546880Hz": 38.22054876398413,
+        "meanUpdatesPerSecond": 26.163936215963417,
+        "xFirst": 16,
+        "xLast": 16,
+        "meanVramReads": 0,
+        "meanVramWrites": 864,
+        "haltCount": 0
+      },
+      "shot": {
+        "sample": "frames 1 through 20 inclusive; first full game loop excluded",
+        "minTStates": 136184,
+        "meanTStates": 145748.15,
+        "maxTStates": 150461,
+        "meanMillisecondsAt3546880Hz": 41.09193150036088,
+        "meanUpdatesPerSecond": 24.335677674124852,
+        "xFirst": 16,
+        "xLast": 16,
+        "meanVramReads": 0,
+        "meanVramWrites": 874.3,
+        "haltCount": 0
+      },
+      "jump": {
+        "sample": "frames 1 through 20 inclusive; first full game loop excluded",
+        "minTStates": 135373,
+        "meanTStates": 147852.2,
+        "maxTStates": 156632,
+        "meanMillisecondsAt3546880Hz": 41.685142998917364,
+        "meanUpdatesPerSecond": 23.98936234969787,
+        "xFirst": 16,
+        "xLast": 16,
+        "meanVramReads": 0,
+        "meanVramWrites": 1056,
+        "haltCount": 0,
+        "jump": {
+          "updates": 22,
+          "yStart": 112,
+          "yApex": 94,
+          "yEnd": 112,
+          "totalTStates": 3281496,
+          "seconds": 0.9251781847708409,
+          "tableHex": "04 04 02 02 02 01 01 01 01 00 00 00 00 ff ff ff ff fe fe fe fc fc"
+        }
+      },
+      "walkjump": {
+        "sample": "frames 1 through 20 inclusive; first full game loop excluded",
+        "minTStates": 154905,
+        "meanTStates": 157723,
+        "maxTStates": 160165,
+        "meanMillisecondsAt3546880Hz": 44.46809590400577,
+        "meanUpdatesPerSecond": 22.48803281702732,
+        "xFirst": 18,
+        "xLast": 37,
+        "meanVramReads": 0,
+        "meanVramWrites": 1120,
+        "haltCount": 0,
+        "jump": {
+          "updates": 22,
+          "yStart": 112,
+          "yApex": 94,
+          "yEnd": 112,
+          "totalTStates": 3466436,
+          "seconds": 0.9773197852760737,
+          "tableHex": "04 04 02 02 02 01 01 01 01 00 00 00 00 ff ff ff ff fe fe fe fc fc"
+        }
+      }
+    },
+    "walkTrace": [
+      {
+        "frame": 0,
+        "cycles": 162552,
+        "x": 17,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1152
+      },
+      {
+        "frame": 1,
+        "cycles": 160165,
+        "x": 18,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 2,
+        "cycles": 158117,
+        "x": 19,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 3,
+        "cycles": 155853,
+        "x": 20,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 4,
+        "cycles": 158426,
+        "x": 21,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 5,
+        "cycles": 160157,
+        "x": 22,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 6,
+        "cycles": 158108,
+        "x": 23,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 7,
+        "cycles": 155846,
+        "x": 24,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 8,
+        "cycles": 158417,
+        "x": 25,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 9,
+        "cycles": 160148,
+        "x": 26,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 10,
+        "cycles": 158101,
+        "x": 27,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 11,
+        "cycles": 155838,
+        "x": 28,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 12,
+        "cycles": 158415,
+        "x": 29,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 13,
+        "cycles": 160147,
+        "x": 30,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 14,
+        "cycles": 158099,
+        "x": 31,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 15,
+        "cycles": 155837,
+        "x": 32,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 16,
+        "cycles": 158418,
+        "x": 33,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 17,
+        "cycles": 160149,
+        "x": 34,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 18,
+        "cycles": 158099,
+        "x": 35,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 19,
+        "cycles": 155847,
+        "x": 36,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 20,
+        "cycles": 158428,
+        "x": 37,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 21,
+        "cycles": 160158,
+        "x": 38,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 22,
+        "cycles": 158111,
+        "x": 39,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      },
+      {
+        "frame": 23,
+        "cycles": 155856,
+        "x": 40,
+        "y": 112,
+        "jump": 0,
+        "vramReads": 0,
+        "vramWrites": 1120
+      }
+    ]
+  },
+  "adaptation": {
+    "recommendedFixedStepMs": 45,
+    "physicalWalkPixelsPerUpdate": 2,
+    "measuredWalkPixelsPerSecond": 44.86009204408377,
+    "nativeJumpUpdates": 22,
+    "jumpY": [
+      112,
+      94,
+      112
+    ],
+    "claim": "Rounded CPU-only walking baseline44.583056ms, not a universal native loop period."
+  },
+  "limits": [
+    "VRAM banking is modeled with a separate shadow; GDG plane operations and hardware WAIT timing are not emulated.",
+    "Captured clean walk loops perform1120 VRAM writes and zero reads; standing loops864 writes and zero reads. Pixel values do not feed gameplay in these captured loops.",
+    "No HALT or VBL polling occurs in the50 captured loops. The native fixed BC500 LDIR delay costs10605T including CALL.",
+    "The hardware manual supports small usual buffered-write overhead but does not establish physical frame duration for this port.",
+    "Menu bypass changes the R-based RNG seed. One deterministic first-screen sample does not establish timing for all enemies/screens.",
+    "Native sound rates documented elsewhere as approximations are not used as evidence for gameplay cadence."
+  ]
+}

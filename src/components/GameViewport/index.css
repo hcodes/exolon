@@ -1,0 +1,201 @@
+.game-viewport {
+    position: relative;
+    border: 1px solid #242424;
+    border-radius: 9px 9px 0 0;
+    overflow: hidden;
+    background: #000;
+    box-shadow: none;
+}
+.game-viewport__display {
+    position: relative;
+    background: #000;
+    isolation: isolate;
+}
+.game-viewport__display .game-viewport__canvas {
+    display: block;
+    width: 100%;
+    outline: none;
+    aspect-ratio: 256/192;
+    image-rendering: pixelated;
+    background: #000;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.game-app:not(.game-app_touch):not(.game-app_selecting) .game-viewport,
+.game-app_fullscreen .game-viewport {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+.game-app_fullscreen .game-viewport {
+    border-radius: 0;
+}
+.game-app:not(.game-app_touch):not(.game-app_selecting) .game-viewport__display,
+.game-app_fullscreen .game-viewport__display {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+.game-app:not(.game-app_touch):not(.game-app_selecting) .game-viewport__canvas,
+.game-app_fullscreen .game-viewport__canvas {
+    flex: 1;
+    min-height: 0;
+    height: 0;
+    width: 100%;
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+.game-viewport__canvas[data-graphics='remastered'],
+.game-viewport__canvas[data-graphics='split'] {
+    image-rendering: auto;
+}
+.game-viewport__canvas_grayscale {
+    filter: grayscale(1);
+}
+.game-viewport__split-divider {
+    position: absolute;
+    z-index: 3;
+    width: 44px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #eaffff;
+    transform: translateX(-50%);
+    cursor: ew-resize;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+}
+.game-viewport__split-divider[hidden] {
+    display: none;
+}
+.game-viewport__split-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 1px);
+    width: 2px;
+    background: #d0faff;
+    box-shadow: 0 0 0 1px #06121c99;
+}
+.game-viewport__split-grip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 48px;
+    border: 1px solid #bcebf1;
+    border-radius: 7px;
+    background: #102330ed;
+    box-shadow: 0 2px 12px #0008;
+    transform: translate(-50%, -50%);
+}
+.game-viewport__split-icon {
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+}
+.game-viewport__split-divider:focus-visible {
+    outline: none;
+}
+.game-viewport__split-divider:focus-visible .game-viewport__split-grip {
+    outline: 2px solid #a4f5db;
+    outline-offset: 3px;
+}
+.game-viewport__split-divider:hover {
+    background: transparent;
+}
+
+.game-app_touch .game-viewport__canvas {
+    touch-action: manipulation;
+}
+
+@media (orientation: portrait) {
+    .game-app_touch:not(.game-app_tv) .game-viewport {
+        flex: none;
+        margin-top: auto;
+    }
+    .game-app_touch:not(.game-app_tv) .game-viewport__canvas {
+        flex: none;
+        height: auto;
+    }
+}
+
+@media (orientation: landscape) {
+    .game-app_touch .game-viewport {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        flex-direction: column;
+    }
+    .game-app_touch .game-viewport__display {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        flex-direction: column;
+    }
+    .game-app_touch .game-viewport__canvas {
+        flex: 1;
+        min-height: 0;
+        height: 0;
+        width: 100%;
+        aspect-ratio: auto;
+        object-fit: contain;
+    }
+}
+.game-app_legacy:not(.game-app_touch):not(.game-app_selecting):not(.game-app_tv) .game-viewport,
+.game-app_legacy:not(.game-app_touch):not(.game-app_selecting):not(.game-app_tv)
+    .game-viewport__display,
+.game-app_legacy:not(.game-app_tv) .game-viewport,
+.game-app_legacy:not(.game-app_tv) .game-viewport__display {
+    display: block;
+    flex: none;
+}
+.game-app_legacy:not(.game-app_touch):not(.game-app_selecting):not(.game-app_tv)
+    .game-viewport__canvas,
+.game-app_legacy:not(.game-app_tv) .game-viewport__canvas {
+    display: block;
+    aspect-ratio: auto;
+    flex: none;
+}
+.game-app_legacy:not(.game-app_touch):not(.game-app_tv) .game-viewport__canvas,
+.game-app_legacy-landscape:not(.game-app_tv) .game-viewport__canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.game-app_tv .game-viewport,
+.game-app_tv .game-viewport__display {
+    display: flex;
+    flex: 1 1 0%;
+    min-height: 0;
+    flex-direction: column;
+}
+.game-app_tv .game-viewport__canvas {
+    position: static;
+    flex: 1 1 0%;
+    min-height: 0;
+    height: 0;
+    width: 100%;
+    aspect-ratio: auto;
+    object-fit: contain;
+    transform: none;
+}
+
+.game-app_tv .game-viewport__split-divider:focus {
+    outline: 3px solid #a4f5db;
+    outline-offset: 3px;
+}

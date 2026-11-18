@@ -1,0 +1,35 @@
+.platform-select {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #b7cbcc;
+    min-width: 0;
+}
+.game-app_touch .platform-select__control {
+    min-height: 44px;
+    font-size: 14px;
+}
+.game-app_tv .platform-select {
+    font-size: 16px;
+}
+.game-app_tv .platform-select__control {
+    min-height: 44px;
+    font-size: 16px;
+    padding: 6px;
+}
+.platform-select__status {
+    flex-basis: 100%;
+    max-width: 280px;
+    color: #ffc779;
+    line-height: 1.5;
+}
+.platform-select__status[hidden] {
+    display: none;
+}
+
+.settings-panel .platform-select,
+.settings-panel .platform-select__control {
+    font-size: inherit;
+}

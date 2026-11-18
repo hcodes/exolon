@@ -1,0 +1,20 @@
+.fps-counter {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 4;
+    padding: 4px 6px;
+    border-radius: 3px;
+    background: #000c;
+    color: #fff;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.2;
+    pointer-events: none;
+}
+.fps-counter[hidden] {
+    display: none;
+}
+.game-app_tv .fps-counter {
+    font-size: 20px;
+}

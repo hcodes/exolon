@@ -1,0 +1,11 @@
+.settings-panel__card {
+    max-height: 95vh;
+    max-height: 95dvh;
+}
+.settings-panel__fps-choice {
+    display: flex;
+    align-items: center;
+}
+.settings-panel__fps-checkbox {
+    margin-right: 8px;
+}

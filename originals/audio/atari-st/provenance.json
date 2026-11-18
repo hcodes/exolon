@@ -1,0 +1,203 @@
+{
+  "source": {
+    "url": "https://sndh.atari.org/?ID=1558",
+    "formatReference": "https://sndh.atari.org/fileformat.php",
+    "bytes": 4032,
+    "sha256": "f7fedb6ff4835186dec8b8d8463173d5af6f7a3430bf20837aef8cb89ec15b38",
+    "composer": "Dave Rogers",
+    "year": "1988",
+    "ripper": "Grazey / PHF",
+    "converter": "Grazey / PHF",
+    "subtunes": 2,
+    "frequencyHz": 50,
+    "metadataFrames": [
+      5198,
+      158
+    ]
+  },
+  "entryOffsets": {
+    "init": "0x0 -> 0x78",
+    "exit": "0x4 -> 0x9e",
+    "play": "0x8 -> 0xa4",
+    "nativeDriver": "0x2a4",
+    "nativeTick": "0x35c",
+    "nativeYmWrites": "0x344"
+  },
+  "tracks": [
+    {
+      "subtune": 1,
+      "originalDriverD1": 1,
+      "role": "main music: original boot selects D1=1; music toggle and post-Game-Over restore select1",
+      "prefixTicks": 1,
+      "loopStartFrame": 1,
+      "loopEndFrame": 10399,
+      "loopTicks": 10398,
+      "loopSeconds": 206.470703125,
+      "phraseTicks": 5199,
+      "phraseSeconds": 103.2353515625,
+      "metadataFrames": 5198,
+      "phaseExplanation": "After5199 ticks exact driver state differs only SNDH+$6d2, channelC+$30 arpeggio parity. After10398 ticks entire state repeats. Output occurs before driver tick, hence first emitted steady-state loop begins frame1.",
+      "pcmLoopStartSample": 876,
+      "pcmLoopEndSample": 9106234,
+      "loopStartSeconds": 0.019863945578231294,
+      "loopEndSeconds": 206.49056689342405,
+      "durationSeconds": 206.49056689342405,
+      "archiveDurationSeconds": 207.98
+    },
+    {
+      "subtune": 2,
+      "originalDriverD1": 7,
+      "role": "Game Over: original offset0x8d2 selects D1=7 and calls native init at0x8d4",
+      "loop": false,
+      "lastNonzeroVolumeFrame": 156,
+      "firstAllMutedFrame": 157,
+      "metadataFrames": 158,
+      "metadataSeconds": 3.16,
+      "stopTicksByChannel": [
+        152,
+        152,
+        156
+      ],
+      "durationSeconds": 3.137392290249433,
+      "restoreMainAfterMilliseconds": 2949.1205
+    }
+  ],
+  "trace": {
+    "layout": "raw interleaved14 bytes per50Hz frame, R0..R13 after ordered emitted writes",
+    "writeLayout": "JSON tuples[frame,register,value], register order13..0 every tick",
+    "chip": "YM2149",
+    "clockHz": 2000000,
+    "envelopeUsed": false,
+    "portRegisters14And15Written": false,
+    "frameRate": "Driver tick domain; native IRQ3072/61Hz, archived SNDH replay50Hz"
+  },
+  "renderer": {
+    "source": "https://github.com/true-grue/ayumi",
+    "isYm": 1,
+    "clockHz": 2000000,
+    "sampleRate": 44100,
+    "channels": "mono",
+    "gainPerChannel": 0.3333333333333333,
+    "dcFilter": "upstream ayumi_remove_dc",
+    "resampling": "upstream8x FIR",
+    "license": "MIT",
+    "tickRateHz": 50.36065573770492,
+    "archiveTickRateHz": 50,
+    "archiveRecordings": [
+      "archive/title-50hz.wav",
+      "archive/game-over-50hz.wav"
+    ]
+  },
+  "limits": [
+    "FRMS is archive metadata, not a reliable exact loop boundary here.",
+    "Tick-level PSG writes captured exactly; writes are applied together at50Hz, without intratick CPU bus timing.",
+    "PCM models YM tone/noise/DAC and digital filtering, not ST analog output circuitry.",
+    "Exact driver-state loop does not imply matching PSG oscillator/noise phase at WAV loop seam.",
+    "No effects have been invented; other original driver selections may contain SFX if verified against game call sites.",
+    "Game Over main-music restoration uses the original busy loop nominal23592964cycles at8MHz (2.9491205s); interrupt service and bus contention overhead are not simulated.",
+    "Archive50Hz WAVs preserve the previously recovered SNDH recordings byte-for-byte; production WAVs are rerendered at original TimerA3072/61Hz with the same2MHz YM clock, so pitch is not resampled."
+  ],
+  "files": {
+    "LICENSE-ayumi.txt": {
+      "bytes": 1090,
+      "sha256": "20bb643965c0ddd04e0b74aed83aa00c5ca0afb4805a681a60cbe4827cea66da"
+    },
+    "archive/game-over-50hz.wav": {
+      "bytes": 278756,
+      "sha256": "be8e18d4f2fb6e55267a90abd5616de2cbd9479796f33426f1f39abfc455a43d"
+    },
+    "archive/title-50hz.wav": {
+      "bytes": 18343880,
+      "sha256": "6e260eafc5476ceae9022f9402256afd4164e20c9df29e6fee90131fdd7b1c5f"
+    },
+    "game-over.wav": {
+      "bytes": 276762,
+      "sha256": "5beac0fd6c1a534921222db6f379bd2eafd110543d3f582b05212303f81eec64"
+    },
+    "game-over.ym14": {
+      "bytes": 2212,
+      "sha256": "ee201e5cb9e719e11553625d24b2de4c249c68d47af08d8ba55b428b427d8ed7"
+    },
+    "music-lifecycle.bin": {
+      "bytes": 200,
+      "sha256": "f21a7e99aa9d7edc9fb540029de0284e790e4f18052e7e61300fac2a7fbb4784"
+    },
+    "native-driver.bin": {
+      "bytes": 3344,
+      "sha256": "0358e5bff19752abd99fccce3225a4cd4664bbb5cc9949d0bc1c72cadee51ebb"
+    },
+    "original-verification.json": {
+      "bytes": 627,
+      "sha256": "97872c0e5e1bb91330d26ed708c8304429870a75a9815a633e1f7114810b9e8f"
+    },
+    "original.sndh": {
+      "bytes": 4032,
+      "sha256": "f7fedb6ff4835186dec8b8d8463173d5af6f7a3430bf20837aef8cb89ec15b38"
+    },
+    "title.wav": {
+      "bytes": 18212512,
+      "sha256": "7958a15639d5b0fd442114ef095b3d38d1ec471380dd84c574ef856f4084af4a"
+    },
+    "title.ym14": {
+      "bytes": 145586,
+      "sha256": "b6bff708bde51b8561e3d7795c3f7c8723835f69678c5b34d965be740489cd58"
+    }
+  },
+  "originalExecutableVerification": {
+    "originalMainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638",
+    "initOffset": "0x21d0",
+    "irqTickOffset": "0x2288",
+    "results": [
+      {
+        "subtune": 1,
+        "originalSelector": 1,
+        "frames": 12000,
+        "differentBytes": 0,
+        "firstDifferentFrame": null,
+        "sha256": "46cf2aaf0fc34c6de15b00443ddf53cbcb1320a9b50e6086a82eac86cbcf8bbf"
+      },
+      {
+        "subtune": 2,
+        "originalSelector": 7,
+        "frames": 600,
+        "differentBytes": 0,
+        "firstDifferentFrame": null,
+        "sha256": "2726f077be22355243b01bef4511aa023dfd84cd5d660e8f2171f8ad84cb2fdf"
+      }
+    ]
+  },
+  "originalExecutableEntries": {
+    "initOffset": "0x21d0",
+    "irqTickOffset": "0x2288",
+    "stopOffset": "0x2234",
+    "gameOverCallOffset": "0x8d4",
+    "toggleOffset": "0x213c",
+    "nativeDriverEndOffset": "0x2ee0"
+  },
+  "reproduce": "python tools/audio/atari-st.py /path/to/Exolon.sndh /path/to/recovered/original-main.bin [output-directory]; requires machine68k0.5.2 and a C compiler, offline only",
+  "nativeTiming": {
+    "mfpClockHz": 2457600,
+    "timerNumber": 0,
+    "timerControl": 7,
+    "prescaler": 200,
+    "data": 244,
+    "frequencyNumerator": 3072,
+    "frequencyDenominator": 61,
+    "frequencyHz": 50.36065573770492,
+    "timerSetupOffset": "0x2196",
+    "timerCallOffset": "0x21ae",
+    "tickSeconds": 0.019856770833333332,
+    "pcmSampleRate": 44100,
+    "sampleRounding": "ceil at each captured tick boundary; loop indices are native PCM sample boundaries",
+    "ymClockHz": 2000000,
+    "playbackRate": 1,
+    "gameOverBusyWaitCycles": 23592964,
+    "nominalCpuClockHz": 8000000,
+    "gameOverRestoreDelaySeconds": 2.9491205,
+    "references": [
+      "https://bitsavers.computerhistory.org/pdf/atari/ST/Atari_ST_GEM_Programming_1986/GEM_0087.pdf",
+      "https://www.tautec-electronics.de/Datenblaetter/Schaltkreise/MC68901.pdf",
+      "https://www.cpcwiki.eu/imgs/b/b1/Atari_ST_-_Hardware_Specification.pdf"
+    ]
+  }
+}

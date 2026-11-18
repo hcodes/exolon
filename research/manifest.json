@@ -1,0 +1,19 @@
+{
+  "title": "Exolon",
+  "platform": "ZX Spectrum",
+  "source": "https://worldofspectrum.net/pub/sinclair/games/e/Exolon.tap.zip",
+  "zipSha256": "e07e09ba7b401e9b5b296930496cdc2020d761157a4284b250bf2ba117ca2214",
+  "tapSha256": "31537fa52ce1e197c129a80d4e4e1efefceff58726471a0d5a571add45ab5f77",
+  "tapBytes": 42957,
+  "blocks": 8,
+  "gameBlockIndex": 7,
+  "gameBytes": 37536,
+  "entryPoint": "0x6d60",
+  "screenTable": "0xc7f4",
+  "screenCount": 125,
+  "blockTable": "0x852e",
+  "blockCount": 62,
+  "disassembly": "https://github.com/rusarh/exolon-esl",
+  "disassemblyCredit": "Raffaele Cecco; disassembly by Sergey Erokhin (ESL), 2014; CC BY-SA 3.0",
+  "runtimeVerified": false
+}

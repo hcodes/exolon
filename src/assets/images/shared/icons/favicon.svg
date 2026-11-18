@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 16 16" shape-rendering="crispEdges">
+    <title>Exolon</title>
+    <rect x="0" y="0" width="16" height="16" fill="#000000" />
+    <rect x="4" y="4" width="2" height="10" fill="#665500" />
+    <rect x="4" y="4" width="9" height="2" fill="#665500" />
+    <rect x="4" y="8" width="7" height="2" fill="#665500" />
+    <rect x="4" y="12" width="9" height="2" fill="#665500" />
+    <rect x="3" y="3" width="2" height="10" fill="#ffe600" />
+    <rect x="3" y="3" width="9" height="2" fill="#ffe600" />
+    <rect x="3" y="7" width="7" height="2" fill="#ffe600" />
+    <rect x="3" y="11" width="9" height="2" fill="#ffe600" />
+    <rect x="2" y="14" width="3" height="1" fill="#ff3030" />
+    <rect x="5" y="14" width="3" height="1" fill="#ffdf30" />
+    <rect x="8" y="14" width="3" height="1" fill="#30df60" />
+    <rect x="11" y="14" width="3" height="1" fill="#30bfff" />
+</svg>

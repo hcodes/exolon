@@ -1,0 +1,33 @@
+.home-panel {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 52px 12px 12px;
+    padding-top: calc(max(12px, env(safe-area-inset-top)) + 40px);
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+    background: transparent;
+}
+.home-panel__content {
+    max-width: 100%;
+    min-width: 0;
+    padding: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid #536c77;
+    border-radius: 6px;
+    background: #0b121c;
+    box-shadow: 0 4px 16px #0008;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+}
+.game-app_touch .home-panel,
+.game-app_tv .home-panel {
+    padding-top: 64px;
+    padding-top: calc(max(12px, env(safe-area-inset-top)) + 52px);
+}
+@media (pointer: coarse) {
+    .home-panel {
+        padding-top: 64px;
+        padding-top: calc(max(12px, env(safe-area-inset-top)) + 52px);
+    }
+}

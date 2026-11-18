@@ -1,0 +1,132 @@
+export interface VoiceEvent {
+    channel: number;
+    seconds: number;
+    endSeconds: number;
+    note: number;
+    seed?: number;
+    slide?: number;
+    volume?: number;
+    decay?: number;
+    noiseRate?: number;
+    noiseSlide?: number;
+    duty?: number;
+}
+export interface AudioProgram {
+    durationSeconds: number;
+    events: readonly VoiceEvent[];
+}
+
+// Offline musical stylization, deliberately not a hardware/APU emulator.
+// Channel 0/1: pulse, channel 2: 32-step four-bit wave, channel 3: 15-bit noise.
+const BASS_WAVE = [
+    15, 15, 14, 13, 12, 11, 10, 9, 8, 8, 7, 6, 5, 4, 3, 2, 0, 0, 1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 10,
+    11, 12, 13,
+];
+const GAINS = [0.29, 0.16, 0.23, 0.13];
+const hz = (note: number) => 440 * 2 ** ((note - 69) / 12);
+
+// Use handheld-style discrete pitch dividers and 64 Hz volume steps. No
+// register timing, DAC model or exact device reconstruction is asserted.
+function frequency(note: number, channel: number) {
+    const clock = channel === 2 ? 65536 : 131072;
+    const divider = Math.max(1, Math.min(2048, Math.round(clock / hz(note))));
+    return clock / divider;
+}
+
+export function renderProgram(program: AudioProgram, sampleRate = 44100) {
+    if (!Number.isInteger(sampleRate) || sampleRate < 8000 || sampleRate > 192000)
+        throw new RangeError('Invalid sample rate.');
+    if (
+        !Number.isFinite(program.durationSeconds) ||
+        program.durationSeconds <= 0 ||
+        program.durationSeconds > 180
+    )
+        throw new RangeError('Invalid program duration.');
+    const samples = new Float32Array(Math.ceil(program.durationSeconds * sampleRate));
+    for (const event of program.events) {
+        const { channel, seconds, endSeconds } = event;
+        if (
+            !Number.isInteger(channel) ||
+            channel < 0 ||
+            channel > 3 ||
+            !Number.isFinite(seconds) ||
+            !Number.isFinite(endSeconds) ||
+            seconds < 0 ||
+            endSeconds <= seconds ||
+            endSeconds > program.durationSeconds
+        )
+            throw new RangeError('Invalid voice event.');
+        const start = Math.round(seconds * sampleRate),
+            length = Math.round((endSeconds - seconds) * sampleRate);
+        let phase = 0,
+            noisePhase = 0,
+            lfsr = event.seed || 0x5a17,
+            control = -1,
+            pitch = 0,
+            volume = 0;
+        for (let index = 0; index < length && start + index < samples.length; index++) {
+            const time = index / sampleRate,
+                progress = index / length;
+            const tick = Math.floor(time * 64);
+            if (tick !== control) {
+                control = tick;
+                const glide = event.slide || 0;
+                pitch = frequency(event.note + (glide * Math.floor(time * 128)) / 128, channel);
+                // Quantized decay retains short, dry handheld articulation.
+                volume =
+                    Math.max(
+                        0,
+                        Math.floor((event.volume ?? 12) * (1 - (event.decay ?? 0.35) * progress)),
+                    ) / 15;
+            }
+            let value = 0;
+            // Four offline sub-samples soften pulse edges without adding any
+            // playback computation or a sampled/orchestral instrument bank.
+            for (let oversample = 0; oversample < 4; oversample++) {
+                if (channel === 3) {
+                    noisePhase +=
+                        ((event.noiseRate || 4200) * (1 + (event.noiseSlide || 0) * progress)) /
+                        (sampleRate * 4);
+                    while (noisePhase >= 1) {
+                        lfsr = (lfsr >>> 1) | (((lfsr ^ (lfsr >>> 1)) & 1) << 14);
+                        noisePhase--;
+                    }
+                    value += lfsr & 1 ? 1 : -1;
+                } else {
+                    phase = (phase + pitch / (sampleRate * 4)) % 1;
+                    value +=
+                        channel === 2
+                            ? BASS_WAVE[Math.floor(phase * 32)] / 7.5 - 1
+                            : phase < (event.duty || (channel === 0 ? 0.25 : 0.5))
+                              ? 1
+                              : -1;
+                }
+            }
+            const edge = Math.min(
+                1,
+                index / Math.max(1, sampleRate * 0.002),
+                (length - 1 - index) / Math.max(1, sampleRate * 0.008),
+            );
+            samples[start + index] += (value / 4) * volume * GAINS[channel] * edge;
+        }
+    }
+    // AC coupling removes pulse duty DC; a mild low-pass smooths aliasing.
+    let previous = 0,
+        highPass = 0,
+        filtered = 0,
+        peak = 0;
+    const highCoefficient = Math.exp((-2 * Math.PI * 25) / sampleRate);
+    const lowCoefficient = 1 - Math.exp((-2 * Math.PI * 7500) / sampleRate);
+    for (let index = 0; index < samples.length; index++) {
+        highPass = highCoefficient * (highPass + samples[index] - previous);
+        previous = samples[index];
+        filtered += lowCoefficient * (highPass - filtered);
+        samples[index] = filtered;
+        peak = Math.max(peak, Math.abs(filtered));
+    }
+    const gain = Math.min(1, 0.8 / Math.max(0.001, peak));
+    for (let index = 0; index < samples.length; index++) samples[index] *= gain;
+    samples[0] = 0;
+    samples[samples.length - 1] = 0;
+    return samples;
+}

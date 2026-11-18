@@ -1,0 +1,169 @@
+.vr-game {
+    max-width: 1440px;
+    padding: 24px;
+}
+.vr-game__viewport {
+    position: relative;
+    width: 100%;
+    min-height: 240px;
+    border: 1px solid #263d4c;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    background: #050b16;
+}
+.vr-game__canvas {
+    display: block;
+    width: 100%;
+    height: min(70vh, 820px);
+    min-height: 240px;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+.vr-game:not(.game-app_touch) .vr-game__viewport {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+.vr-game:not(.game-app_touch) .vr-game__canvas {
+    flex: 1;
+    height: 0;
+    min-height: 0;
+}
+.vr-game__entry {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    justify-content: center;
+    min-width: 0;
+    padding: 8px 0 12px;
+}
+.vr-game .vr-game__enter-button {
+    width: 360px;
+    max-width: 100%;
+    min-height: 76px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    border: 2px solid #95e8d3;
+    border-radius: 12px;
+    background: #a4f5db;
+    color: #102c2a;
+    box-shadow: 0 6px 24px #53dfed26;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+.vr-game__enter-button:hover:not(:disabled) {
+    background: #d3fff0;
+}
+.vr-game__view-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+.vr-game__scale-label {
+    font-size: inherit;
+    color: #b6cdcf;
+}
+.vr-game__scale {
+    width: 90px;
+    accent-color: #a4f5db;
+}
+.vr-game__status,
+.vr-game__help {
+    flex-basis: 100%;
+    margin: 2px 0;
+    color: #9bb9c6;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.vr-game__help {
+    color: #748d9e;
+    font-size: 11px;
+}
+.vr-game__name-entry {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: min(480px, 90%);
+    padding: 16px;
+    border: 1px solid #78b9ab;
+    border-radius: 8px;
+    background: #091725;
+}
+.vr-game__name-entry[hidden] {
+    display: none;
+}
+.vr-game__name-label {
+    font-size: 13px;
+    color: #e7d4a8;
+}
+.vr-game__name-input {
+    width: 150px;
+}
+.game-app_fullscreen.vr-game {
+    max-width: none;
+}
+.game-app_fullscreen .vr-game__viewport {
+    flex: 1 1 auto;
+    min-height: 180px;
+}
+.game-app_fullscreen .vr-game__canvas {
+    height: 100%;
+    min-height: 180px;
+}
+@media (max-width: 650px) {
+    .vr-game {
+        padding: 8px;
+    }
+    .vr-game__canvas {
+        height: 55vh;
+    }
+    .vr-game .vr-game__enter-button {
+        min-height: 64px;
+        padding: 16px 24px;
+        font-size: 20px;
+    }
+    .vr-game__status,
+    .vr-game__help {
+        font-size: 10px;
+    }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+    .vr-game__canvas {
+        height: 65vh;
+        min-height: 180px;
+    }
+}
+@media (orientation: portrait) {
+    .game-app_touch.vr-game .vr-game__viewport {
+        flex: none;
+        margin-top: auto;
+    }
+}
+@media (orientation: landscape) {
+    .game-app_touch .vr-game__entry {
+        margin-left: 144px;
+        margin-right: 200px;
+    }
+    .game-app_touch.vr-game .vr-game__viewport {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+    }
+    .game-app_touch.vr-game .vr-game__canvas {
+        flex: 1;
+        height: 0;
+        min-height: 0;
+    }
+}

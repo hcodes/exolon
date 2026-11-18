@@ -1,0 +1,21 @@
+{
+  "cyclesNoOs": [
+    226780,
+    226780,
+    139532,
+    226780,
+    139532,
+    139532
+  ],
+  "steps": [
+    1,
+    8,
+    9,
+    16,
+    17,
+    145
+  ],
+  "cpuHz": 8010612,
+  "palHz": 50,
+  "timingNote": "Cycles excludeTOS9 fontprinting cost and_frclockwait; eachloopwaitsbeforeflip, soceil(cycles/160212) PALintervals approximately2 exceptprintingstep."
+}

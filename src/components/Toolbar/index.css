@@ -1,0 +1,35 @@
+.toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+}
+.toolbar__actions {
+    display: contents;
+}
+.toolbar > * {
+    flex-shrink: 0;
+}
+.toolbar__status {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+.game-app_legacy .toolbar,
+.game-app_legacy .toolbar__actions {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0;
+    min-width: 0;
+}
+.game-app_legacy .toolbar > *,
+.game-app_legacy .toolbar__actions > * {
+    margin: 3px;
+}

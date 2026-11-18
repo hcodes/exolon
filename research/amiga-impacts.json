@@ -1,0 +1,52 @@
+{
+  "sourceRamSha256": "8eb436440c0f6af0381079341779e24dcbd21d485144f2dcacb059a7e9c724e7",
+  "x": 105,
+  "y": 80,
+  "frames": [
+    {
+      "tick": 1,
+      "sha256": "0046fdf0dcf5ca0da933927ca9d7bd09cac582488c61d9900c9ace06a0595e2a",
+      "active": true
+    },
+    {
+      "tick": 2,
+      "sha256": "3c6a38cf4794ef5f79fc5f4cd2e9d7b2e531880d035968281a4c66dbdfcc04eb",
+      "active": true
+    },
+    {
+      "tick": 3,
+      "sha256": "cb089ad4675837a6a0850185a4f240cd397576c1d5ab76890c0cc158bc15a7d8",
+      "active": true
+    },
+    {
+      "tick": 4,
+      "sha256": "5a48dff25bcc967646504cccdcf8086aa8dc5c7e0b7b880fb844e5cd9ac19d5f",
+      "active": true
+    },
+    {
+      "tick": 5,
+      "sha256": "e0b684baafc7959fb0b5b72b42c427422a1b71ab4a9ee4bd396c658413ce6b42",
+      "active": true
+    },
+    {
+      "tick": 6,
+      "sha256": "e5bf9ba5556b94b1b96037ecddcd90e3a6060dc0c03ba8a03f7598ef883e7d60",
+      "active": true
+    },
+    {
+      "tick": 7,
+      "sha256": "795050944440ea7605190c9761e4b69331352af449f72731d494ee368728d699",
+      "active": true
+    },
+    {
+      "tick": 8,
+      "sha256": "72983fff71be809a6684bf9e45732741ad30e7f42dbafbad33f9a99d98d4f7ee",
+      "active": true
+    },
+    {
+      "tick": 9,
+      "sha256": "6fb9d2d2de05751a90e70a2973a51a1cf38939075c6849b650b5f00b07183532",
+      "active": false
+    }
+  ]
+}

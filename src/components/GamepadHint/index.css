@@ -1,0 +1,80 @@
+.gamepad-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 24px);
+    max-width: 480px;
+    padding: 10px 12px;
+    border: 1px solid #4e8176;
+    border-radius: 10px;
+    background: #112b29;
+    color: #d7f4e9;
+    box-shadow: 0 8px 28px #0008;
+    font-size: 14px;
+    line-height: 1.4;
+    transform: translateX(-50%);
+    opacity: 1;
+    animation: gamepad-hint-enter 240ms ease-out;
+    transition: opacity 200ms ease-out;
+    pointer-events: none;
+}
+.gamepad-hint_dismissing {
+    opacity: 0;
+    animation: none;
+}
+@keyframes gamepad-hint-enter {
+    from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+}
+.gamepad-hint[hidden] {
+    display: none;
+}
+.gamepad-hint__icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+    color: #a4f5db;
+}
+.gamepad-hint__message {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+}
+.gamepad-hint__dismiss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    margin-left: 8px;
+    padding: 0;
+    border: 0;
+    color: #d7f4e9;
+    pointer-events: auto;
+}
+.gamepad-hint__close-icon {
+    width: 16px;
+    height: 16px;
+}
+.game-app_tv .gamepad-hint {
+    max-width: 620px;
+    font-size: 18px;
+}
+@media (prefers-reduced-motion: reduce) {
+    .gamepad-hint {
+        animation: none;
+        transition: none;
+    }
+}

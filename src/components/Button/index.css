@@ -1,0 +1,84 @@
+.button_primary {
+    border: 1px solid #e7ebde;
+    background: #e7ebde;
+    color: #13222a;
+    border-radius: 5px;
+    padding: 11px 34px;
+    font-size: 12px;
+    font-weight: 650;
+}
+.button_primary:hover {
+    background: #fff;
+}
+.button_secondary {
+    border: 1px solid #33434d;
+    color: #b9c8cb;
+    background: transparent;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+.button_secondary:hover {
+    background: #20313c;
+}
+@media (max-width: 650px) {
+    .button_primary {
+        padding: 8px 24px;
+    }
+}
+.button_secondary:disabled {
+    cursor: default;
+    opacity: 0.35;
+}
+@media (max-width: 650px) {
+    .bonus .button_primary {
+        font-size: 9px;
+        padding: 6px 15px;
+    }
+}
+@media (max-width: 650px) {
+    .title-menu__actions .button_primary {
+        font-size: 10px;
+        padding: 8px 13px;
+    }
+}
+@media (max-width: 650px) {
+    .title-menu__actions .button_secondary {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+}
+.game-footer .button_primary {
+    padding: 6px 12px;
+    font-size: 10px;
+}
+.game-app_touch .game-footer__options .button_secondary,
+.game-app_touch .game-footer__options .button_primary {
+    min-height: 44px;
+    font-size: 11px;
+}
+
+.game-app_tv .button_primary,
+.game-app_tv .button_secondary {
+    min-height: 44px;
+    font-size: 18px;
+    font-size: clamp(18px, 1.2vw, 26px);
+}
+
+.game-app_tv .button:focus {
+    outline: 3px solid #a4f5db;
+    outline-offset: 3px;
+}
+
+.modal-card__content .button,
+.modal-card__footer .button,
+.home-panel__content .button,
+.game-app_touch .modal-card__content .button,
+.game-app_touch .modal-card__footer .button,
+.game-app_touch .home-panel__content .button {
+    font-size: inherit;
+}
+.home-panel__content .button {
+    flex-shrink: 0;
+    white-space: nowrap;
+}

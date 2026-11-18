@@ -1,0 +1,44 @@
+{
+  "sourceMainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638",
+  "startIndex": 124,
+  "endIndex": 0,
+  "ammo": 99,
+  "grenades": 9,
+  "lives": 9,
+  "armor": 0,
+  "playerY": 176,
+  "texts": [
+    "\u001bb\u0007\u001bY+, BRAVERY  BONUS ",
+    "\u001bY,,     10000      ",
+    "\u001bY-,  LIVES  BONUS  \u001bY.,    9 * 1000    \u001bY/,   PRESS FIRE   \u001bY0, TO RESUME PLAY ",
+    "\u001bE\u001bb\u0005\u001bY),CONGRATULATIONS !\u001bb\u0007\u001bY+*YOU HAVE PROVEN YOUR\u001bb\u0005\u001bY-,COMBAT ABILITIES\u001bb\u000b\u001bY/.TO THE FULL\u001bb\u0005\u001bY2/PRESS FIRE\u001bb\u0007\u001bY4-TO RESUME PLAY",
+    "\u001bc\u000f\u001bE",
+    "\u001bb\u0007\u001bY)*EXOLON BONUS SCREEN !\u001bb\u000b\u001bY+(PRESS FIRE TO STOP POINTER\u001bb\u0005\u001bY--00000 POINTS  \u001bb\u000b\u001bY.-01000 POINTS  \u001bb\u0005\u001bY/-00000 POINTS  \u001bb\u000b\u001bY0-03000 POINTS  \u001bb\u0005\u001bY1-00000 POINTS  \u001bb\u000b\u001bY2-05000 POINTS  \u001bb\u0005\u001bY3-00000 POINTS  \u001bb\u000b\u001bY4-07000 POINTS  ",
+    "\u001bY4: ",
+    "\u001bb\u0007\u001bY-:*",
+    "\u001bb\u0002\u001bE\u001bY*.LOADING...",
+    "\u001bb\u0002\u001bE\u001bY*.LOADING..."
+  ],
+  "reads": [
+    [
+      "enemy.spr",
+      310594,
+      9216
+    ],
+    [
+      "l1map.dat",
+      117962,
+      23028
+    ],
+    [
+      "mapgr8.dat",
+      140990,
+      8192
+    ],
+    [
+      "ereplac1.dat",
+      234686,
+      2048
+    ]
+  ]
+}

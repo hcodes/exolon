@@ -1,0 +1,212 @@
+{
+    "version": 1,
+    "codec": "AAC-LC",
+    "bitrate": 128000,
+    "encoder": {
+        "executable": "/usr/bin/afconvert",
+        "arguments": [
+            "-f",
+            "m4af",
+            "-d",
+            "aac",
+            "-b",
+            "128000",
+            "-s",
+            "0",
+            "-q",
+            "127"
+        ]
+    },
+    "recordings": {
+        "c64/title.wav": {
+            "source": {
+                "file": "c64/title.wav",
+                "sha256": "f1bd0e086c031ff111247419ba90ea0b1ddea0407d823c7036449b66f08b1d9d",
+                "bytes": 9172844,
+                "frames": 4586400,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "c64/title.m4a",
+                "sha256": "a5088c09e6468b99b0e289ae38ef824d463cf3e7e4c06c67ab6ba4f7791a9213",
+                "bytes": 1689381,
+                "primingFrames": 2112,
+                "remainderFrames": 32,
+                "validFrames": 4586400
+            }
+        },
+        "c64/game-over.wav": {
+            "source": {
+                "file": "c64/game-over.wav",
+                "sha256": "0ad5f94b125c17c6eaf0292bce94aab5e7fa42630a2c0a95d6eb675251deb27d",
+                "bytes": 317564,
+                "frames": 158760,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "c64/game-over.m4a",
+                "sha256": "fddae633ca06e3d4ee4fc913cdfe8808fc1c9e4aa2ee87d4b15d03695fd8177d",
+                "bytes": 62861,
+                "primingFrames": 2112,
+                "remainderFrames": 920,
+                "validFrames": 158760
+            }
+        },
+        "cpc/title.wav": {
+            "source": {
+                "file": "cpc/title.wav",
+                "sha256": "cf4b48bf9a0c5788e851115866873e53529b5863d849dcc9b0b60d57fffb7e2d",
+                "bytes": 9282124,
+                "frames": 4641040,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "cpc/title.m4a",
+                "sha256": "9bc8ae06beb093ab5388b69094aafc0603ccf675fbbcb6d779157094b941c653",
+                "bytes": 1709376,
+                "primingFrames": 2112,
+                "remainderFrames": 688,
+                "validFrames": 4641040
+            }
+        },
+        "cpc/game-over.wav": {
+            "source": {
+                "file": "cpc/game-over.wav",
+                "sha256": "eca80807dbe8c4bd2659ccb500c206095512e0ff1f929b593e2654277269cc67",
+                "bytes": 184824,
+                "frames": 92390,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "cpc/game-over.m4a",
+                "sha256": "3ddc6e7e7ec69c2517405e3099c5dffbb0958184605bbb5ae015d6578033e20b",
+                "bytes": 38607,
+                "primingFrames": 2112,
+                "remainderFrames": 730,
+                "validFrames": 92390
+            }
+        },
+        "gameboy/title.wav": {
+            "source": {
+                "file": "gameboy/title.wav",
+                "sha256": "d5499f95d82f10a3d591c568f190acb3c2bd4183e5dd1d0e51abe65fdca4b0c2",
+                "bytes": 6366320,
+                "frames": 3183138,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "gameboy/title.m4a",
+                "sha256": "798c73e297204234d46765507fe8546a956b7d2118fb66acbe905399ed3e2038",
+                "bytes": 1172140,
+                "primingFrames": 2112,
+                "remainderFrames": 414,
+                "validFrames": 3183138
+            }
+        },
+        "gameboy/game-over.wav": {
+            "source": {
+                "file": "gameboy/game-over.wav",
+                "sha256": "1865d42d15a85c0b73addb9b209e1fe2d2e1fa28ec211c6f83952ccc0a44de38",
+                "bytes": 125288,
+                "frames": 62622,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "gameboy/game-over.m4a",
+                "sha256": "7338f7dbe9b83c01da2b2c2b26d965b76f7053153e9e618152a3175baf93072b",
+                "bytes": 27833,
+                "primingFrames": 2112,
+                "remainderFrames": 802,
+                "validFrames": 62622
+            }
+        },
+        "sharp-mz800/title.wav": {
+            "source": {
+                "file": "sharp-mz800/title.wav",
+                "sha256": "e69757093d18f285b5f8d9b270ccd3b1e5995da4337152994d506def4a478ed9",
+                "bytes": 6364950,
+                "frames": 3182453,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "sharp-mz800/title.m4a",
+                "sha256": "0f72ca917a7b53fbcbeaafe0957a056afa8c0c44cb68a5753954cf56c613d027",
+                "bytes": 1171769,
+                "primingFrames": 2112,
+                "remainderFrames": 75,
+                "validFrames": 3182453
+            }
+        },
+        "amiga/title.wav": {
+            "source": {
+                "file": "amiga/title.wav",
+                "sha256": "c41d7b0a5fae64ac07437b1dfed0f3ee6cc4c49d36e799585584f5540277d6a4",
+                "bytes": 8004424,
+                "frames": 2001095,
+                "sampleRate": 22050,
+                "channels": 2,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "amiga/title.m4a",
+                "sha256": "ff825a9c1b9159b45d233782fafaf625478952c9adeb005958881e0b534d7797",
+                "bytes": 1466335,
+                "primingFrames": 2112,
+                "remainderFrames": 761,
+                "validFrames": 2001095
+            }
+        },
+        "atari-st/title.wav": {
+            "source": {
+                "file": "atari-st/title.wav",
+                "sha256": "7958a15639d5b0fd442114ef095b3d38d1ec471380dd84c574ef856f4084af4a",
+                "bytes": 18212512,
+                "frames": 9106234,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "atari-st/title.m4a",
+                "sha256": "23fb6fe87d0a86492dd80556b589dd972eb31ca7283dd11d8fe5895ae21978db",
+                "bytes": 3345620,
+                "primingFrames": 2112,
+                "remainderFrames": 134,
+                "validFrames": 9106234
+            }
+        },
+        "atari-st/game-over.wav": {
+            "source": {
+                "file": "atari-st/game-over.wav",
+                "sha256": "5beac0fd6c1a534921222db6f379bd2eafd110543d3f582b05212303f81eec64",
+                "bytes": 276762,
+                "frames": 138359,
+                "sampleRate": 44100,
+                "channels": 1,
+                "bitsPerSample": 16
+            },
+            "encoded": {
+                "file": "atari-st/game-over.m4a",
+                "sha256": "a75211eed555f0caec19723ac4f214a63d7cbefc56a57683f74f1654d351f5b5",
+                "bytes": 55439,
+                "primingFrames": 2112,
+                "remainderFrames": 841,
+                "validFrames": 138359
+            }
+        }
+    }
+}

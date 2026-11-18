@@ -1,0 +1,154 @@
+{
+  "scope": "Desktop headless Chromium CPU render-call time; excludes physical-device/audio/GPU presentation guarantees.",
+  "simulationHz": 16.666666666666668,
+  "samplesPerCase": 60,
+  "records": [
+    {
+      "zone": 1,
+      "mode": "Original",
+      "initialMs": 2.300000011920929,
+      "meanMs": 0.4433333337306976,
+      "p95Ms": 0.5,
+      "sameModel": true
+    },
+    {
+      "zone": 1,
+      "mode": "Remastered4x",
+      "initialMs": 23.69999998807907,
+      "meanMs": 0.21666666666666667,
+      "p95Ms": 0.30000001192092896,
+      "sameModel": true
+    },
+    {
+      "zone": 1,
+      "mode": "Remastered2x",
+      "initialMs": 3.099999964237213,
+      "meanMs": 0.2,
+      "p95Ms": 0.30000001192092896,
+      "sameModel": true
+    },
+    {
+      "zone": 26,
+      "mode": "Original",
+      "initialMs": 0.5,
+      "meanMs": 0.33333333730697634,
+      "p95Ms": 0.40000003576278687,
+      "sameModel": true
+    },
+    {
+      "zone": 26,
+      "mode": "Remastered4x",
+      "initialMs": 9.899999976158142,
+      "meanMs": 0.8350000003973643,
+      "p95Ms": 1,
+      "sameModel": true
+    },
+    {
+      "zone": 26,
+      "mode": "Remastered2x",
+      "initialMs": 2.200000047683716,
+      "meanMs": 0.18833333353201548,
+      "p95Ms": 0.30000001192092896,
+      "sameModel": true
+    },
+    {
+      "zone": 51,
+      "mode": "Original",
+      "initialMs": 0.3999999761581421,
+      "meanMs": 0.3216666678587596,
+      "p95Ms": 0.40000003576278687,
+      "sameModel": true
+    },
+    {
+      "zone": 51,
+      "mode": "Remastered4x",
+      "initialMs": 3.699999988079071,
+      "meanMs": 0.15500000019868215,
+      "p95Ms": 0.20000004768371582,
+      "sameModel": true
+    },
+    {
+      "zone": 51,
+      "mode": "Remastered2x",
+      "initialMs": 2.600000023841858,
+      "meanMs": 0.13999999860922496,
+      "p95Ms": 0.20000004768371582,
+      "sameModel": true
+    },
+    {
+      "zone": 76,
+      "mode": "Original",
+      "initialMs": 0.3999999761581421,
+      "meanMs": 0.3116666664679845,
+      "p95Ms": 0.40000003576278687,
+      "sameModel": true
+    },
+    {
+      "zone": 76,
+      "mode": "Remastered4x",
+      "initialMs": 3.599999964237213,
+      "meanMs": 0.1399999996026357,
+      "p95Ms": 0.20000004768371582,
+      "sameModel": true
+    },
+    {
+      "zone": 76,
+      "mode": "Remastered2x",
+      "initialMs": 1.800000011920929,
+      "meanMs": 0.14000000059604645,
+      "p95Ms": 0.20000004768371582,
+      "sameModel": true
+    },
+    {
+      "zone": 101,
+      "mode": "Original",
+      "initialMs": 0.3999999761581421,
+      "meanMs": 0.33166666626930236,
+      "p95Ms": 0.40000003576278687,
+      "sameModel": true
+    },
+    {
+      "zone": 101,
+      "mode": "Remastered4x",
+      "initialMs": 3.800000011920929,
+      "meanMs": 0.16333333253860474,
+      "p95Ms": 0.20000004768371582,
+      "sameModel": true
+    },
+    {
+      "zone": 101,
+      "mode": "Remastered2x",
+      "initialMs": 2.100000023841858,
+      "meanMs": 0.18166666626930236,
+      "p95Ms": 0.30000001192092896,
+      "sameModel": true
+    },
+    {
+      "zone": "210-fragments",
+      "mode": "Original",
+      "initialMs": 0.5,
+      "meanMs": 0.43333333134651186,
+      "p95Ms": 0.5,
+      "sameModel": true
+    },
+    {
+      "zone": "210-fragments",
+      "mode": "Remastered4x",
+      "initialMs": 5.900000035762787,
+      "meanMs": 1.736666668454806,
+      "p95Ms": 1.9000000357627869,
+      "sameModel": true
+    },
+    {
+      "zone": "210-fragments",
+      "mode": "Remastered2x",
+      "initialMs": 2.199999988079071,
+      "meanMs": 0.38833333452542623,
+      "p95Ms": 0.5,
+      "sameModel": true
+    }
+  ],
+  "date": "2026-11-21",
+  "playwrightVersion": "1.65.0",
+  "rendererSha256": "f2ef98472ccc25a4425d2178a2fbe215a2d394e9632f008cc274fc858d8f863b"
+}

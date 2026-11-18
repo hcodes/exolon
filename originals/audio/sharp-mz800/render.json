@@ -1,0 +1,93 @@
+{
+  "sourceMemorySha256": "108ee5352b0eaf8c809f55c6624265e8c55b35a73534206a0d390f3ed322f78f",
+  "engineSha256": "11344b3802b361c913a4f50e017a359b82dd1150ae3dc80bef88dfe120fb2b2c",
+  "converterSha256": "1528ae8b264b858b64506916d1b80677936cd1d75b5b294c2a806f638c476c7f",
+  "cpuSourceSha256": "78609811c202d717c94d2f2aaf6f540d2d5c4d0485f723dedc42bf384625637b",
+  "sampleRate": 44100,
+  "psgClock": 3546880,
+  "effectsRate": 50,
+  "titleRate": 90,
+  "recordings": [
+    {
+      "name": "title",
+      "file": "title.wav",
+      "trace": "title.snr",
+      "seconds": 72.1644671201814,
+      "writes": 35978,
+      "traceSha256": "2e24bb2d9200f07f01fcf49fac1d12ac4536c08116e643076963ad2b230c3fb9",
+      "sha256": "e69757093d18f285b5f8d9b270ccd3b1e5995da4337152994d506def4a478ed9"
+    },
+    {
+      "name": "shot",
+      "file": "shot.wav",
+      "trace": "shot.snr",
+      "seconds": 0.38,
+      "writes": 85,
+      "traceSha256": "8e5431caae43004bd0a648d1da678e4a1b8411290f027a022756c6001d9ffe71",
+      "sha256": "7acc3c551735aefed54f3b4b6c7523d593144623e5760283b4f17be23f66ed1a"
+    },
+    {
+      "name": "grenade",
+      "file": "grenade.wav",
+      "trace": "grenade.snr",
+      "seconds": 1.52,
+      "writes": 688,
+      "traceSha256": "fc4ba43eefb024b8788da969fbfa51ed33dc987725789c44b09d5a7e34c1a987",
+      "sha256": "ab4c145da2d55c3fc7c7337921e3f4dc4bf17036d4e556481ea0f900b22bee05"
+    },
+    {
+      "name": "rocket",
+      "file": "rocket.wav",
+      "trace": "rocket.snr",
+      "seconds": 0.8,
+      "writes": 232,
+      "traceSha256": "7d2be1eb415fdee7ff329bca1b442ce391b704da3d97ef95909ebe84c216fcf9",
+      "sha256": "8311a552d5e2d49f04cd36d5de07e756af1951ff6bb13760e0596dad427586c1"
+    },
+    {
+      "name": "explosion",
+      "file": "explosion.wav",
+      "trace": "explosion.snr",
+      "seconds": 1.02,
+      "writes": 309,
+      "traceSha256": "e0b522e9f30f364621a554f30189a896554eec224fc8636bf4d9c3bb68f4e04f",
+      "sha256": "e1a7b7f2327ce3c8fc8dbbc5aece9d5e2019f5bc3a4dedf77039ca1adca3d096"
+    },
+    {
+      "name": "enemy-destroyed",
+      "file": "enemy-destroyed.wav",
+      "trace": "enemy-destroyed.snr",
+      "seconds": 0.34,
+      "writes": 71,
+      "traceSha256": "fbdd92ce8a0ec46e0ff307335eb2fe996006109f00ac68c0cc428d01bc397cc5",
+      "sha256": "cdeff7fad14db46b7ab552aa29af1f56eb32f2ed643711e08f7686be3d7f92ab"
+    },
+    {
+      "name": "teleport",
+      "file": "teleport.wav",
+      "trace": "teleport.snr",
+      "seconds": 1.62,
+      "writes": 519,
+      "traceSha256": "931468d7d0b3b6fac21ae7e51a6bb37aeaf8664cd94d4e3ae898b0a055c3e9a2",
+      "sha256": "10efe2d83daa1d2808bb5943f459d60e8d61441da4d649159d5026f098ff33a4"
+    },
+    {
+      "name": "refill-ammo",
+      "file": "refill-ammo.wav",
+      "trace": "refill-ammo.snr",
+      "seconds": 1.6,
+      "writes": 512,
+      "traceSha256": "18a7c0b53efbbe949b3ba6990fd35f07687d0a893eaea3f13ca8e20f0659acd7",
+      "sha256": "e41cc34f2e971a121d40361c166f0a44d9d2f0cddec295d1f7f834d36e74138c"
+    },
+    {
+      "name": "refill-grenades",
+      "file": "refill-grenades.wav",
+      "trace": "refill-grenades.snr",
+      "seconds": 1.6,
+      "writes": 512,
+      "traceSha256": "dca8281ff3a4dfaa64960cb13d203d7318c1e3443f132d8956504ea641b7993b",
+      "sha256": "65ed427dd0426839837ede76b1c8fa6df290bb5d5d04157394241e54d785cce7"
+    }
+  ]
+}

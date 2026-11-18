@@ -1,0 +1,161 @@
+{
+  "numericTables": [
+    {
+      "table": "jumpVertical",
+      "stRam": "0x18614",
+      "amigaRam": "0xf896",
+      "bytes": 30,
+      "equal": true,
+      "sha256": "12e05d9fd4e98b945ffbd0c2a4cb40f0df4824ddfe221c50a5ea1ef54bbfb9a7"
+    },
+    {
+      "table": "jumpLeft",
+      "stRam": "0x18634",
+      "amigaRam": "0xf8b6",
+      "bytes": 62,
+      "equal": true,
+      "sha256": "71ea2503dacd0fc1678303a15fc053a7b818ac20805db8252d43409fcc71ff8a"
+    },
+    {
+      "table": "jumpRight",
+      "stRam": "0x18672",
+      "amigaRam": "0xf8f4",
+      "bytes": 62,
+      "equal": true,
+      "sha256": "04768ee278c0b9a7f27eeae19be5ca540ca4e7790cb38464cd7e78c042296e7b"
+    },
+    {
+      "table": "grenade",
+      "stRam": "0x18778",
+      "amigaRam": "0xf9fa",
+      "bytes": 158,
+      "equal": true,
+      "sha256": "1bc8e9202ed4eabf30d822b4c761bb3838cd0c64f9b552d9b9e2f70b1135fbf0"
+    },
+    {
+      "table": "podParticles",
+      "stRam": "0x17f04",
+      "amigaRam": "0xf186",
+      "bytes": 40,
+      "equal": true,
+      "sha256": "c3776713ed1a04f478058b62a172b6eef5911d9e6f6095735481e73487b5716b"
+    },
+    {
+      "table": "pickups",
+      "stRam": "0x1a30c",
+      "amigaRam": "0x112d0",
+      "bytes": 1000,
+      "equal": true,
+      "sha256": "67eafddfb7b06400269118839748ea8f22ad92cc7e79b2d7ca61ee43e57ffc52"
+    },
+    {
+      "table": "podTypes",
+      "stRam": "0x1a6f4",
+      "amigaRam": "0x116b8",
+      "bytes": 500,
+      "equal": true,
+      "sha256": "75d76a5a839fd241c8f75aba518907421368a42d30e45cb2e0bee68b675dfe9d"
+    },
+    {
+      "table": "spikeColumns",
+      "stRam": "0x1acd0",
+      "amigaRam": "0x11c94",
+      "bytes": 375,
+      "equal": true,
+      "sha256": "226cbdaac3d9376a1819b570e001df71bdc4f383c0e2fe9dd679e6e94c9dcec0"
+    },
+    {
+      "table": "fillDestroyedBodies",
+      "stRam": "0x1ae47",
+      "amigaRam": "0x11e0b",
+      "bytes": 125,
+      "equal": true,
+      "sha256": "73ceb5e5ea6a2ce05c73a801b67f66f91c1d4515f3ba3a357d28da5378bedd5a"
+    },
+    {
+      "table": "turretTypes",
+      "stRam": "0x1aec4",
+      "amigaRam": "0x11e88",
+      "bytes": 500,
+      "equal": true,
+      "sha256": "c22d34167501d4a2cb8d17550d0ac4766017fc9a39538ac7fe96a5be02fd7a2e"
+    },
+    {
+      "table": "barrierTypes",
+      "stRam": "0x1b0b8",
+      "amigaRam": "0x1207c",
+      "bytes": 625,
+      "equal": true,
+      "sha256": "b8e031306ea5e4139fc63a84429d5905100bb28a5a654e63ecc022419f3d38fb"
+    },
+    {
+      "table": "bonusRoulette",
+      "stRam": "0x18b34",
+      "amigaRam": "0xfbec",
+      "bytes": 16,
+      "equal": true,
+      "sha256": "b3883cd0fa9f5fba13bc302fb8621c341b77b631c17a32ceb46cae0098372734"
+    },
+    {
+      "table": "stageEnds",
+      "stRam": "0x113d0",
+      "amigaRam": "0x92a2",
+      "bytes": 10,
+      "equal": true,
+      "sha256": "ca2517f48f619d82992302f5f4cb6ed81a0b20c0f890ae353ad2e210c81e7961"
+    },
+    {
+      "table": "rocketTrailFrames",
+      "stRam": "0x1887e",
+      "amigaRam": "0xfb00",
+      "entries": 12,
+      "normalizedPointerDelta": "0x1d224",
+      "equal": true
+    },
+    {
+      "table": "flyerPath",
+      "stRam": "0x17f80",
+      "amigaRam": "0xf202",
+      "pairs": 20,
+      "equal": true
+    },
+    {
+      "table": "flyerPath",
+      "stRam": "0x17fd2",
+      "amigaRam": "0xf254",
+      "pairs": 67,
+      "equal": true
+    },
+    {
+      "table": "flyerPath",
+      "stRam": "0x180e0",
+      "amigaRam": "0xf362",
+      "pairs": 101,
+      "equal": true
+    },
+    {
+      "table": "flyerPath",
+      "stRam": "0x18276",
+      "amigaRam": "0xf4f8",
+      "pairs": 74,
+      "equal": true
+    },
+    {
+      "table": "flyerPath",
+      "stRam": "0x183a0",
+      "amigaRam": "0xf622",
+      "pairs": 99,
+      "equal": true
+    }
+  ],
+  "flyerMetadata125ScreensEqualAfterAddressNormalization": true,
+  "flyerGraphicsSemanticMapping": {
+    "0x4bd42": 1,
+    "0x4c642": 2,
+    "0x4cf42": 3,
+    "0x4d842": 4
+  },
+  "randomDifference": "ST source calls TOS XBIOS Random; shared seeded browser RNG is an intentional deterministic approximation, not native RNG sequence parity.",
+  "sourceStxSha256": "10a96cc93ab4c73a171f0e3408e99d2ff692a280bdb4f05eaf4e75f33e185ccf",
+  "sourceMainSha256": "2b86fbe9a39a7cffa7970434e9fedca859feefe3998f86a2ee7b56108ca5a638"
+}

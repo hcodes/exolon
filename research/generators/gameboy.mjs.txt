@@ -1,0 +1,126 @@
+import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
+import {resolve, join} from 'node:path';
+import {fileURLToPath, pathToFileURL} from 'node:url';
+import {createArrangement} from '../exolon-arrangement.mjs';
+import {encodeWave, sha256} from './c64-audio.mjs';
+import {renderProgram} from '../../games/exolon/audio/gameboy/synthesize.js';
+
+export {renderProgram};
+export const EFFECT_NAMES = Object.freeze(['shot', 'grenade', 'rocket', 'explosion', 'enemy-destroyed',
+    'turret', 'mine', 'death', 'teleport', 'refill-ammo', 'refill-grenades', 'suit']);
+const assetDirectory = fileURLToPath(new URL('../../games/exolon/audio/gameboy/', import.meta.url));
+const scoreURL = new URL('./title-score.json', import.meta.url);
+
+export function createTitleProgram(score) {
+    // Reuse the decoded score's validated original-tempo voice interpretation,
+    // retaining all pitches and frame times rather than composing a new tune.
+    const arrangement = createArrangement(score, {variant: 'original-orchestral'});
+    const events = arrangement.notes.filter(note => note.sourceVoice).map(note => {
+        const channel = note.role === 'percussion' ? 3 : note.source.channel;
+        return {channel, seconds: note.seconds, endSeconds: note.endSeconds,
+            note: note.note - (channel === 2 ? 12 : 0), volume: channel === 0 ? 13 : channel === 2 ? 12 : 10,
+            duty: channel === 0 ? .25 : .5, decay: channel === 3 ? .95 : channel === 2 ? .5 : .28,
+            ...(channel === 3 ? {noiseRate: 3800, seed: 0x5a17 ^ note.source.tick, noiseSlide: -.65} : {})};
+    });
+    return {durationSeconds: score.sourceStopSeconds + .16, events};
+}
+
+export function createEffectProgram(name) {
+    const events = [];
+    function voice(channel, seconds, duration, note, options = {}) {
+        events.push({channel, seconds, endSeconds: seconds + duration, note, volume: 12, decay: .85, ...options});
+    }
+    function noise(seconds, duration, rate, options = {}) {
+        voice(3, seconds, duration, 60, {noiseRate: rate, noiseSlide: -.75, seed: 0x5a17, ...options});
+    }
+    if (name === 'shot') {
+        voice(0, 0, .11, 88, {slide: -260, duty: .125}); noise(0, .055, 6800, {volume: 6});
+    } else if (name === 'grenade') {
+        voice(0, 0, .26, 58, {slide: 62, duty: .5}); noise(.04, .24, 1200, {volume: 8});
+    } else if (name === 'rocket') {
+        noise(0, .5, 5800, {volume: 13, noiseSlide: -.5}); voice(0, 0, .35, 46, {slide: 70, duty: .125, volume: 7});
+    } else if (name === 'explosion') {
+        noise(0, .7, 12000, {volume: 15, noiseSlide: -.92}); voice(2, 0, .48, 43, {slide: -36, volume: 15});
+    } else if (name === 'enemy-destroyed') {
+        noise(0, .24, 8200, {volume: 11}); voice(0, 0, .18, 76, {slide: -145, duty: .125});
+    } else if (name === 'turret') {
+        voice(0, 0, .16, 50, {slide: -65, duty: .5}); noise(0, .13, 2400, {volume: 12});
+    } else if (name === 'mine') {
+        noise(0, .43, 4800, {volume: 15, noiseSlide: -.8}); voice(2, 0, .3, 35, {slide: -28, volume: 14});
+    } else if (name === 'death') {
+        voice(0, 0, .8, 69, {slide: -43, duty: .5, decay: .95});
+        voice(1, .045, .76, 68, {slide: -38, duty: .25, volume: 9}); noise(.09, .5, 2000, {volume: 6});
+    } else if (name === 'teleport') {
+        for (let index = 0; index < 10; index++) voice(index % 2, index * .045, .043,
+            58 + index * 3, {duty: index % 2 ? .5 : .125, volume: 11, decay: .25});
+        noise(.34, .13, 9000, {volume: 5});
+    } else if (name === 'refill-ammo') {
+        [72, 76, 79].forEach((note, index) => voice(0, index * .065, .06, note, {duty: .25, decay: .3}));
+    } else if (name === 'refill-grenades') {
+        [60, 67, 72, 79].forEach((note, index) => voice(1, index * .085, .08, note, {duty: .5, decay: .3}));
+        voice(2, 0, .32, 48, {volume: 10, decay: .6});
+    } else if (name === 'suit') {
+        [57, 64, 69, 76, 81].forEach((note, index) => voice(0, index * .075, .07, note, {duty: .125, decay: .25}));
+        voice(2, 0, .48, 45, {volume: 10, decay: .5});
+    } else if (name === 'game-over') {
+        // Newly authored short cadence, separate from the preserved title tune.
+        [76, 74, 72, 69].forEach((note, index) => {
+            voice(0, index * .22, index === 3 ? .6 : .2, note, {duty: .5, volume: 12, decay: .6});
+            voice(2, index * .22, index === 3 ? .6 : .2, note - 24, {volume: 10, decay: .6});
+        });
+    } else throw new RangeError(`Unknown Game Boy-inspired effect: ${name}`);
+    return {durationSeconds: Math.max(...events.map(event => event.endSeconds)) + .16, events};
+}
+
+export async function buildGameBoyAudio(output = assetDirectory) {
+    const names = ['title', 'game-over', ...EFFECT_NAMES];
+    await mkdir(output, {recursive: true});
+    // Refuse to replace either an earlier take or any independently edited
+    // metadata. Reproducibility can be checked in a fresh --output directory.
+    for (const name of [...names.map(name => `${name}.wav`), 'render.json', 'provenance.json']) {
+        try {await access(join(output, name));} catch (error) {
+            if (error.code === 'ENOENT') continue;
+            throw error;
+        }
+        throw new Error(`Refusing to overwrite existing Game Boy-inspired asset: ${join(output, name)}`);
+    }
+    const sourceBytes = await readFile(scoreURL), score = JSON.parse(sourceBytes);
+    const recordings = [];
+    for (const name of names) {
+        const program = name === 'title' ? createTitleProgram(score) : createEffectProgram(name);
+        const samples = renderProgram(program), wave = encodeWave(samples, 44100);
+        const file = `${name}.wav`;
+        await writeFile(join(output, file), wave, {flag: 'wx'});
+        let peak = 0, energy = 0;
+        for (const sample of samples) {peak = Math.max(peak, Math.abs(sample)); energy += sample * sample;}
+        recordings.push({name, file, seconds: samples.length / 44100, events: program.events.length,
+            peak, rms: Math.sqrt(energy / samples.length), sha256: sha256(wave)});
+    }
+    const synthesizerSha256 = sha256(await readFile(new URL('../../games/exolon/audio/gameboy/synthesize.js', import.meta.url)));
+    const render = {sampleRate: 44100, channels: 1, codec: 'PCM signed 16-bit little endian',
+        sourceScoreSha256: sha256(sourceBytes), synthesizerSha256,
+        arrangementRendererSha256: sha256(await readFile(fileURLToPath(import.meta.url))), recordings};
+    await writeFile(join(output, 'render.json'), `${JSON.stringify(render, null, 2)}\n`, {flag: 'wx'});
+    const provenance = {
+        kind: 'New Game Boy-inspired stylization',
+        originalComposer: 'Nick Jones', originalGame: 'Exolon, Raffaele Cecco / Hewson, 1987',
+        sourceScore: 'tools/exolon/title-score.json', sourceScoreSha256: render.sourceScoreSha256,
+        scoreInterpretation: 'tools/exolon-arrangement.mjs / original-orchestral source voices only; all 340 lead melody pitches and onsets, 316 harmony notes, 90 bass notes and 48 noise onsets retain original 72.02 second timing; bass transposed down one octave.',
+        sourceAnalysis: 'Recovered original ZX score and Sergey Erokhin disassembly, CC BY-SA 3.0; existing recordings retained unchanged.',
+        soundDesign: 'Two independent pulse voices (25%/50% title duty), 32-step four-bit wavetable bass, deterministic 15-bit LFSR noise; discrete pitch dividers and 64 Hz stepped volumes. Four monophonic channel roles, mono mix, no reverb or orchestral instrument bank.',
+        effects: 'Twelve newly authored event-specific effects and a short new game-over cadence; not extracted Game Boy sounds.',
+        renderer: 'games/exolon/audio/gameboy/synthesize.js, rendered offline by tools/exolon/gameboy-audio.mjs; no synthesizer or CPU emulator is needed for playback.',
+        mastering: '44.1 kHz mono PCM; four sub-samples per sample, 25 Hz AC coupling, 7.5 kHz low-pass, short edge ramps, minimum 160 ms quiet tail and peak at most 0.8.',
+        limitations: 'There is no original Game Boy Exolon port represented here. This is a new musical and effects arrangement inspired by the handheld sound palette, not authentic port audio or cycle-accurate Game Boy APU emulation.',
+        rebuild: 'node tools/exolon/gameboy-audio.mjs --output /tmp/exolon-gameboy-new; existing output files are never replaced.',
+    };
+    await writeFile(join(output, 'provenance.json'), `${JSON.stringify(provenance, null, 2)}\n`, {flag: 'wx'});
+    return render;
+}
+
+if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
+    const args = process.argv.slice(2);
+    if (args.length && (args.length !== 2 || args[0] !== '--output')) throw new Error('Use --output /path/to/new-directory.');
+    const render = await buildGameBoyAudio(args.length ? resolve(args[1]) : assetDirectory);
+    console.log(JSON.stringify(render.recordings.map(({name, seconds, peak}) => ({name, seconds, peak}))));
+}

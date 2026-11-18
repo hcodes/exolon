@@ -1,0 +1,27 @@
+# Exolon / reex
+
+> Play Exolon in a web browser, with adaptations of ZX Spectrum, Commodore 64, Amstrad CPC and Sharp MZ-800, separate Amiga and Atari ST games, and Remastered graphics.
+
+The public game is at https://hcodes.github.io/exolon/. Choose a platform banner first; this interaction also enables music when permitted by the browser. Keyboard, touch and gamepad controls are supported, with remote control support for TV browsers.
+
+The project uses TypeScript, Preact, Canvas 2D and Web Audio. Gameplay runs as rewritten JavaScript; original programs are investigated with offline recovery tools. The shared classic campaign has five worlds and 125 screens. Amiga and Atari ST use their own game data and implementations.
+
+Remastered, Game Boy and Game Boy Color are visual modes created for this project. Split compares two graphics styles over one shared classic game state. The separate Amiga and Atari ST games have their own resources and saved records.
+
+Source research documents distinguish verified original behaviour from adaptations and remaining limits. Refer to those documents for platform-specific accuracy and resource provenance. Original game credits and resource licences are preserved in the repository. Unused original audio, captures and provenance are stored in originals/ outside the deployed game; runtime code uses direct active resource URLs.
+
+## Play
+
+- [Play Exolon](https://hcodes.github.io/exolon/): Platform selection and browser game. URL options share the canonical root page.
+
+## Project documentation
+
+- [README](https://raw.githubusercontent.com/hcodes/reex/main/README.md): Setup, build commands, architecture and platform overview.
+- [Game guide](https://raw.githubusercontent.com/hcodes/reex/main/docs/game.md): Controls, graphics modes, settings, URL options and browser compatibility.
+- [Original behaviour and sources](https://raw.githubusercontent.com/hcodes/reex/main/research/behavior.md): Evidence for the shared classic model and limits of reconstruction.
+- [Amiga research](https://raw.githubusercontent.com/hcodes/reex/main/research/amiga.md): Original disk sources, recovered resources and verified Amiga behaviour.
+- [Atari ST research](https://raw.githubusercontent.com/hcodes/reex/main/research/atari-st.md): Original Atari ST resources, music and platform-specific evidence.
+
+## Optional
+
+- [Source repository](https://github.com/hcodes/reex): TypeScript implementations, tests, tools, attribution and resource licences.

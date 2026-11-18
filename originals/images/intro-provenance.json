@@ -1,0 +1,129 @@
+{
+  "generator": "npm run build:intro-art",
+  "zx": {
+    "source": "src/assets/graphics/zx-spectrum/graphics.json: loading",
+    "sha256": "327fa6c5d945415fe627e5c86478e69162cc6317f4a7acfc0512727c8f375654",
+    "provenance": "src/assets/graphics/zx-spectrum/graphics-provenance.json",
+    "notes": "Original 6912-byte ZX SCR, full 256x192, FLASH off; no removal of stars, credits or counter."
+  },
+  "cpc": {
+    "source": "src/assets/images/amstrad-cpc/source/exolon-cpc-loading.png",
+    "sha256": "cb3341adfe0bc033927408e0e47731a5fe505d30bad64176badefe1f0fa6c709",
+    "url": "https://www.cpc-power.com/extra_lire_fichier.php?extra=cpcold&fiche=54&part=A&slot=1&type=.png",
+    "page": "https://www.cpc-power.com/index.php?num=54&page=detail",
+    "crop": {
+      "x": 64,
+      "y": 72,
+      "width": 640,
+      "height": 400
+    },
+    "scale": 2,
+    "bitmapSource": "src/assets/graphics/amstrad-cpc/cpc-graphics.json: loading",
+    "bitmapSha256": "9b06aa698f71ee227ad6087ca9d85dafd6bb95e13c7229c4d87195ffaf743c0b",
+    "notes": "Lossless native 320x200 active area from the original CPC archive capture; every 2x2 block verified. All 320x192 recovered bitmap pixels independently match at y+3 with the original black/red/green/white inks. No claim of identical cassette loader code."
+  },
+  "c64": {
+    "artist": "Stephen Robertson (SIR’88)",
+    "status": "Authentic archived artwork intended for the unreleased Rack-It edition; not present on the original retail tape.",
+    "source": "src/assets/images/shared/reference/exolon-loading-comparison.png",
+    "sha256": "ed304f41b0876501ef4adc5596a83e6e06bc79af3e59be43ee3e21ff1943298e",
+    "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEii7akkvpsmOUWxpzuB4BgHVsJmCnPqJCDgGYrN6NbX2xsm55R0Ii195X2E97HG6VSVhCqjHw-M5FYvDem4h2KHNgWcOinnR92NLbIpCsxzbNim0Ke5jrji34OvPQgykTwg92q6CW3PNu_g/s2058/Exolon+loaders+upgrade.png",
+    "page": "https://frgcb.blogspot.com/2020/08/exolon-hewson-consultants-1987.html",
+    "artistInterview": "https://www.lemon64.com/page/stephen-robertson-interview",
+    "editionNotes": "https://www.lemon64.com/game/exolon",
+    "crop": {
+      "x": 1381,
+      "y": 466,
+      "width": 640,
+      "height": 400
+    },
+    "scale": 2,
+    "notes": "Lossless extraction of the complete native 320x200 panel; all 2x2 source blocks verified identical. Source palette and credits preserved."
+  },
+  "sharp": {
+    "source": "src/assets/images/shared/reference/exolon-loading-comparison.png",
+    "sha256": "ed304f41b0876501ef4adc5596a83e6e06bc79af3e59be43ee3e21ff1943298e",
+    "page": "https://frgcb.blogspot.com/2020/08/exolon-hewson-consultants-1987.html",
+    "crop": {
+      "x": 1438,
+      "y": 25,
+      "width": 512,
+      "height": 384
+    },
+    "scale": 2,
+    "status": "Archival monochrome picture attributed to Sharp MZ-800. The source author explicitly questions whether it is an actual loading screen; its use by the Datelsoft edition is unconfirmed.",
+    "notes": "Full 256x192 panel extracted losslessly; every 2x2 source block and both opaque black/white inks verified. Used for the platform banner at user request; no separate pre-title loading cover is displayed. Datelsoft menus, sprites and gameplay palette remain separate original assets."
+  },
+  "handhelds": {
+    "source": "ZX loading pixels above",
+    "notes": "New Game Boy / Game Boy Color conversions. No original Exolon port or loading artwork is claimed."
+  },
+  "atariSt": {
+    "source": "src/assets/graphics/atari-st/resources.json: title",
+    "provenance": "src/assets/graphics/atari-st/provenance.json",
+    "notes": "Original ST EXOPIC.PIC 240x187 at48,0 on320x200; two overread rows and exterior use zero padding."
+  },
+  "remastered": {
+    "file": "assets/images/remastered/intro-green-weapon.jpg",
+    "notes": "Preserved existing yellow illustration. Its author and initial URL remain unverified; see research/behavior.md. The red illustration is archived and never selected."
+  },
+  "outputs": [
+    {
+      "mode": "zx",
+      "file": "assets/images/zx-spectrum/loading.png",
+      "width": 256,
+      "height": 192,
+      "sha256": "273a42ae56e9087c573b0b9859ef9fa2dc43fe5047ebc17e756de5ead1e98283",
+      "rgbaSha256": "dcd3f49b0d2cb746b5a0755aede7f34ff2374d6fbb06c203888f821870c0ff6e"
+    },
+    {
+      "mode": "c64",
+      "file": "assets/images/c64/loading.png",
+      "width": 320,
+      "height": 200,
+      "sha256": "0ce503b505353667cc8b447f02edb97ddebd80782b731c3be75357104db8930a",
+      "rgbaSha256": "7690f72cb6c36d8ca449b743a6127a93fc6115f131067698c420c20de1ca416b"
+    },
+    {
+      "mode": "cpc",
+      "file": "assets/images/amstrad-cpc/loading.png",
+      "width": 320,
+      "height": 200,
+      "sha256": "77b5c9ffd8b6da38b91c97f835035215d16f637cd451b1b9f2d5091c57195049",
+      "rgbaSha256": "d9b261d56e91bd7be3a29f3dc94d0edfa4fd945ac52e89c60b6d6e90fabd5774"
+    },
+    {
+      "mode": "gameboy",
+      "file": "assets/images/gameboy/loading.png",
+      "width": 256,
+      "height": 192,
+      "sha256": "6fb48ee2b9d237e3a2d2100bf541fd806c9b5cc9011d59597cb06e6946e82a35",
+      "rgbaSha256": "8e1a92f98a46cdb083372efdf5d9ccce32e6063bb4befc64491a841db792a47a"
+    },
+    {
+      "mode": "gameboy-color",
+      "file": "assets/images/gameboy-color/loading.png",
+      "width": 256,
+      "height": 192,
+      "sha256": "3f2c9df2e7958e475cc03d4d582c7154d6e927b8dab019812d4da9fa791e62c4",
+      "rgbaSha256": "380ee2318843deb0205d10c082e54456ff0c798b12e8980e424e33301444de8c"
+    },
+    {
+      "mode": "sharp-mz800",
+      "file": "assets/images/sharp-mz800/loading.png",
+      "width": 256,
+      "height": 192,
+      "sha256": "d3ccbe91c018672b704dc534881d8ab7cadd9d63af65c28cd9e1c70721533019",
+      "rgbaSha256": "548cc6970026c58ffc24d4c1251a180304eed7197dfb602a70921b3b61aa4db8"
+    },
+    {
+      "mode": "atari-st",
+      "file": "assets/images/atari-st/loading.png",
+      "width": 320,
+      "height": 200,
+      "sha256": "7d3355a2aeedf542a3f001d1cde9be3532d7c2c9132d33ee2f84f13e22836fd1",
+      "rgbaSha256": "89781811da8c8c39a2d449565fdba13d919ff65e8b6da1ab2ff617c72222eec2"
+    }
+  ],
+  "rights": "Original artwork retains its original ownership; archival availability is not a new license."
+}

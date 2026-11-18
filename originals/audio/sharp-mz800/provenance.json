@@ -1,0 +1,58 @@
+{
+  "game": "Exolon / Exolon New! (Sharp MZ-800, Datelsoft conversion)",
+  "author": "Original game: Raffaele Cecco; original music: Nick Jones. Sharp conversion credited to DATELSOFT in the preserved program.",
+  "copyright": "Original programs, sound tables and recordings remain the property of their original rightsholders; the repository code license does not relicense them.",
+  "source": {
+    "url": "https://github.com/MZPico/mz-catalog/blob/main/titles/exolnew/exolnew.mzf",
+    "catalog": "https://github.com/MZPico/mz-catalog/tree/main/titles/exolnew",
+    "downloaded": "2026-11-20",
+    "mzfSha256": "57bf60e91a20d1f0357bd1fac0048fdca27381b7b29789511a7665a2191b35cf",
+    "memorySha256": "108ee5352b0eaf8c809f55c6624265e8c55b35a73534206a0d390f3ed322f78f",
+    "memory": "64KB loader snapshot immediately before original entry $6d60. MZF body is loaded at $3960, relocated backwards to $6960–$ffff; $6d4b copies $0400 bytes from $6960 to $3000 and runs original setup. Source contains the original converted routines, not a replacement Spectrum sound bank.",
+    "catalogLimit": "MZPico identifies Datelsoft and a Spectrum port; its bootstrap metadata is explicitly uncurated. No claim of an official Hewson Sharp release or a pristine commercial master is made."
+  },
+  "extraction": {
+    "engine": { "file": "audio-engine.bin", "memoryStart": "$b6d0", "memoryEndExclusive": "$c7ab", "sha256": "11344b3802b361c913a4f50e017a359b82dd1150ae3dc80bef88dfe120fb2b2c" },
+    "toneConverter": { "file": "sn-tone-converter.bin", "memoryStart": "$332f", "memoryEndExclusive": "$334b", "sha256": "1528ae8b264b858b64506916d1b80677936cd1d75b5b294c2a806f638c476c7f" },
+    "music": { "init": "$b6ec", "update": "$b767", "finishedFlag": "$b6e4", "driverSteps": 6483 },
+    "effects": { "init": "$c1d3", "update": "$bf7e", "states": "$c5eb (16 slots of 16 bytes)", "toneTable": "$c6eb" },
+    "psgWriter": "$b758 silences all four SN76489 channels through port $f2. Patched effect writers $c097/$c0b1/$c0cc write SN attenuation bytes, then call the original Datelsoft converter $332f to emit the two tone-period bytes. Music writes the same chip directly. Capture preserves every port byte, including repeated mute writes.",
+    "clock": {
+      "cpuHz": 3546880,
+      "psgHz": 3546880,
+      "primaryReference": "https://www.idealine.info/sharpmz/mz-800/download/sm800.pdf",
+      "description": "Sharp service manual clock diagram: 17.7344MHz PAL master divided by five. MAME also identifies the MZ-800 PSG as SN76489A at PAL master/5; its 17.734470MHz crystal value differs by about four parts per million.",
+      "hardwareCrossCheck": "https://github.com/mamedev/mame/blob/master/src/mame/sharp/mz700.cpp"
+    },
+    "timing": "Original effect programs advanced at 50 driver steps/second, original title program at 90 steps/second, matching the existing native-game presentation convention. These are isolated captures: the original conversion calls the title update after four text-render calls and effects in a variable-duration game loop. These recordings preserve converted pitches, note order, attenuation and all chip writes; they do not claim measured original-machine tempo. Instruction T-states locate writes within each step; no video wait states or contention are modeled.",
+    "traceFormat": "MZ8SN001: 8-byte ASCII magic, little-endian uint32 duration in microseconds and uint32 event count; each 8-byte event is uint32 timestamp, uint8 F2 output value and three zero reserved bytes.",
+    "offlineRenderer": {
+      "project": "https://github.com/DrGoldfire/Z80.js",
+      "source": "https://raw.githubusercontent.com/DrGoldfire/Z80.js/master/Z80.js",
+      "license": "MIT; external offline tool only, not redistributed or loaded by the game",
+      "sha256": "78609811c202d717c94d2f2aaf6f540d2d5c4d0485f723dedc42bf384625637b",
+      "psg": "Independent SN76489A renderer: 10-bit square-wave periods, clock/16 counter ticks, zero period treated as 1024, 2dB attenuation steps and volume15 silence. It integrates chip transitions over PCM sample intervals, then applies 20Hz AC coupling. Noise uses SN76489A feedback; all original captured Exolon programs keep the SN noise channel muted. The converted routines do not retain the original AY noise channel, and this capture does not invent one.",
+      "output": "Mono PCM16 WAV at 44100Hz. Software rendering, not a microphone or physical-hardware recording."
+    },
+    "reproduce": "node --experimental-strip-types tools/audio/sharp.mjs --memory /path/to/exolnew-unpacked.bin --z80 /path/to/Z80.js --output /tmp/exolon-sharp-audio",
+    "reproducePcmWithoutCpu": "Copy audio-engine.bin, sn-tone-converter.bin and *.snr into an output directory, then node --experimental-strip-types tools/audio/sharp.mjs --traces-only --output /tmp/exolon-sharp-audio"
+  },
+  "eventEvidence": {
+    "shot": { "entry": "$c177", "call": "$8372", "stream": "$c5a1", "evidence": "Ammo $8e5a is decremented immediately before the call at $836b–$8371. First sounding port bytes are $92,$83,$38, exactly from the Sharp driver." },
+    "grenade": { "entry": "$c1be", "call": "$9254", "streams": ["$c366", "$c3d8"], "evidence": "Original initializer allocates simultaneous slots9 and15; capture retains both SN tone voices." },
+    "rocket": { "entry": "$c13b", "call": "$9dbb", "stream": "$c2c7" },
+    "explosion": { "entry": "$c148", "calls": ["$91a9", "$9427", "$ac51"], "stream": "$c305" },
+    "enemy-destroyed": { "entry": "$c155", "calls": ["$9b79", "$9bd0", "$9e5b", "$9e7f", "$a63c"], "stream": "$c33e" },
+    "teleport": { "entry": "$c162", "calls": ["$98f3", "$9928"], "stream": "$c462" },
+    "refill-ammo": { "entry": "$c0f4", "call": "$9980", "stream": "$c218", "evidence": "Ammo set to99 at $9978–$997c immediately before sound." },
+    "refill-grenades": { "entry": "$c101", "call": "$99d6", "stream": "$c23e", "evidence": "Grenades set to10 at $99ce–$99d2 immediately before sound." },
+    "suit": { "entry": "$c0f4", "call": "$9f65", "evidence": "Changing chamber toggles suit state $9ed8, then calls the same routine as ammo refill." }
+  },
+  "adaptationAliases": {
+    "turret": "Original explosion effect $c148.",
+    "mine": "Original explosion effect $c148.",
+    "death": "Presentation alias to original explosion $c148; no distinct original Sharp player-death program is claimed.",
+    "suit": "Identical to refill-ammo, following original $9f65 call."
+  },
+  "limits": "Dedicated Sharp sound bank over the shared native TypeScript game model. No CPU emulator, MZF program or SN renderer runs in the browser: it loads the pre-rendered WAV files. Concurrent voice allocation and interruption are isolated per sound. No separate Sharp game-over recording is claimed. The earlier Spectrum, C64, CPC, Game Boy and arranged recordings are retained."
+}

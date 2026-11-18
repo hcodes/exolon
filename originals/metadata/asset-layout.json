@@ -1,0 +1,81 @@
+{
+  "sources": [
+    {
+      "from": "src/data/graphics.json",
+      "to": "src/assets/graphics/zx-spectrum/graphics.json",
+      "sha256": "3ca4dd80ac0e18f8f1dc62c3493fba2b0e2d84b7cd46c1de8d727e1d587016fd"
+    },
+    {
+      "from": "src/data/graphics-provenance.json",
+      "to": "src/assets/graphics/zx-spectrum/graphics-provenance.json",
+      "sha256": "7e72b8bcd1741c173bb814ae193052e2419b756a308da0f134d76f8de29f7c2c"
+    },
+    {
+      "from": "src/data/c64-graphics.json",
+      "to": "src/assets/graphics/c64/c64-graphics.json",
+      "sha256": "f7fc1c2ded2af98c4d9462957b57604fb58be03d063edc69b6d05d0bb1125def"
+    },
+    {
+      "from": "src/data/c64-graphics-provenance.json",
+      "to": "src/assets/graphics/c64/c64-graphics-provenance.json",
+      "sha256": "f8e29d319581c005f4ceff18fbb9a537ffbcf6e4cfb36956e8f00b4a109fdb0a"
+    },
+    {
+      "from": "src/data/cpc-graphics.json",
+      "to": "src/assets/graphics/amstrad-cpc/cpc-graphics.json",
+      "sha256": "6646e0aa3509ebcb4087215c3940aa51e8bd19b399d5f52142977d8f5c5edd1a"
+    },
+    {
+      "from": "src/data/cpc-graphics-provenance.json",
+      "to": "src/assets/graphics/amstrad-cpc/cpc-graphics-provenance.json",
+      "sha256": "b05a26c33ec557128574b6a99a4c903e4562c50cfece36888ec26ae2d6f2feea"
+    },
+    {
+      "from": "src/images/intro-green-weapon.jpg",
+      "to": "src/assets/images/remastered/intro-green-weapon.jpg",
+      "sha256": "d54bcd1018ac5c2297f7fa669ae06eff748532f2410285fe80596e90302ce3fd"
+    },
+    {
+      "from": "src/images/intro-red-planet.jpg",
+      "to": "src/assets/images/remastered/archive/intro-red-planet.jpg",
+      "sha256": "cec1a5bb8dd7f8b267eafc6750eca4294f40bdfa9a75cbd62f4e4568a54afdf2"
+    },
+    {
+      "from": "research/assets/exolon-loading-comparison.png",
+      "to": "src/assets/images/shared/reference/exolon-loading-comparison.png",
+      "sha256": "ed304f41b0876501ef4adc5596a83e6e06bc79af3e59be43ee3e21ff1943298e"
+    },
+    {
+      "from": "research/assets/exolon-cpc-loading.png",
+      "to": "src/assets/images/amstrad-cpc/source/exolon-cpc-loading.png",
+      "sha256": "cb3341adfe0bc033927408e0e47731a5fe505d30bad64176badefe1f0fa6c709"
+    }
+  ],
+  "generated": [
+    {
+      "from": "images/intro-zx.png",
+      "to": "assets/images/zx-spectrum/loading.png",
+      "sha256": "273a42ae56e9087c573b0b9859ef9fa2dc43fe5047ebc17e756de5ead1e98283"
+    },
+    {
+      "from": "images/intro-c64.png",
+      "to": "assets/images/c64/loading.png",
+      "sha256": "0ce503b505353667cc8b447f02edb97ddebd80782b731c3be75357104db8930a"
+    },
+    {
+      "from": "images/intro-cpc.png",
+      "to": "assets/images/amstrad-cpc/loading.png",
+      "sha256": "77b5c9ffd8b6da38b91c97f835035215d16f637cd451b1b9f2d5091c57195049"
+    },
+    {
+      "from": "images/intro-gameboy.png",
+      "to": "assets/images/gameboy/loading.png",
+      "sha256": "6fb48ee2b9d237e3a2d2100bf541fd806c9b5cc9011d59597cb06e6946e82a35"
+    },
+    {
+      "from": "images/intro-gameboy-color.png",
+      "to": "assets/images/gameboy-color/loading.png",
+      "sha256": "3f2c9df2e7958e475cc03d4d582c7154d6e927b8dab019812d4da9fa791e62c4"
+    }
+  ]
+}

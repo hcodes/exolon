@@ -1,0 +1,51 @@
+{
+  "game": "Exolon (Commodore 64)",
+  "author": "Nick Jones",
+  "published": "1987 Hewson Consultants",
+  "copyright": "Original game music, sound programs and recordings remain the property of their original rightsholders; repository code license does not relicense them.",
+  "archive": {
+    "url": "https://www.c64games.de/hugo.php?art=d&fil=230&Dateiname=/e/exolon.zip",
+    "downloaded": "2026-11-15",
+    "sha256": "26c6203905c4992d6aaa8661093020629c9da4a10e5411d82518c03414eea641",
+    "sid": "Exolon.sid",
+    "sidSha256": "c9efb37683f9c763a15c8e4b9dd384dd17d5e67e9a863dd5463f3e144e85843d",
+    "gamePrg": "Exolon_(HS).prg",
+    "gamePrgSha256": "ab18247ac7a23b256068d746f348354274c474c71844d4dc16877805de4712b7"
+  },
+  "extraction": {
+    "engine": {"file": "audio-engine.bin", "memoryStart": "$6aba", "memoryEndExclusive": "$80c4"},
+    "random": {"file": "random-routine.bin", "memoryStart": "$37a5", "memoryEndExclusive": "$37fe", "seed": "zero at $2f/$30"},
+    "music": "PSID subsong 1 is the title. Subsong 2 is the game-over tune (original game calls $706d immediately before GAME OVER text at $1dab).",
+    "effects": "Original game RAM after unpacking the trainer and nested game packer. SFX reset $7b79; per-frame update $7cda; independent effect calls recorded at PAL 50 Hz.",
+    "reproduce": "node tools/audio/c64.mjs --jssid /path/to/jsSID/js --output /tmp/exolon-c64-audio",
+    "offlineRenderer": {
+      "project": "https://github.com/jhohertz/jsSID",
+      "branch": "develop",
+      "files": ["js/mos6510.js", "js/tinysid.js"],
+      "license": "GPL-2.0 (external offline tool; no source from this project is redistributed or loaded by the game)",
+      "quality": "TinySID software approximation of the SID, not an analog hardware capture. Original note, waveform, envelope and effect programs are used unchanged. Register writes are applied at 50 Hz frame boundaries."
+    },
+    "format": "Mono 16-bit PCM WAV, 44100 Hz. Browser runtime only decodes recordings; it contains no 6510 interpreter or SID emulator."
+  },
+  "eventEvidence": {
+    "shot": {"entry": "$7c77", "call": "$1de0", "evidence": "Immediately before decrementing ammo at $385e."},
+    "grenade": {"entry": "$7cc8", "call": "$160f", "evidence": "Immediately before decrementing grenades at $3872."},
+    "enemy-destroyed": {"entry": "$7c28", "calls": ["$22d3", "$2457", "$36bb", "$59dc"]},
+    "explosion": {"entry": "$7c3a", "calls": ["$1561", "$19fe", "$3631"], "evidence": "Original effect chooses one of two variants using the original PRNG; recording fixes its seed."},
+    "death": {"entry": "$7c65", "call": "$2e8a", "evidence": "Player death state initialization at $2e6e."},
+    "teleport": {"entry": "$7c1f", "calls": ["$30b9", "$30f9"], "evidence": "Both directions of the original teleport routine."},
+    "refill-ammo": {"entry": "$7cbf", "call": "$2fdc", "evidence": "Followed by setting ammo to 99 at $2fdf."},
+    "refill-grenades": {"entry": "$7cb6", "call": "$3047", "evidence": "Followed by setting grenades to 10 at $304a."},
+    "suit": {"entry": "$7cbf", "call": "$3147", "evidence": "Original code uses the same sound as ammo refill when toggling suit state $11."},
+    "turret": {"entry": "$7c92", "call": "$23e8", "evidence": "Original hostile projectile spawn routine."},
+    "crusher": {"entry": "$7c9b", "call": "$35b8"},
+    "bonus": {"entry": "$7cad", "call": "$256b"},
+    "impact": {"entry": "$7c80", "calls": ["$1e96", "$1eab", "$2d19"]}
+  },
+  "adaptationAliases": {
+    "rocket": "Uses the original hostile projectile/turret sound because the shared nativeJS rocket event does not identify a separate C64 effect.",
+    "mine": "Uses the original explosion sound; the shared nativeJS mine event does not identify an independent C64 mine audio program.",
+    "suit": "Shares refill-ammo.wav, matching the original game's identical $7cbf calls."
+  },
+  "limits": "Audio is a C64 presentation over the shared nativeJS gameplay model. Concurrent original SID voice allocation, priority and interrupted effects are baked into each isolated capture, not emulated at runtime. Title includes the original 103-second music program plus its release; looping is a presentation choice."
+}

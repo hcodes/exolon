@@ -1,0 +1,15 @@
+.notifications {
+    flex-basis: 100%;
+    margin: 0;
+    padding: 7px 10px;
+    border: 1px solid #4e8176;
+    border-radius: 4px;
+    background: #142e2a;
+    color: #c9f6e6;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+.notifications[hidden] {
+    display: none;
+}

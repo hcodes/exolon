@@ -1,0 +1,139 @@
+{
+  "title": "Exolon — original Commodore 64 graphics",
+  "version": 1,
+  "artifact": {
+    "file": "c64-graphics.json",
+    "generator": "tools/graphics/c64.mjs",
+    "command": "node tools/graphics/c64.mjs /path/to/ram-game.bin",
+    "sha256": "f7fc1c2ded2af98c4d9462957b57604fb58be03d063edc69b6d05d0bb1125def",
+    "bytes": 311133
+  },
+  "source": {
+    "title": "Exolon",
+    "publisher": "Hewson Consultants",
+    "year": 1987,
+    "c64ProgramCredit": "Nick Jones",
+    "originalConceptCredit": "Raffaele Cecco",
+    "archiveUrl": "https://www.c64games.de/hugo.php?art=d&fil=230&Dateiname=/e/exolon.zip",
+    "archiveSha256": "26c6203905c4992d6aaa8661093020629c9da4a10e5411d82518c03414eea641",
+    "sourcePrg": "Exolon_(HS).prg",
+    "sourcePrgSha256": "ab18247ac7a23b256068d746f348354274c474c71844d4dc16877805de4712b7",
+    "memoryBytes": 65536,
+    "memorySha256": "d0523af437b42628042a850c8ca69a5619f03f36acf8c66bec414bfffd2b92a4",
+    "entrySignature": {
+      "address": "0x080d",
+      "bytes": "a9ff8d660020e354"
+    },
+    "notes": "The archived High Society PRG was unpacked offline with tools/recovery/c64.mjs. Only extracted data is used by the browser; no 6510/VIC-II emulator is shipped."
+  },
+  "unpacking": {
+    "helper": "tools/recovery/c64.mjs",
+    "command": "node tools/recovery/c64.mjs \"/path/to/Exolon_(HS).prg\" /path/to/jssid.mos6510.js /path/to/ram-game.bin",
+    "nextCommand": "node tools/graphics/c64.mjs /path/to/ram-game.bin",
+    "externalCpu": {
+      "project": "jsSID",
+      "author": "Joe Hohertz",
+      "license": "GPL-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/jhohertz/jsSID/develop/js/jssid.mos6510.js",
+      "gitBlobUrl": "https://api.github.com/repos/jhohertz/jsSID/git/blobs/eb7d7ab7a335338b64a5b1701e9c52fd21515875",
+      "sha256": "cdd7ad432f5a7ef5efb45faadbc33da31dcead53b2c6c7cdca8119808803ad16",
+      "bytes": 36278,
+      "licenseUrl": "https://github.com/jhohertz/jsSID/blob/develop/LICENSE.md",
+      "distribution": "The research helper loads a separately supplied upstream source file. No CPU source or runtime dependency is included in this repository or game."
+    },
+    "procedure": "Exactly 10,000,000 CPU instructions from 0x080d, zero-filled 64 KiB RAM, bank byte 0x37; PAL raster uses 63 cycles per line and 312 lines. Read 0x0800 as 1; read CIA 0xdc01 as 0 only while PC is 0x3500..0x36ff to release the High Society intro, otherwise both CIA ports read 255. Banked KERNAL reads return RTS. Unsupported CPU execution aborts. Both input checksums and the final RAM checksum are required before a new output file is written."
+  },
+  "decoding": {
+    "parserAddress": "0x3ac3",
+    "blockPointerTable": "0x5ed4",
+    "blocks": 62,
+    "compactColorTableAddress": "0x3a9e",
+    "compactColorTable": "00e6a294d5e3871c006e2a945de387c1",
+    "cell": "Eight bitmap bytes, screen color byte and color RAM byte; 00=background, 01=screen high nibble, 10=screen low nibble, 11=color RAM low nibble. Each pair is doubled horizontally.",
+    "coordinates": "Block cells retain signed local coordinates and original draw order; the shared world model supplies placements. Static message cells use absolute 32x24 character coordinates.",
+    "repeat": "E0 consumes two attribute bytes. E1/E2 restore only screen color. E3 restores x/y/screen color; font and color RAM persist. E7 draws glyph zero at 0x91ad."
+  },
+  "tables": {
+    "player": {
+      "start": "0xa8fd",
+      "frames": 25,
+      "frameBytes": 96,
+      "width": 24,
+      "height": 32,
+      "sha256": "14ccd49c4c5a6d00f1f166c971c5859f4d56f078fd8d0b832836cf097e238154"
+    },
+    "small": {
+      "start": "0xb25d",
+      "frames": 45,
+      "frameBytes": 32,
+      "width": 16,
+      "height": 16,
+      "sha256": "75eabedd076e340c11e9da9f9fc44c723639781ab0d09a645062d39c52efecda",
+      "encoding": "Original software frame bytes; C64 hardware enemy sprites use multicolor pairs, unlike the hires player."
+    },
+    "shifted": {
+      "start": "0xa6bd",
+      "frames": 9,
+      "frameBytes": 64,
+      "width": 16,
+      "height": 8,
+      "sha256": "ed8df247bfdcf85e4ee825637a7a8a0e037ed9961ed1245609d980f63cab76b5"
+    },
+    "font": {
+      "start": "0x91ad",
+      "firstCharacter": 32,
+      "lastCharacter": 90,
+      "bytes": 472,
+      "sha256": "017bd5afe69082bbad6b71cd44d72e58bebeed47538373f5e2209fef6c000134"
+    },
+    "torch": {
+      "start": "0x944d",
+      "font": "0x93a5",
+      "glyphs": "0x15..0x1a",
+      "frames": 3,
+      "frameBytes": 16,
+      "sha256": "710c7a0a64d6b326709b4f915bae8a3bd17065958e42ac3a2e205a1d7d77c7b1"
+    },
+    "mine": {
+      "start": "0x948d",
+      "font": "0x93a5",
+      "glyphs": "0x1d..0x20",
+      "frames": 2,
+      "frameBytes": 16,
+      "sha256": "2aa8f6e38cf71665c0e7eb162b4f694d2b28805466de40ee47ef9c585a17be2d"
+    },
+    "beam": {
+      "start": "0x94cd",
+      "font": "0x93a5",
+      "glyph": "0x25",
+      "bytes": 8,
+      "sha256": "8f20243961ba021bf10ab855778bfa4e23d007b8646913d28f2a21211e20d220"
+    },
+    "turret": {
+      "start": "0x9745",
+      "font": "0x96c5",
+      "glyphs": "0x10..0x1f",
+      "frames": 8,
+      "frameBytes": 16,
+      "sha256": "84c0f17bbcf0b239f4f770d13a7446488db7958620ac8d6205f9a08efce14e27"
+    }
+  },
+  "messageAddresses": {
+    "menu": 14815,
+    "logo": 20831,
+    "hud": 14358,
+    "scores": 17821,
+    "gameOver": 7581
+  },
+  "rights": "Original commercial game artwork remains with its original rights holders. Availability of the archival copy does not establish a new license.",
+  "decoderAttribution": {
+    "spectrumDisassembly": "https://github.com/rusarh/exolon-esl",
+    "author": "Sergey Erokhin (ESL)",
+    "license": "CC-BY-SA-3.0",
+    "notes": "The C64-specific command differences were cross-checked against its original 6510 parser."
+  },
+  "limitations": [
+    "The shared JavaScript world and behavior are adaptations. Asset extraction does not establish complete C64 gameplay fidelity.",
+    "Palette conversion and browser scaling are presentation choices, not measured analog C64 video."
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "sampleRate": 44100,
+  "channels": 1,
+  "codec": "PCM signed 16-bit little endian",
+  "sourceScoreSha256": "4b3515ee5c3bb9c733c409e4c57aa9214414918b47499bae8a9501d678c6b569",
+  "synthesizerSha256": "88bace340095db58170d6107cbdd5287d68aba253dcd52c4f228ae661c465db5",
+  "arrangementRendererSha256": "0473928b84c8b4ccaeac0f0feb36cabe19d5331adc2acc616fe60a84c394c922",
+  "recordings": [
+    {
+      "name": "title",
+      "file": "title.wav",
+      "seconds": 72.18,
+      "events": 794,
+      "peak": 0.6471994519233704,
+      "rms": 0.2056656281758606,
+      "sha256": "d5499f95d82f10a3d591c568f190acb3c2bd4183e5dd1d0e51abe65fdca4b0c2"
+    },
+    {
+      "name": "game-over",
+      "file": "game-over.wav",
+      "seconds": 1.42,
+      "events": 8,
+      "peak": 0.4065420627593994,
+      "rms": 0.15429679825169404,
+      "sha256": "1865d42d15a85c0b73addb9b209e1fe2d2e1fa28ec211c6f83952ccc0a44de38"
+    },
+    {
+      "name": "shot",
+      "file": "shot.wav",
+      "seconds": 0.27,
+      "events": 2,
+      "peak": 0.4253731369972229,
+      "rms": 0.061262931286435,
+      "sha256": "c9f78d0958dc891605441138e2eb8950457b664237e133fc31623c3ec160f8ff"
+    },
+    {
+      "name": "grenade",
+      "file": "grenade.wav",
+      "seconds": 0.44,
+      "events": 2,
+      "peak": 0.2965611517429352,
+      "rms": 0.11167080642438346,
+      "sha256": "a5cfcd1db9808486f90f4dc37c18c50d30395a5583c911f6c6b626106fd77536"
+    },
+    {
+      "name": "rocket",
+      "file": "rocket.wav",
+      "seconds": 0.66,
+      "events": 2,
+      "peak": 0.3184400200843811,
+      "rms": 0.06639696061028909,
+      "sha256": "a6906d4260dcbe8aea476b06cb26a62168591016475011daf0ece1f5ff891019"
+    },
+    {
+      "name": "explosion",
+      "file": "explosion.wav",
+      "seconds": 0.86,
+      "events": 2,
+      "peak": 0.3645511269569397,
+      "rms": 0.08546012337904087,
+      "sha256": "38ebcd01d907e9ab845344251707eb029ceb1993630fbbd35e423b0993b0473e"
+    },
+    {
+      "name": "enemy-destroyed",
+      "file": "enemy-destroyed.wav",
+      "seconds": 0.4,
+      "events": 2,
+      "peak": 0.47779369354248047,
+      "rms": 0.07490713895037367,
+      "sha256": "3889f9d35ef64a1e64c6fbd23f6ed9a58f4df1f7218b3ea601a0debbb1bd350e"
+    },
+    {
+      "name": "turret",
+      "file": "turret.wav",
+      "seconds": 0.32,
+      "events": 2,
+      "peak": 0.38582131266593933,
+      "rms": 0.11292300858086189,
+      "sha256": "8fa5de1a32a51236631342efa06efe6d159c835dd4ad67ec94fef98f092546d0"
+    },
+    {
+      "name": "mine",
+      "file": "mine.wav",
+      "seconds": 0.59,
+      "events": 2,
+      "peak": 0.3274403512477875,
+      "rms": 0.0816493888882848,
+      "sha256": "c504e21386f20adff9b769c586cfe0638b9392be64801d58ab9c295e96af87b4"
+    },
+    {
+      "name": "death",
+      "file": "death.wav",
+      "seconds": 0.9650113378684807,
+      "events": 3,
+      "peak": 0.38663697242736816,
+      "rms": 0.1252639341544722,
+      "sha256": "f47040ddb1be5fec17bafc6d7ee7e3494310e60d7a5a2dd0a50133438a687ada"
+    },
+    {
+      "name": "teleport",
+      "file": "teleport.wav",
+      "seconds": 0.63,
+      "events": 11,
+      "peak": 0.371638685464859,
+      "rms": 0.08819694172418399,
+      "sha256": "8d110a8b497b810fac5425b2ebdd798817cd9c4d05c6fb069a4776b618e9cfdf"
+    },
+    {
+      "name": "refill-ammo",
+      "file": "refill-ammo.wav",
+      "seconds": 0.35,
+      "events": 3,
+      "peak": 0.3405328691005707,
+      "rms": 0.11831201775778086,
+      "sha256": "e1f65a086730186bbc0f9ead2fed5ea1f31f8cf6d821b7b3b1698ff71777d614"
+    },
+    {
+      "name": "refill-grenades",
+      "file": "refill-grenades.wav",
+      "seconds": 0.4950113378684807,
+      "events": 5,
+      "peak": 0.30425912141799927,
+      "rms": 0.09335270447330829,
+      "sha256": "11a84c043d3f034fef984175f0248f9545314db949a965dac81d3c24609b9c78"
+    },
+    {
+      "name": "suit",
+      "file": "suit.wav",
+      "seconds": 0.64,
+      "events": 6,
+      "peak": 0.5266525745391846,
+      "rms": 0.10741971542808926,
+      "sha256": "4102741edac3fdfad864b1d3b811c05be1aa1f55c84431923353e3feb3f3f42f"
+    }
+  ]
+}

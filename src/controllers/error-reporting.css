@@ -1,0 +1,25 @@
+.show-js-error {
+    color: #e6ebe9;
+    background: #23282a;
+}
+.show-js-error__title {
+    background: #922e3e;
+}
+.show-js-error__title_no-errors {
+    background: #285e3d;
+}
+.show-js-error__filename {
+    border-color: #922e3e;
+    background: #15191b;
+}
+.show-js-error__actions {
+    border-color: #922e3e;
+}
+.show-js-error .show-js-error__report {
+    color: #e6ebe9;
+}
+@media (prefers-reduced-motion: reduce) {
+    .show-js-error {
+        transition: none;
+    }
+}
